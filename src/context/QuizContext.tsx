@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { QuizContextType, Team, Room, Question, QuizLevel } from "@/types";
 import { questions } from "@/data/questions";
@@ -31,7 +31,22 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [teamsProgress, setTeamsProgress] = useState<TeamProgress[]>([]);
 
   useEffect(() => {
+    const storedTeam = localStorage.getItem("currentTeam");
+    const storedRoom = localStorage.getItem("currentRoom");
+    const storedRooms = localStorage.getItem("rooms");
+    const storedGameStarted = localStorage.getItem("gameStarted");
+    
+    if (storedTeam) setCurrentTeam(JSON.parse(storedTeam));
+    if (storedRoom) setCurrentRoom(JSON.parse(storedRoom));
+    if (storedRooms) setRooms(JSON.parse(storedRooms));
+    if (storedGameStarted) setGameStarted(JSON.parse(storedGameStarted));
+  }, []);
+
+  useEffect(() => {
+    if (currentTeam) localStorage.setItem("currentTeam", JSON.stringify(currentTeam));
     if (currentRoom) {
+      localStorage.setItem("currentRoom", JSON.stringify(currentRoom));
+      
       if (currentRoom.teams.length > 0) {
         const sortedTeams = [...currentRoom.teams].sort((a, b) => {
           const totalScoreA = a.score.beginner + a.score.intermediate + a.score.advanced;
@@ -42,6 +57,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setLeaderboard(sortedTeams);
       }
     }
+    if (rooms.length > 0) localStorage.setItem("rooms", JSON.stringify(rooms));
+    localStorage.setItem("gameStarted", JSON.stringify(gameStarted));
   }, [currentTeam, currentRoom, rooms, gameStarted]);
 
   useEffect(() => {
@@ -110,13 +127,16 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const room = rooms.find(r => r.password === password);
     
     if (room) {
+      // If the current team is already in the room, just reconnect
       const existingTeam = currentTeam ? room.teams.find(t => t.id === currentTeam.id) : null;
       
       if (existingTeam) {
+        // The team already exists in this room, just update the current team state
         setCurrentTeam(existingTeam);
         setCurrentRoom(room);
         return room;
       } else if (currentTeam) {
+        // The team exists but isn't in this room yet, add it
         const updatedRoom = {
           ...room,
           teams: [...room.teams, currentTeam],

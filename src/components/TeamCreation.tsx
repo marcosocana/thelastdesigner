@@ -1,11 +1,11 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 
 const TeamCreation = () => {
-  const { createTeam } = useQuiz();
+  const { createTeam, joinRoom } = useQuiz();
   
   const [teamName, setTeamName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,9 +13,24 @@ const TeamCreation = () => {
   const [memberNames, setMemberNames] = useState<string[]>([""]);
   const [teamLogo, setTeamLogo] = useState<string | null>(null);
   const [step, setStep] = useState(1);
+  const [isReconnecting, setIsReconnecting] = useState(false);
   
-  // Removed useEffect for checking saved session data
-  // Removed isReconnecting state
+  // Check for saved session data
+  useEffect(() => {
+    const savedSession = localStorage.getItem("quizSession");
+    if (savedSession) {
+      try {
+        const session = JSON.parse(savedSession);
+        if (session.teamName && session.password) {
+          setTeamName(session.teamName);
+          setPassword(session.password);
+          setIsReconnecting(true);
+        }
+      } catch (error) {
+        console.error("Error parsing saved session:", error);
+      }
+    }
+  }, []);
   
   const handleMemberCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const count = parseInt(e.target.value);
@@ -77,7 +92,11 @@ const TeamCreation = () => {
         return;
       }
       
-      // Removed localStorage session saving
+      // Save session data for reconnection
+      localStorage.setItem("quizSession", JSON.stringify({
+        teamName,
+        password
+      }));
       
       // Create the team
       createTeam(teamName, memberNames, teamLogo, password);
@@ -89,12 +108,70 @@ const TeamCreation = () => {
     }
   };
   
-  // Removed handleReconnect and handleCancelReconnect functions
+  const handleReconnect = () => {
+    // Attempt to rejoin the room with saved credentials
+    const room = joinRoom(password);
+    
+    if (room) {
+      toast({
+        title: "Reconexión exitosa",
+        description: "Has vuelto a unirte a tu sala anterior."
+      });
+    } else {
+      setIsReconnecting(false);
+      localStorage.removeItem("quizSession");
+      toast({
+        variant: "destructive",
+        title: "Error al reconectar",
+        description: "No se pudo encontrar la sala anterior. Por favor, crea un nuevo equipo."
+      });
+    }
+  };
+  
+  const handleCancelReconnect = () => {
+    setIsReconnecting(false);
+    setTeamName("");
+    setPassword("");
+    localStorage.removeItem("quizSession");
+  };
   
   const isStepOneValid = teamName.trim() !== "" && password.trim() !== "";
   const isStepTwoValid = memberNames.every(name => name.trim() !== "");
   
-  // Removed reconnection UI
+  // Show reconnection UI if we have detected a previous session
+  if (isReconnecting) {
+    return (
+      <div className="my-8 max-w-md mx-auto animate-fade-in">
+        <div className="brutalist-box">
+          <h2 className="text-2xl font-bold mb-6 uppercase">Sesión anterior detectada</h2>
+          
+          <div className="space-y-4 mb-6">
+            <p>Parece que ya tenías un equipo en una sala.</p>
+            <div className="brutalist-border p-3">
+              <p><strong>Equipo:</strong> {teamName}</p>
+              <p><strong>Contraseña de sala:</strong> {password}</p>
+            </div>
+            <p>¿Quieres volver a unirte a esta sala con tu equipo?</p>
+          </div>
+          
+          <div className="flex gap-4">
+            <Button
+              onClick={handleReconnect}
+              className="brutalist-btn flex-1"
+            >
+              Reconectar
+            </Button>
+            <Button
+              onClick={handleCancelReconnect}
+              className="brutalist-btn-secondary flex-1"
+            >
+              Crear nuevo equipo
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="my-8 max-w-md mx-auto animate-fade-in">
