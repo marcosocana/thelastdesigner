@@ -125,20 +125,32 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const joinRoom = (password: string): Room | null => {
     const room = rooms.find(r => r.password === password);
-    if (room && currentTeam) {
-      const updatedRoom = {
-        ...room,
-        teams: [...room.teams, currentTeam],
-      };
+    
+    if (room) {
+      // If the current team is already in the room, just reconnect
+      const existingTeam = currentTeam ? room.teams.find(t => t.id === currentTeam.id) : null;
       
-      setCurrentRoom(updatedRoom);
-      
-      const updatedRooms = rooms.map(r => 
-        r.id === room.id ? updatedRoom : r
-      );
-      
-      setRooms(updatedRooms);
-      return updatedRoom;
+      if (existingTeam) {
+        // The team already exists in this room, just update the current team state
+        setCurrentTeam(existingTeam);
+        setCurrentRoom(room);
+        return room;
+      } else if (currentTeam) {
+        // The team exists but isn't in this room yet, add it
+        const updatedRoom = {
+          ...room,
+          teams: [...room.teams, currentTeam],
+        };
+        
+        setCurrentRoom(updatedRoom);
+        
+        const updatedRooms = rooms.map(r => 
+          r.id === room.id ? updatedRoom : r
+        );
+        
+        setRooms(updatedRooms);
+        return updatedRoom;
+      }
     }
     return null;
   };
