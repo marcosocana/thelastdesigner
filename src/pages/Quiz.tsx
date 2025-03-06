@@ -4,10 +4,11 @@ import Layout from "@/components/Layout";
 import TeamCreation from "@/components/TeamCreation";
 import QuizGame from "@/components/QuizGame";
 import Leaderboard from "@/components/Leaderboard";
+import GameState from "@/components/GameState";
 import { useQuiz } from "@/context/QuizContext";
 
 const Quiz = () => {
-  const { currentTeam } = useQuiz();
+  const { currentTeam, gameStarted } = useQuiz();
   
   return (
     <Layout>
@@ -18,7 +19,13 @@ const Quiz = () => {
         
         <div className="grid md:grid-cols-2 gap-8">
           <div>
-            {!currentTeam ? <TeamCreation /> : <QuizGame />}
+            {!currentTeam ? (
+              <TeamCreation />
+            ) : !gameStarted ? (
+              <GameState />
+            ) : (
+              <QuizGame />
+            )}
           </div>
           
           <div>

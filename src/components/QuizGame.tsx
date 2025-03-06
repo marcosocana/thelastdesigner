@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
+import { Progress } from "@/components/ui/progress";
 
 const QuizGame = () => {
   const { 
@@ -9,18 +9,44 @@ const QuizGame = () => {
     getCurrentLevelQuestions,
     getCurrentLevelProgress,
     submitAnswer,
-    advanceLevel
+    advanceLevel,
+    gameStarted,
+    currentQuestionIndex,
+    setNextQuestion
   } = useQuiz();
   
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(10);
   
   const questions = getCurrentLevelQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
   const progress = getCurrentLevelProgress();
+  
+  useEffect(() => {
+    if (!gameStarted || showFeedback || !currentQuestion) return;
+    
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          handleTimeUp();
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, [gameStarted, currentQuestionIndex, showFeedback, currentQuestion]);
+  
+  useEffect(() => {
+    setTimeLeft(10);
+    setSelectedOption(null);
+    setShowFeedback(false);
+  }, [currentQuestionIndex]);
   
   useEffect(() => {
     if (
@@ -34,8 +60,24 @@ const QuizGame = () => {
     }
   }, [currentTeam, progress, questions.length]);
   
+  const handleTimeUp = () => {
+    if (currentQuestion) {
+      submitAnswer(currentQuestion.id, -1);
+      setIsCorrect(false);
+      setShowFeedback(true);
+      
+      setTimeout(() => {
+        if (currentQuestionIndex < questions.length - 1) {
+          setNextQuestion();
+        } else {
+          setAllQuestionsAnswered(true);
+        }
+      }, 2000);
+    }
+  };
+  
   const handleOptionSelect = (optionIndex: number) => {
-    if (showFeedback) return; // Prevent changing option during feedback
+    if (showFeedback) return;
     setSelectedOption(optionIndex);
   };
   
@@ -46,35 +88,29 @@ const QuizGame = () => {
     setIsCorrect(result);
     setShowFeedback(true);
     
-    // Auto advance to next question after 2 seconds
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setNextQuestion();
       } else {
-        // All questions for this level have been answered
         setAllQuestionsAnswered(true);
       }
-      
-      setSelectedOption(null);
-      setShowFeedback(false);
     }, 2000);
   };
   
   const handleAdvanceLevel = () => {
     const success = advanceLevel();
     if (success) {
-      setCurrentQuestionIndex(0);
       setSelectedOption(null);
       setShowFeedback(false);
       setAllQuestionsAnswered(false);
     }
   };
   
-  if (!currentTeam) {
+  if (!currentTeam || !gameStarted) {
     return (
       <div className="my-8 brutalist-box text-center">
-        <h2 className="text-2xl font-bold mb-4">No hay ningún equipo activo</h2>
-        <p>Por favor, crea un equipo para comenzar el quiz.</p>
+        <h2 className="text-2xl font-bold mb-4">Esperando el inicio del juego</h2>
+        <p>El juego comenzará cuando un equipo presione "Iniciar".</p>
       </div>
     );
   }
@@ -161,6 +197,19 @@ const QuizGame = () => {
             className="h-full bg-black transition-all duration-300"
             style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
           ></div>
+        </div>
+        
+        <div className="mb-4">
+          <div className="flex justify-between mb-1">
+            <span className="font-bold">Tiempo restante:</span>
+            <span className={`font-mono ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}`}>
+              {timeLeft} segundos
+            </span>
+          </div>
+          <Progress 
+            value={(timeLeft / 10) * 100} 
+            className="h-3 brutalist-border" 
+          />
         </div>
         
         <div className="brutalist-wireframe mb-6">

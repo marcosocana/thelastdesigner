@@ -38,6 +38,14 @@ export interface Room {
   teams: Team[];
 }
 
+export interface TeamProgress {
+  teamId: string;
+  teamName: string;
+  currentQuestionIndex: number;
+  answeredCorrectly: boolean;
+  answeredIncorrectly: boolean;
+}
+
 export interface QuizContextType {
   currentTeam: Team | null;
   setCurrentTeam: (team: Team) => void;
@@ -50,4 +58,9 @@ export interface QuizContextType {
   getCurrentLevelQuestions: () => Question[];
   advanceLevel: () => boolean;
   leaderboard: Team[];
+  gameStarted: boolean;
+  startGame: () => boolean;
+  currentQuestionIndex: number;
+  setNextQuestion: () => void;
+  teamsProgress: TeamProgress[];
 }

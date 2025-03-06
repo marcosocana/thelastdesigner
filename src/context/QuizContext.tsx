@@ -1,8 +1,15 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { QuizContextType, Team, Room, Question, QuizLevel } from "@/types";
 import { questions } from "@/data/questions";
+
+interface TeamProgress {
+  teamId: string;
+  teamName: string;
+  currentQuestionIndex: number;
+  answeredCorrectly: boolean;
+  answeredIncorrectly: boolean;
+}
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
@@ -19,25 +26,27 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [currentRoom, setCurrentRoom] = useState<Room | null>(null);
   const [rooms, setRooms] = useState<Room[]>([]);
   const [leaderboard, setLeaderboard] = useState<Team[]>([]);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [teamsProgress, setTeamsProgress] = useState<TeamProgress[]>([]);
 
-  // Load state from localStorage on mount
   useEffect(() => {
     const storedTeam = localStorage.getItem("currentTeam");
     const storedRoom = localStorage.getItem("currentRoom");
     const storedRooms = localStorage.getItem("rooms");
+    const storedGameStarted = localStorage.getItem("gameStarted");
     
     if (storedTeam) setCurrentTeam(JSON.parse(storedTeam));
     if (storedRoom) setCurrentRoom(JSON.parse(storedRoom));
     if (storedRooms) setRooms(JSON.parse(storedRooms));
+    if (storedGameStarted) setGameStarted(JSON.parse(storedGameStarted));
   }, []);
 
-  // Save state to localStorage on change
   useEffect(() => {
     if (currentTeam) localStorage.setItem("currentTeam", JSON.stringify(currentTeam));
     if (currentRoom) {
       localStorage.setItem("currentRoom", JSON.stringify(currentRoom));
       
-      // Update leaderboard when room changes
       if (currentRoom.teams.length > 0) {
         const sortedTeams = [...currentRoom.teams].sort((a, b) => {
           const totalScoreA = a.score.beginner + a.score.intermediate + a.score.advanced;
@@ -49,7 +58,22 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     }
     if (rooms.length > 0) localStorage.setItem("rooms", JSON.stringify(rooms));
-  }, [currentTeam, currentRoom, rooms]);
+    localStorage.setItem("gameStarted", JSON.stringify(gameStarted));
+  }, [currentTeam, currentRoom, rooms, gameStarted]);
+
+  useEffect(() => {
+    if (gameStarted && currentRoom) {
+      const initialProgress: TeamProgress[] = currentRoom.teams.map(team => ({
+        teamId: team.id,
+        teamName: team.name,
+        currentQuestionIndex: 0,
+        answeredCorrectly: false,
+        answeredIncorrectly: false
+      }));
+      
+      setTeamsProgress(initialProgress);
+    }
+  }, [gameStarted, currentRoom]);
 
   const createTeam = (name: string, memberNames: string[], logo: string | null, password: string) => {
     const newTeam: Team = {
@@ -72,11 +96,9 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     setCurrentTeam(newTeam);
 
-    // Check if a room with this password exists
     let room = rooms.find(r => r.password === password);
     
     if (room) {
-      // Add team to existing room
       const updatedRoom = {
         ...room,
         teams: [...room.teams, newTeam],
@@ -84,14 +106,12 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setCurrentRoom(updatedRoom);
       
-      // Update rooms list
       const updatedRooms = rooms.map(r => 
         r.id === room!.id ? updatedRoom : r
       );
       
       setRooms(updatedRooms);
     } else {
-      // Create new room with this password
       const newRoom: Room = {
         id: uuidv4(),
         password,
@@ -106,7 +126,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const joinRoom = (password: string): Room | null => {
     const room = rooms.find(r => r.password === password);
     if (room && currentTeam) {
-      // Add current team to this room
       const updatedRoom = {
         ...room,
         teams: [...room.teams, currentTeam],
@@ -114,7 +133,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setCurrentRoom(updatedRoom);
       
-      // Update rooms list
       const updatedRooms = rooms.map(r => 
         r.id === room.id ? updatedRoom : r
       );
@@ -125,27 +143,51 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return null;
   };
 
+  const startGame = (): boolean => {
+    if (!currentRoom || currentRoom.teams.length === 0) {
+      return false;
+    }
+    
+    setGameStarted(true);
+    setCurrentQuestionIndex(0);
+    return true;
+  };
+
+  const setNextQuestion = () => {
+    setCurrentQuestionIndex(prev => prev + 1);
+    
+    if (currentTeam && currentRoom) {
+      const updatedProgress = teamsProgress.map(progress => 
+        progress.teamId === currentTeam.id
+          ? { 
+              ...progress, 
+              currentQuestionIndex: currentQuestionIndex + 1,
+              answeredCorrectly: false,
+              answeredIncorrectly: false
+            }
+          : progress
+      );
+      
+      setTeamsProgress(updatedProgress);
+    }
+  };
+
   const submitAnswer = (questionId: number, answerIndex: number): boolean => {
     if (!currentTeam) return false;
 
-    // Find the question
     const question = questions.find(q => q.id === questionId);
     if (!question) return false;
 
-    // Check if answer is correct
     const isCorrect = question.correctAnswer === answerIndex;
     
-    // Update team score and completed questions
     if (currentTeam) {
       const level = question.level;
       
-      // Mark question as completed regardless of correctness
       const updatedCompletedQuestions = {
         ...currentTeam.completedQuestions,
         [level]: [...currentTeam.completedQuestions[level], questionId]
       };
       
-      // Update score only if correct
       const updatedScore = {
         ...currentTeam.score,
         [level]: isCorrect ? currentTeam.score[level] + 1 : currentTeam.score[level]
@@ -159,7 +201,18 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setCurrentTeam(updatedTeam);
       
-      // Update team in current room
+      const updatedProgress = teamsProgress.map(progress => 
+        progress.teamId === currentTeam.id
+          ? { 
+              ...progress, 
+              answeredCorrectly: isCorrect,
+              answeredIncorrectly: !isCorrect
+            }
+          : progress
+      );
+      
+      setTeamsProgress(updatedProgress);
+      
       if (currentRoom) {
         const updatedRoomTeams = currentRoom.teams.map(team => 
           team.id === currentTeam.id ? updatedTeam : team
@@ -172,7 +225,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         setCurrentRoom(updatedRoom);
         
-        // Update room in rooms list
         const updatedRooms = rooms.map(room => 
           room.id === currentRoom.id ? updatedRoom : room
         );
@@ -208,7 +260,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     const { correct } = getCurrentLevelProgress();
     
-    // Need at least 20 correct answers to advance
     if (correct < 20) return false;
     
     const currentLevel = currentTeam.currentLevel;
@@ -219,7 +270,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else if (currentLevel === "intermediate") {
       nextLevel = "advanced";
     } else {
-      // Already at highest level
       return false;
     }
     
@@ -231,7 +281,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setCurrentTeam(updatedTeam);
       
-      // Update team in current room
       if (currentRoom) {
         const updatedRoomTeams = currentRoom.teams.map(team => 
           team.id === currentTeam.id ? updatedTeam : team
@@ -244,13 +293,14 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         setCurrentRoom(updatedRoom);
         
-        // Update room in rooms list
         const updatedRooms = rooms.map(room => 
           room.id === currentRoom.id ? updatedRoom : room
         );
         
         setRooms(updatedRooms);
       }
+      
+      setCurrentQuestionIndex(0);
       
       return true;
     }
@@ -270,6 +320,11 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     getCurrentLevelQuestions,
     advanceLevel,
     leaderboard,
+    gameStarted,
+    startGame,
+    currentQuestionIndex,
+    setNextQuestion,
+    teamsProgress
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
