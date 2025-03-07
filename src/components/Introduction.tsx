@@ -42,23 +42,23 @@ const Introduction = () => {
             <h2 className="text-2xl font-bold mb-4 uppercase">Sobre el Quiz</h2>
             
             <div className="brutalist-wireframe mb-6">
-              <h3 className="text-xl font-bold mb-2">Niveles</h3>
+              <h3 className="text-xl font-bold mb-2">Estructura</h3>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Principiante</li>
-                <li>Medio</li>
-                <li>Avanzado</li>
+                <li>10 rounds con 10 preguntas cada uno</li>
+                <li>Cada round debe completarse para desbloquear el siguiente</li>
+                <li>Cuenta atrás al inicio de cada round (3, 2, 1, ¡GO!)</li>
+                <li>Sistema de puntuación basado en velocidad y precisión</li>
+                <li>Puntuación máxima de 1000 puntos por round</li>
               </ul>
-              <p className="text-sm mt-2">
-                Cada nivel contiene 25 preguntas sobre diseño.
-              </p>
             </div>
             
             <div className="brutalist-wireframe mb-6">
               <h3 className="text-xl font-bold mb-2">Reglas</h3>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Para avanzar al siguiente nivel, debes acertar al menos 20 preguntas</li>
                 <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
-                <li>Los equipos en la misma sala compiten entre sí</li>
+                <li>Las respuestas más rápidas obtienen más puntos</li>
+                <li>Los equipos deben iniciar los rounds simultáneamente para competir</li>
+                <li>Al final se muestra una tabla resumen con todos los puntos acumulados</li>
               </ul>
             </div>
             
