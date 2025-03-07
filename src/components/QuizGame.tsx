@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
@@ -148,9 +147,6 @@ const QuizGame = () => {
         {roundCompleted ? (
           <div className="my-6 p-4 brutalist-border">
             <h3 className="text-xl mb-2">Resultados del Round {currentTeam.currentRound - 1}:</h3>
-            <p className="text-4xl font-bold mb-4">
-              {progress.correct} / {progress.total} correctas
-            </p>
             
             {currentTeam.roundScores
               .filter(rs => rs.round === currentTeam.currentRound - 1)
@@ -207,28 +203,10 @@ const QuizGame = () => {
   
   if (roundCompleted) {
     const currentRoundScores = currentTeam.roundScores.find(rs => rs.round === currentTeam.currentRound - 1);
-    const correctAnswers = currentRoundScores?.correctAnswers || 0;
-    const totalRoundQuestions = questions.length;
     
     return (
       <div className="my-8 brutalist-box animate-fade-in">
         <h2 className="text-2xl font-bold mb-4 uppercase">Round {currentTeam.currentRound - 1} Completado</h2>
-        
-        <div className="my-6 p-4 brutalist-border">
-          <h3 className="text-xl mb-2">Resultados:</h3>
-          <p className="text-4xl font-bold mb-4">
-            {correctAnswers} / {totalRoundQuestions} correctas
-          </p>
-          <div className="w-full h-6 brutalist-border bg-white">
-            <div 
-              className="h-full bg-black transition-all duration-500"
-              style={{ width: `${(correctAnswers / totalRoundQuestions) * 100}%` }}
-            ></div>
-          </div>
-          <p className="mt-2 text-sm">
-            Puntuación: {Math.round((correctAnswers / totalRoundQuestions) * 100)}%
-          </p>
-        </div>
         
         {currentTeam.roundScores
           .filter(rs => rs.round === currentTeam.currentRound - 1)

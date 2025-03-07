@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { QuizContextType, Team, Room, Question, TeamProgress, RoundScore } from "@/types";
@@ -65,7 +64,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     setCurrentTeam(newTeam);
 
-    let room = rooms.find(r => r.password === password);
+    // Use default room if no specific password is provided
+    const roomPassword = password || "default-room";
+    
+    let room = rooms.find(r => r.password === roomPassword);
     
     if (room) {
       const updatedRoom = {
@@ -83,7 +85,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       const newRoom: Room = {
         id: uuidv4(),
-        password,
+        password: roomPassword,
         teams: [newTeam],
       };
       

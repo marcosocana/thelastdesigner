@@ -8,7 +8,6 @@ const TeamCreation = () => {
   const { createTeam } = useQuiz();
   
   const [teamName, setTeamName] = useState("");
-  const [password, setPassword] = useState("");
   const [memberCount, setMemberCount] = useState(1);
   const [memberNames, setMemberNames] = useState<string[]>([""]);
   const [teamLogo, setTeamLogo] = useState<string | null>(null);
@@ -54,7 +53,7 @@ const TeamCreation = () => {
     
     if (step === 1) {
       // Validate first step
-      if (teamName.trim() === "" || password.trim() === "") {
+      if (teamName.trim() === "") {
         toast({
           variant: "destructive",
           title: "Error",
@@ -74,8 +73,8 @@ const TeamCreation = () => {
         return;
       }
       
-      // Create the team
-      createTeam(teamName, memberNames, teamLogo, password);
+      // Create the team with a default password for the room
+      createTeam(teamName, memberNames, teamLogo, "default-room");
       
       toast({
         title: "¡Equipo creado con éxito!",
@@ -84,7 +83,7 @@ const TeamCreation = () => {
     }
   };
   
-  const isStepOneValid = teamName.trim() !== "" && password.trim() !== "";
+  const isStepOneValid = teamName.trim() !== "";
   const isStepTwoValid = memberNames.every(name => name.trim() !== "");
   
   return (
@@ -108,21 +107,6 @@ const TeamCreation = () => {
                     placeholder="Ingresa el nombre de tu equipo"
                     required
                   />
-                </div>
-                
-                <div>
-                  <label className="block mb-1 font-bold">Contraseña de Sala *</label>
-                  <input
-                    type="text"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="brutalist-input"
-                    placeholder="Contraseña para unirse a una sala"
-                    required
-                  />
-                  <p className="text-xs mt-1">
-                    Los equipos con la misma contraseña estarán en la misma sala.
-                  </p>
                 </div>
                 
                 <div>
