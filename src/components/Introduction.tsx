@@ -10,13 +10,18 @@ const Introduction = () => {
             <h2 className="text-2xl font-bold mb-4 uppercase">Sobre el Creador</h2>
             
             
-            <p className="mb-4">
-              <strong>Marcos Ocaña Talavera</strong> es un diseñador con amplia experiencia en el campo del diseño gráfico y digital.
-            </p>
             
-            <p className="mb-4">
-              Especializado en diseño de interfaces y experiencia de usuario, Marcos ha trabajado en diversos proyectos innovadores que combinan funcionalidad y estética.
-            </p>
+            
+            <p className="mb-4">Diseñar no es solo cuestión de talento, es un reto constante, un juego de lógica, creatividad y estrategia. El Gran Reto del Disainer ha sido creado para poner a prueba tus conocimientos, desafiarte y, sobre todo, para que aprendas y te diviertas en equipo.
+
+Aquí no hay gurús, solo diseñadores dispuestos a demostrar lo que saben y a descubrir lo que aún les queda por aprender. Cada pregunta es una batalla, cada nivel un nuevo desafío, y solo los mejores equipos alcanzarán la cima.
+
+
+
+
+
+
+Esta experiencia ha sido desarrollada por Marcos Ocaña, diseñador, autor del Workbook para Diseñadores y firme defensor de que el aprendizaje debe ser tan divertido como desafiante.</p>
             
             <p className="mb-4">
               <a href="https://www.linkedin.com/in/marcosocana/" target="_blank" rel="noopener noreferrer" className="brutalist-border px-3 py-1 inline-block hover:bg-black hover:text-white transition-colors">
