@@ -206,6 +206,10 @@ const QuizGame = () => {
   }
   
   if (roundCompleted) {
+    const currentRoundScores = currentTeam.roundScores.find(rs => rs.round === currentTeam.currentRound - 1);
+    const correctAnswers = currentRoundScores?.correctAnswers || 0;
+    const totalRoundQuestions = questions.length;
+    
     return (
       <div className="my-8 brutalist-box animate-fade-in">
         <h2 className="text-2xl font-bold mb-4 uppercase">Round {currentTeam.currentRound - 1} Completado</h2>
@@ -213,16 +217,16 @@ const QuizGame = () => {
         <div className="my-6 p-4 brutalist-border">
           <h3 className="text-xl mb-2">Resultados:</h3>
           <p className="text-4xl font-bold mb-4">
-            {progress.correct} / {progress.total} correctas
+            {correctAnswers} / {totalRoundQuestions} correctas
           </p>
           <div className="w-full h-6 brutalist-border bg-white">
             <div 
               className="h-full bg-black transition-all duration-500"
-              style={{ width: `${progress.percentage}%` }}
+              style={{ width: `${(correctAnswers / totalRoundQuestions) * 100}%` }}
             ></div>
           </div>
           <p className="mt-2 text-sm">
-            Puntuación: {progress.percentage}%
+            Puntuación: {Math.round((correctAnswers / totalRoundQuestions) * 100)}%
           </p>
         </div>
         
@@ -269,7 +273,7 @@ const QuizGame = () => {
             Round {currentTeam.currentRound}
           </h2>
           <span className="text-lg font-mono">
-            {currentQuestionIndex + 1} / {questions.length}
+            Pregunta {currentQuestionIndex + 1} / {questions.length}
           </span>
         </div>
         
