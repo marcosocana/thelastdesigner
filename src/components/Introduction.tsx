@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Introduction = () => {
   return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
-        <h1 className="brutalist-title mb-8">EL GRAN RETO DEL DISAINER</h1>
+        <h1 className="brutalist-title mb-8">THECHALLENGE.DESIGN</h1>
         
         <div className="grid md:grid-cols-2 gap-8">
           <div>
