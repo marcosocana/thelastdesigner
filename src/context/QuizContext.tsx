@@ -1,15 +1,8 @@
+
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { QuizContextType, Team, Room, Question, QuizLevel } from "@/types";
-import { questions } from "@/data/questions";
-
-interface TeamProgress {
-  teamId: string;
-  teamName: string;
-  currentQuestionIndex: number;
-  answeredCorrectly: boolean;
-  answeredIncorrectly: boolean;
-}
+import { QuizContextType, Team, Room, Question, TeamProgress, RoundScore } from "@/types";
+import { questions, getQuestionsByRound } from "@/data/questions";
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
@@ -27,15 +20,16 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [rooms, setRooms] = useState<Room[]>([]);
   const [leaderboard, setLeaderboard] = useState<Team[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [roundStarted, setRoundStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [teamsProgress, setTeamsProgress] = useState<TeamProgress[]>([]);
+  const [countdown, setCountdown] = useState(3);
+  const [showCountdown, setShowCountdown] = useState(false);
 
   useEffect(() => {
     if (currentRoom && currentRoom.teams.length > 0) {
       const sortedTeams = [...currentRoom.teams].sort((a, b) => {
-        const totalScoreA = a.score.beginner + a.score.intermediate + a.score.advanced;
-        const totalScoreB = b.score.beginner + b.score.intermediate + b.score.advanced;
-        return totalScoreB - totalScoreA;
+        return b.totalScore - a.totalScore;
       });
       
       setLeaderboard(sortedTeams);
@@ -49,7 +43,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         teamName: team.name,
         currentQuestionIndex: 0,
         answeredCorrectly: false,
-        answeredIncorrectly: false
+        answeredIncorrectly: false,
+        answerTime: 0
       }));
       
       setTeamsProgress(initialProgress);
@@ -62,17 +57,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       name,
       logo,
       members: memberNames.map(name => ({ id: uuidv4(), name })),
-      currentLevel: "beginner",
-      score: {
-        beginner: 0,
-        intermediate: 0,
-        advanced: 0,
-      },
-      completedQuestions: {
-        beginner: [],
-        intermediate: [],
-        advanced: [],
-      },
+      currentRound: 1,
+      completedRounds: [],
+      roundScores: [],
+      totalScore: 0
     };
 
     setCurrentTeam(newTeam);
@@ -146,6 +134,31 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return true;
   };
 
+  const startRound = (): boolean => {
+    if (!gameStarted || !currentTeam) {
+      return false;
+    }
+    
+    // Start countdown
+    setShowCountdown(true);
+    setCountdown(3);
+    
+    const countdownInterval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          setShowCountdown(false);
+          setRoundStarted(true);
+          setCurrentQuestionIndex(0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    
+    return true;
+  };
+
   const setNextQuestion = () => {
     setCurrentQuestionIndex(prev => prev + 1);
     
@@ -156,7 +169,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
               ...progress, 
               currentQuestionIndex: currentQuestionIndex + 1,
               answeredCorrectly: false,
-              answeredIncorrectly: false
+              answeredIncorrectly: false,
+              answerTime: 0
             }
           : progress
       );
@@ -165,7 +179,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const submitAnswer = (questionId: number, answerIndex: number): boolean => {
+  const submitAnswer = (questionId: number, answerIndex: number, answerTime: number): boolean => {
     if (!currentTeam) return false;
 
     const question = questions.find(q => q.id === questionId);
@@ -174,22 +188,58 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const isCorrect = question.correctAnswer === answerIndex;
     
     if (currentTeam) {
-      const level = question.level;
+      // Calculate score based on time and correctness
+      // Maximum score is 100 points per question
+      // Faster answers get more points, up to 100 points for correct answers
+      const maxScorePerQuestion = 100;
+      const timeBonus = Math.max(0, 1 - (answerTime / 10)); // 0-1 range, faster is better
+      const score = isCorrect ? Math.round(maxScorePerQuestion * timeBonus) : 0;
       
-      const updatedCompletedQuestions = {
-        ...currentTeam.completedQuestions,
-        [level]: [...currentTeam.completedQuestions[level], questionId]
-      };
+      const round = question.round;
       
-      const updatedScore = {
-        ...currentTeam.score,
-        [level]: isCorrect ? currentTeam.score[level] + 1 : currentTeam.score[level]
-      };
+      // Find or create round score
+      let updatedRoundScores = [...currentTeam.roundScores];
+      const roundScoreIndex = updatedRoundScores.findIndex(rs => rs.round === round);
+      
+      if (roundScoreIndex >= 0) {
+        // Update existing round score
+        updatedRoundScores[roundScoreIndex] = {
+          ...updatedRoundScores[roundScoreIndex],
+          score: updatedRoundScores[roundScoreIndex].score + score,
+          correctAnswers: isCorrect 
+            ? updatedRoundScores[roundScoreIndex].correctAnswers + 1 
+            : updatedRoundScores[roundScoreIndex].correctAnswers,
+          totalTime: updatedRoundScores[roundScoreIndex].totalTime + answerTime
+        };
+      } else {
+        // Create new round score
+        updatedRoundScores.push({
+          round,
+          score,
+          correctAnswers: isCorrect ? 1 : 0,
+          totalTime: answerTime
+        });
+      }
+      
+      // Calculate total score
+      const totalScore = updatedRoundScores.reduce((total, rs) => total + rs.score, 0);
+      
+      // Check if round is completed
+      const roundQuestions = getQuestionsByRound(round);
+      const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
+      
+      // Update completed rounds if round is completed
+      let updatedCompletedRounds = [...currentTeam.completedRounds];
+      if (isRoundCompleted && !updatedCompletedRounds.includes(round)) {
+        updatedCompletedRounds.push(round);
+      }
       
       const updatedTeam = {
         ...currentTeam,
-        score: updatedScore,
-        completedQuestions: updatedCompletedQuestions,
+        roundScores: updatedRoundScores,
+        totalScore,
+        completedRounds: updatedCompletedRounds,
+        currentRound: isRoundCompleted ? round + 1 : round
       };
       
       setCurrentTeam(updatedTeam);
@@ -199,7 +249,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
           ? { 
               ...progress, 
               answeredCorrectly: isCorrect,
-              answeredIncorrectly: !isCorrect
+              answeredIncorrectly: !isCorrect,
+              answerTime
             }
           : progress
       );
@@ -224,81 +275,32 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         setRooms(updatedRooms);
       }
+      
+      // If it's the last question of the round, end round
+      if (isRoundCompleted) {
+        setRoundStarted(false);
+      }
     }
     
     return isCorrect;
   };
 
-  const getCurrentLevelProgress = () => {
+  const getCurrentRoundQuestions = (): Question[] => {
+    if (!currentTeam) return [];
+    return getQuestionsByRound(currentTeam.currentRound);
+  };
+
+  const getRoundProgress = (round: number) => {
     if (!currentTeam) return { correct: 0, total: 0, percentage: 0 };
     
-    const level = currentTeam.currentLevel;
-    const correct = currentTeam.score[level];
-    const levelQuestions = questions.filter(q => q.level === level);
-    const total = levelQuestions.length;
-    const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const roundScore = currentTeam.roundScores.find(rs => rs.round === round);
+    const correctAnswers = roundScore?.correctAnswers || 0;
     
-    return { correct, total, percentage };
-  };
-
-  const getCurrentLevelQuestions = (): Question[] => {
-    if (!currentTeam) return [];
+    const roundQuestions = getQuestionsByRound(round);
+    const total = roundQuestions.length;
+    const percentage = total > 0 ? Math.round((correctAnswers / total) * 100) : 0;
     
-    const level = currentTeam.currentLevel;
-    return questions.filter(q => q.level === level);
-  };
-
-  const advanceLevel = (): boolean => {
-    if (!currentTeam) return false;
-    
-    const { correct } = getCurrentLevelProgress();
-    
-    if (correct < 20) return false;
-    
-    const currentLevel = currentTeam.currentLevel;
-    let nextLevel: QuizLevel | null = null;
-    
-    if (currentLevel === "beginner") {
-      nextLevel = "intermediate";
-    } else if (currentLevel === "intermediate") {
-      nextLevel = "advanced";
-    } else {
-      return false;
-    }
-    
-    if (nextLevel) {
-      const updatedTeam = {
-        ...currentTeam,
-        currentLevel: nextLevel,
-      };
-      
-      setCurrentTeam(updatedTeam);
-      
-      if (currentRoom) {
-        const updatedRoomTeams = currentRoom.teams.map(team => 
-          team.id === currentTeam.id ? updatedTeam : team
-        );
-        
-        const updatedRoom = {
-          ...currentRoom,
-          teams: updatedRoomTeams,
-        };
-        
-        setCurrentRoom(updatedRoom);
-        
-        const updatedRooms = rooms.map(room => 
-          room.id === currentRoom.id ? updatedRoom : room
-        );
-        
-        setRooms(updatedRooms);
-      }
-      
-      setCurrentQuestionIndex(0);
-      
-      return true;
-    }
-    
-    return false;
+    return { correct: correctAnswers, total, percentage };
   };
 
   const value = {
@@ -309,15 +311,18 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     createTeam,
     joinRoom,
     submitAnswer,
-    getCurrentLevelProgress,
-    getCurrentLevelQuestions,
-    advanceLevel,
+    getCurrentRoundQuestions,
+    getRoundProgress,
     leaderboard,
     gameStarted,
+    roundStarted,
     startGame,
+    startRound,
     currentQuestionIndex,
     setNextQuestion,
-    teamsProgress
+    teamsProgress,
+    countdown,
+    showCountdown
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

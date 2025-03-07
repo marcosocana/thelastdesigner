@@ -1,32 +1,39 @@
+
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
+import { Clock, Timer } from "lucide-react";
 
 const QuizGame = () => {
   const { 
     currentTeam, 
-    getCurrentLevelQuestions,
-    getCurrentLevelProgress,
+    getCurrentRoundQuestions,
+    getRoundProgress,
     submitAnswer,
-    advanceLevel,
     gameStarted,
+    roundStarted,
+    startRound,
     currentQuestionIndex,
-    setNextQuestion
+    setNextQuestion,
+    countdown,
+    showCountdown
   } = useQuiz();
   
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
+  const [roundCompleted, setRoundCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
+  const [answerTime, setAnswerTime] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   
-  const questions = getCurrentLevelQuestions();
+  const questions = getCurrentRoundQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
-  const progress = getCurrentLevelProgress();
+  const progress = currentTeam ? getRoundProgress(currentTeam.currentRound) : { correct: 0, total: 0, percentage: 0 };
   
   useEffect(() => {
-    if (!gameStarted || showFeedback || !currentQuestion) return;
+    if (!gameStarted || showFeedback || !currentQuestion || !roundStarted) return;
     
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
@@ -40,29 +47,36 @@ const QuizGame = () => {
     }, 1000);
     
     return () => clearInterval(timer);
-  }, [gameStarted, currentQuestionIndex, showFeedback, currentQuestion]);
+  }, [gameStarted, currentQuestionIndex, showFeedback, currentQuestion, roundStarted]);
   
   useEffect(() => {
-    setTimeLeft(10);
-    setSelectedOption(null);
-    setShowFeedback(false);
-  }, [currentQuestionIndex]);
+    if (roundStarted && currentQuestion) {
+      setTimeLeft(10);
+      setSelectedOption(null);
+      setShowFeedback(false);
+      setStartTime(Date.now());
+    }
+  }, [currentQuestionIndex, roundStarted, currentQuestion]);
   
   useEffect(() => {
     if (
       currentTeam && 
-      progress.correct + (questions.length - progress.correct) === progress.total &&
-      progress.correct === progress.total
+      roundStarted &&
+      currentQuestionIndex >= questions.length
     ) {
-      setAllQuestionsAnswered(true);
+      setRoundCompleted(true);
+      setStartTime(0);
     } else {
-      setAllQuestionsAnswered(false);
+      setRoundCompleted(false);
     }
-  }, [currentTeam, progress, questions.length]);
+  }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
   
   const handleTimeUp = () => {
     if (currentQuestion) {
-      submitAnswer(currentQuestion.id, -1);
+      const elapsedTime = 10; // Max time
+      setAnswerTime(elapsedTime);
+      
+      submitAnswer(currentQuestion.id, -1, elapsedTime);
       setIsCorrect(false);
       setShowFeedback(true);
       
@@ -70,7 +84,7 @@ const QuizGame = () => {
         if (currentQuestionIndex < questions.length - 1) {
           setNextQuestion();
         } else {
-          setAllQuestionsAnswered(true);
+          setRoundCompleted(true);
         }
       }, 2000);
     }
@@ -84,7 +98,10 @@ const QuizGame = () => {
   const handleSubmit = () => {
     if (selectedOption === null || !currentQuestion) return;
     
-    const result = submitAnswer(currentQuestion.id, selectedOption);
+    const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+    setAnswerTime(elapsedTime);
+    
+    const result = submitAnswer(currentQuestion.id, selectedOption, elapsedTime);
     setIsCorrect(result);
     setShowFeedback(true);
     
@@ -92,18 +109,13 @@ const QuizGame = () => {
       if (currentQuestionIndex < questions.length - 1) {
         setNextQuestion();
       } else {
-        setAllQuestionsAnswered(true);
+        setRoundCompleted(true);
       }
     }, 2000);
   };
   
-  const handleAdvanceLevel = () => {
-    const success = advanceLevel();
-    if (success) {
-      setSelectedOption(null);
-      setShowFeedback(false);
-      setAllQuestionsAnswered(false);
-    }
+  const handleStartRound = () => {
+    startRound();
   };
   
   if (!currentTeam || !gameStarted) {
@@ -115,10 +127,88 @@ const QuizGame = () => {
     );
   }
   
-  if (allQuestionsAnswered) {
+  if (showCountdown) {
+    return (
+      <div className="my-8 brutalist-box text-center py-16">
+        <h2 className="text-4xl font-bold mb-8">Preparados...</h2>
+        <div className="text-9xl font-bold animate-pulse">
+          {countdown === 0 ? "¡GO!" : countdown}
+        </div>
+      </div>
+    );
+  }
+  
+  if (!roundStarted) {
     return (
       <div className="my-8 brutalist-box animate-fade-in">
-        <h2 className="text-2xl font-bold mb-4 uppercase">Nivel Completado</h2>
+        <h2 className="text-2xl font-bold mb-4 uppercase">
+          Round {currentTeam.currentRound}
+        </h2>
+        
+        {roundCompleted ? (
+          <div className="my-6 p-4 brutalist-border">
+            <h3 className="text-xl mb-2">Resultados del Round {currentTeam.currentRound - 1}:</h3>
+            <p className="text-4xl font-bold mb-4">
+              {progress.correct} / {progress.total} correctas
+            </p>
+            
+            {currentTeam.roundScores
+              .filter(rs => rs.round === currentTeam.currentRound - 1)
+              .map(rs => (
+                <div key={rs.round} className="mb-4">
+                  <p className="font-bold text-xl">Puntuación: {rs.score} pts</p>
+                  <p className="text-sm">
+                    Tiempo total: {rs.totalTime.toFixed(2)} segundos
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        ) : (
+          <p className="mb-4">
+            {currentTeam.completedRounds.length === 0 
+              ? "¡Es hora de comenzar tu primer round!" 
+              : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+            }
+          </p>
+        )}
+        
+        {currentTeam.currentRound <= 10 ? (
+          <>
+            {currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1) && (
+              <div className="p-4 brutalist-border bg-yellow-100 mb-4">
+                <p className="font-bold">¡Atención!</p>
+                <p>Debes completar el Round {currentTeam.currentRound - 1} antes de avanzar.</p>
+              </div>
+            )}
+            
+            <button
+              onClick={handleStartRound}
+              className="brutalist-btn w-full"
+              disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
+            >
+              {roundCompleted 
+                ? `Iniciar Round ${currentTeam.currentRound}` 
+                : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
+                  ? `Iniciar Round ${currentTeam.currentRound}` 
+                  : `Continuar Round ${currentTeam.currentRound}`
+              }
+            </button>
+          </>
+        ) : (
+          <div className="p-4 brutalist-border bg-brutalist-100">
+            <h3 className="text-xl font-bold mb-2">¡FELICIDADES!</h3>
+            <p>Has completado todos los rounds del quiz. ¡Eres un verdadero Disainer!</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+  
+  if (roundCompleted) {
+    return (
+      <div className="my-8 brutalist-box animate-fade-in">
+        <h2 className="text-2xl font-bold mb-4 uppercase">Round {currentTeam.currentRound - 1} Completado</h2>
         
         <div className="my-6 p-4 brutalist-border">
           <h3 className="text-xl mb-2">Resultados:</h3>
@@ -136,33 +226,28 @@ const QuizGame = () => {
           </p>
         </div>
         
-        {progress.correct >= 20 ? (
-          currentTeam.currentLevel === "advanced" ? (
-            <div className="my-6 p-4 brutalist-border bg-brutalist-100">
-              <h3 className="text-xl font-bold mb-2">¡FELICIDADES!</h3>
-              <p>Has completado todos los niveles del quiz. ¡Eres un verdadero Disainer!</p>
-            </div>
-          ) : (
-            <div>
-              <p className="mb-4">
-                ¡Excelente! Has acertado suficientes preguntas para avanzar al siguiente nivel.
+        {currentTeam.roundScores
+          .filter(rs => rs.round === currentTeam.currentRound - 1)
+          .map(rs => (
+            <div key={rs.round} className="p-4 brutalist-border mb-4">
+              <h3 className="text-xl font-bold">Puntuación del Round {rs.round}</h3>
+              <p className="text-4xl font-bold my-2">{rs.score} pts</p>
+              <p className="text-sm">
+                Tiempo total: {rs.totalTime.toFixed(2)} segundos
               </p>
-              <button
-                onClick={handleAdvanceLevel}
-                className="brutalist-btn w-full"
-              >
-                Avanzar al siguiente nivel
-              </button>
             </div>
-          )
-        ) : (
-          <div className="my-6 p-4 brutalist-border bg-brutalist-100">
-            <h3 className="text-xl font-bold mb-2">Sigue practicando</h3>
-            <p>
-              Necesitas al menos 20 respuestas correctas para avanzar al siguiente nivel.
-            </p>
-          </div>
-        )}
+          ))
+        }
+        
+        <button
+          onClick={handleStartRound}
+          className="brutalist-btn w-full"
+        >
+          {currentTeam.currentRound <= 10 
+            ? `Iniciar Round ${currentTeam.currentRound}` 
+            : "Ver Resultados Finales"
+          }
+        </button>
       </div>
     );
   }
@@ -181,11 +266,7 @@ const QuizGame = () => {
       <div className="brutalist-box animate-fade-in">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold uppercase">
-            Nivel: {currentTeam.currentLevel === "beginner" 
-              ? "Principiante" 
-              : currentTeam.currentLevel === "intermediate" 
-              ? "Medio" 
-              : "Avanzado"}
+            Round {currentTeam.currentRound}
           </h2>
           <span className="text-lg font-mono">
             {currentQuestionIndex + 1} / {questions.length}
@@ -202,8 +283,8 @@ const QuizGame = () => {
         <div className="mb-4">
           <div className="flex justify-between mb-1">
             <span className="font-bold">Tiempo restante:</span>
-            <span className={`font-mono ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}`}>
-              {timeLeft} segundos
+            <span className={`font-mono flex items-center ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}`}>
+              <Clock className="h-4 w-4 mr-1" /> {timeLeft} segundos
             </span>
           </div>
           <Progress 
@@ -254,6 +335,9 @@ const QuizGame = () => {
                 ? "¡Bien hecho! Has seleccionado la respuesta correcta."
                 : `La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}`
               }
+            </p>
+            <p className="mt-2 text-sm flex items-center">
+              <Timer className="h-4 w-4 mr-1" /> Tiempo de respuesta: {answerTime.toFixed(2)} segundos
             </p>
           </div>
         ) : (

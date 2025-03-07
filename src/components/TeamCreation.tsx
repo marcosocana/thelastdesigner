@@ -74,7 +74,7 @@ const TeamCreation = () => {
         return;
       }
       
-      // Create the team (no more localStorage saving)
+      // Create the team
       createTeam(teamName, memberNames, teamLogo, password);
       
       toast({

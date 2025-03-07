@@ -3,7 +3,7 @@ export type QuizLevel = 'beginner' | 'intermediate' | 'advanced';
 
 export interface Question {
   id: number;
-  level: QuizLevel;
+  round: number;
   text: string;
   options: string[];
   correctAnswer: number;
@@ -14,22 +14,22 @@ export interface TeamMember {
   name: string;
 }
 
+export interface RoundScore {
+  round: number;
+  score: number;
+  correctAnswers: number;
+  totalTime: number;
+}
+
 export interface Team {
   id: string;
   name: string;
   logo: string | null;
   members: TeamMember[];
-  currentLevel: QuizLevel;
-  score: {
-    beginner: number;
-    intermediate: number;
-    advanced: number;
-  };
-  completedQuestions: {
-    beginner: number[];
-    intermediate: number[];
-    advanced: number[];
-  };
+  currentRound: number;
+  completedRounds: number[];
+  roundScores: RoundScore[];
+  totalScore: number;
 }
 
 export interface Room {
@@ -44,6 +44,7 @@ export interface TeamProgress {
   currentQuestionIndex: number;
   answeredCorrectly: boolean;
   answeredIncorrectly: boolean;
+  answerTime: number;
 }
 
 export interface QuizContextType {
@@ -53,14 +54,17 @@ export interface QuizContextType {
   setCurrentRoom: (room: Room) => void;
   createTeam: (name: string, memberNames: string[], logo: string | null, password: string) => void;
   joinRoom: (password: string) => Room | null;
-  submitAnswer: (questionId: number, answerIndex: number) => boolean;
-  getCurrentLevelProgress: () => { correct: number; total: number; percentage: number };
-  getCurrentLevelQuestions: () => Question[];
-  advanceLevel: () => boolean;
+  submitAnswer: (questionId: number, answerIndex: number, answerTime: number) => boolean;
+  getCurrentRoundQuestions: () => Question[];
+  getRoundProgress: (round: number) => { correct: number; total: number; percentage: number };
   leaderboard: Team[];
   gameStarted: boolean;
+  roundStarted: boolean;
   startGame: () => boolean;
+  startRound: () => boolean;
   currentQuestionIndex: number;
   setNextQuestion: () => void;
   teamsProgress: TeamProgress[];
+  countdown: number;
+  showCountdown: boolean;
 }

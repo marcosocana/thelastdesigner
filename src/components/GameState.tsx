@@ -3,6 +3,7 @@ import React from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { Trophy, Clock, Flag } from "lucide-react";
 
 const GameState = () => {
   const { 
@@ -52,6 +53,21 @@ const GameState = () => {
               </li>
             ))}
           </ul>
+        </div>
+        
+        <div className="brutalist-border p-3 bg-brutalist-50 mb-4">
+          <h3 className="font-bold mb-2">Estructura del juego:</h3>
+          <div className="space-y-2 text-sm">
+            <p className="flex items-center">
+              <Flag className="h-4 w-4 mr-2" /> 10 rounds de preguntas
+            </p>
+            <p className="flex items-center">
+              <Clock className="h-4 w-4 mr-2" /> 10 preguntas por round
+            </p>
+            <p className="flex items-center">
+              <Trophy className="h-4 w-4 mr-2" /> Puntuación máxima: 1000 puntos por round
+            </p>
+          </div>
         </div>
         
         <Button 
