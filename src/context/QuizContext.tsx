@@ -31,35 +31,16 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [teamsProgress, setTeamsProgress] = useState<TeamProgress[]>([]);
 
   useEffect(() => {
-    const storedTeam = localStorage.getItem("currentTeam");
-    const storedRoom = localStorage.getItem("currentRoom");
-    const storedRooms = localStorage.getItem("rooms");
-    const storedGameStarted = localStorage.getItem("gameStarted");
-    
-    if (storedTeam) setCurrentTeam(JSON.parse(storedTeam));
-    if (storedRoom) setCurrentRoom(JSON.parse(storedRoom));
-    if (storedRooms) setRooms(JSON.parse(storedRooms));
-    if (storedGameStarted) setGameStarted(JSON.parse(storedGameStarted));
-  }, []);
-
-  useEffect(() => {
-    if (currentTeam) localStorage.setItem("currentTeam", JSON.stringify(currentTeam));
-    if (currentRoom) {
-      localStorage.setItem("currentRoom", JSON.stringify(currentRoom));
+    if (currentRoom && currentRoom.teams.length > 0) {
+      const sortedTeams = [...currentRoom.teams].sort((a, b) => {
+        const totalScoreA = a.score.beginner + a.score.intermediate + a.score.advanced;
+        const totalScoreB = b.score.beginner + b.score.intermediate + b.score.advanced;
+        return totalScoreB - totalScoreA;
+      });
       
-      if (currentRoom.teams.length > 0) {
-        const sortedTeams = [...currentRoom.teams].sort((a, b) => {
-          const totalScoreA = a.score.beginner + a.score.intermediate + a.score.advanced;
-          const totalScoreB = b.score.beginner + b.score.intermediate + b.score.advanced;
-          return totalScoreB - totalScoreA;
-        });
-        
-        setLeaderboard(sortedTeams);
-      }
+      setLeaderboard(sortedTeams);
     }
-    if (rooms.length > 0) localStorage.setItem("rooms", JSON.stringify(rooms));
-    localStorage.setItem("gameStarted", JSON.stringify(gameStarted));
-  }, [currentTeam, currentRoom, rooms, gameStarted]);
+  }, [currentRoom]);
 
   useEffect(() => {
     if (gameStarted && currentRoom) {
