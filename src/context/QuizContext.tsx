@@ -1,13 +1,9 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { QuizContextType, Team, ParticipantResult, Question, TeamProgress, RoundScore } from "@/types";
+import { QuizContextType, Team, Room, Question, TeamProgress, RoundScore } from "@/types";
 import { questions, getQuestionsByRound } from "@/data/questions";
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
-
-// This would be replaced with a real database in a production environment
-const RESULTS_STORAGE_KEY = "quiz_participant_results";
 
 export const useQuiz = () => {
   const context = useContext(QuizContext);
@@ -19,8 +15,9 @@ export const useQuiz = () => {
 
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentTeam, setCurrentTeam] = useState<Team | null>(null);
+  const [currentRoom, setCurrentRoom] = useState<Room | null>(null);
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [leaderboard, setLeaderboard] = useState<Team[]>([]);
-  const [allTeams, setAllTeams] = useState<Team[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
   const [roundStarted, setRoundStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -28,32 +25,19 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [countdown, setCountdown] = useState(3);
   const [showCountdown, setShowCountdown] = useState(false);
 
-  // Load previous results from localStorage
   useEffect(() => {
-    try {
-      const savedResults = localStorage.getItem(RESULTS_STORAGE_KEY);
-      if (savedResults) {
-        const parsedResults = JSON.parse(savedResults);
-        // We could use these results to display a leaderboard of past participants
-      }
-    } catch (error) {
-      console.error("Error loading saved results:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (allTeams.length > 0) {
-      const sortedTeams = [...allTeams].sort((a, b) => {
+    if (currentRoom && currentRoom.teams.length > 0) {
+      const sortedTeams = [...currentRoom.teams].sort((a, b) => {
         return b.totalScore - a.totalScore;
       });
       
       setLeaderboard(sortedTeams);
     }
-  }, [allTeams]);
+  }, [currentRoom]);
 
   useEffect(() => {
-    if (gameStarted) {
-      const initialProgress: TeamProgress[] = allTeams.map(team => ({
+    if (gameStarted && currentRoom) {
+      const initialProgress: TeamProgress[] = currentRoom.teams.map(team => ({
         teamId: team.id,
         teamName: team.name,
         currentQuestionIndex: 0,
@@ -64,9 +48,9 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setTeamsProgress(initialProgress);
     }
-  }, [gameStarted, allTeams]);
+  }, [gameStarted, currentRoom]);
 
-  const createTeam = (name: string, memberNames: string[], logo: string | null) => {
+  const createTeam = (name: string, memberNames: string[], logo: string | null, password: string) => {
     const newTeam: Team = {
       id: uuidv4(),
       name,
@@ -79,42 +63,71 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     setCurrentTeam(newTeam);
-    setAllTeams(prev => [...prev, newTeam]);
-  };
 
-  const saveParticipantResult = () => {
-    if (!currentTeam) return;
+    // Use default room if no specific password is provided
+    const roomPassword = password || "default-room";
     
-    // Calculate total time from all rounds
-    const totalTime = currentTeam.roundScores.reduce((total, rs) => total + rs.totalTime, 0);
+    let room = rooms.find(r => r.password === roomPassword);
     
-    const newResult: ParticipantResult = {
-      id: currentTeam.id,
-      teamName: currentTeam.name,
-      totalScore: currentTeam.totalScore,
-      totalTime,
-      participationDate: new Date()
-    };
-    
-    try {
-      // Get existing results
-      const savedResultsJson = localStorage.getItem(RESULTS_STORAGE_KEY) || '[]';
-      const savedResults = JSON.parse(savedResultsJson);
+    if (room) {
+      const updatedRoom = {
+        ...room,
+        teams: [...room.teams, newTeam],
+      };
       
-      // Add new result
-      savedResults.push(newResult);
+      setCurrentRoom(updatedRoom);
       
-      // Save back to localStorage
-      localStorage.setItem(RESULTS_STORAGE_KEY, JSON.stringify(savedResults));
+      const updatedRooms = rooms.map(r => 
+        r.id === room!.id ? updatedRoom : r
+      );
       
-      console.log("Saved participant result:", newResult);
-    } catch (error) {
-      console.error("Error saving participant result:", error);
+      setRooms(updatedRooms);
+    } else {
+      const newRoom: Room = {
+        id: uuidv4(),
+        password: roomPassword,
+        teams: [newTeam],
+      };
+      
+      setCurrentRoom(newRoom);
+      setRooms([...rooms, newRoom]);
     }
   };
 
+  const joinRoom = (password: string): Room | null => {
+    const room = rooms.find(r => r.password === password);
+    
+    if (room) {
+      // If the current team is already in the room, just reconnect
+      const existingTeam = currentTeam ? room.teams.find(t => t.id === currentTeam.id) : null;
+      
+      if (existingTeam) {
+        // The team already exists in this room, just update the current team state
+        setCurrentTeam(existingTeam);
+        setCurrentRoom(room);
+        return room;
+      } else if (currentTeam) {
+        // The team exists but isn't in this room yet, add it
+        const updatedRoom = {
+          ...room,
+          teams: [...room.teams, currentTeam],
+        };
+        
+        setCurrentRoom(updatedRoom);
+        
+        const updatedRooms = rooms.map(r => 
+          r.id === room.id ? updatedRoom : r
+        );
+        
+        setRooms(updatedRooms);
+        return updatedRoom;
+      }
+    }
+    return null;
+  };
+
   const startGame = (): boolean => {
-    if (!currentTeam) {
+    if (!currentRoom || currentRoom.teams.length === 0) {
       return false;
     }
     
@@ -151,7 +164,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const setNextQuestion = () => {
     setCurrentQuestionIndex(prev => prev + 1);
     
-    if (currentTeam) {
+    if (currentTeam && currentRoom) {
       const updatedProgress = teamsProgress.map(progress => 
         progress.teamId === currentTeam.id
           ? { 
@@ -246,21 +259,28 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setTeamsProgress(updatedProgress);
       
-      // Update team in allTeams array
-      setAllTeams(prev => 
-        prev.map(team => team.id === updatedTeam.id ? updatedTeam : team)
-      );
+      if (currentRoom) {
+        const updatedRoomTeams = currentRoom.teams.map(team => 
+          team.id === currentTeam.id ? updatedTeam : team
+        );
+        
+        const updatedRoom = {
+          ...currentRoom,
+          teams: updatedRoomTeams,
+        };
+        
+        setCurrentRoom(updatedRoom);
+        
+        const updatedRooms = rooms.map(room => 
+          room.id === currentRoom.id ? updatedRoom : room
+        );
+        
+        setRooms(updatedRooms);
+      }
       
       // If it's the last question of the round, end round
       if (isRoundCompleted) {
         setRoundStarted(false);
-        
-        // If it's the last round (10), save the final result
-        if (round === 10) {
-          setTimeout(() => {
-            saveParticipantResult();
-          }, 1000);
-        }
       }
     }
     
@@ -288,7 +308,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const value = {
     currentTeam,
     setCurrentTeam,
+    currentRoom,
+    setCurrentRoom,
     createTeam,
+    joinRoom,
     submitAnswer,
     getCurrentRoundQuestions,
     getRoundProgress,
@@ -301,8 +324,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setNextQuestion,
     teamsProgress,
     countdown,
-    showCountdown,
-    saveParticipantResult
+    showCountdown
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

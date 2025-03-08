@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Timer, Share, Linkedin, Trophy, List } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Clock, Timer } from "lucide-react";
 
 const QuizGame = () => {
   const { 
@@ -28,7 +26,6 @@ const QuizGame = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
-  const [showFinalSummary, setShowFinalSummary] = useState(false);
   
   const questions = getCurrentRoundQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
@@ -72,13 +69,6 @@ const QuizGame = () => {
       setRoundCompleted(false);
     }
   }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
-  
-  useEffect(() => {
-    // Check if all rounds are completed
-    if (currentTeam && currentTeam.currentRound > 10) {
-      setShowFinalSummary(true);
-    }
-  }, [currentTeam]);
   
   const handleTimeUp = () => {
     if (currentQuestion) {
@@ -127,89 +117,11 @@ const QuizGame = () => {
     startRound();
   };
   
-  const handleShareOnLinkedIn = () => {
-    if (!currentTeam) return;
-    
-    const text = `He participado en el gran reto del disaigner y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`;
-    const url = window.location.origin;
-    
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${encodeURIComponent(text)}`,
-      '_blank'
-    );
-  };
-  
-  const calculateTotalTime = () => {
-    if (!currentTeam) return 0;
-    return currentTeam.roundScores.reduce((total, rs) => total + rs.totalTime, 0);
-  };
-  
   if (!currentTeam || !gameStarted) {
     return (
       <div className="my-8 brutalist-box text-center">
         <h2 className="text-2xl font-bold mb-4">Esperando el inicio del juego</h2>
         <p>El juego comenzará cuando un equipo presione "Iniciar".</p>
-      </div>
-    );
-  }
-  
-  if (showFinalSummary) {
-    const totalTime = calculateTotalTime();
-    
-    return (
-      <div className="my-8 brutalist-box animate-fade-in">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2 uppercase">¡FELICIDADES!</h2>
-          <p className="text-xl">Has completado El Gran Reto del Disainer</p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div className="brutalist-border p-6 text-center">
-            <Trophy className="h-12 w-12 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Puntuación Total</h3>
-            <p className="text-4xl font-bold">{currentTeam.totalScore} pts</p>
-          </div>
-          
-          <div className="brutalist-border p-6 text-center">
-            <Timer className="h-12 w-12 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Tiempo Total</h3>
-            <p className="text-4xl font-bold">{totalTime.toFixed(2)} s</p>
-          </div>
-        </div>
-        
-        <div className="mb-8">
-          <h3 className="text-xl font-bold mb-4 flex items-center">
-            <List className="h-5 w-5 mr-2" /> Desglose por Rounds
-          </h3>
-          
-          <div className="brutalist-wireframe">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {Array.from({ length: 10 }, (_, i) => i + 1).map(roundNum => {
-                const roundScore = currentTeam.roundScores.find(rs => rs.round === roundNum);
-                return (
-                  <div key={roundNum} className="brutalist-border p-3 text-center bg-white">
-                    <p className="font-bold">Round {roundNum}</p>
-                    <p className="text-2xl font-bold">{roundScore?.score || 0}</p>
-                    <p className="text-xs">{roundScore?.totalTime.toFixed(2) || 0}s</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex flex-col items-center">
-          <Button 
-            onClick={handleShareOnLinkedIn}
-            className="brutalist-btn flex items-center justify-center gap-2 mb-4 w-full max-w-md"
-          >
-            <Linkedin className="h-5 w-5" /> Compartir en LinkedIn
-          </Button>
-          
-          <a href="/" className="brutalist-border px-4 py-2 hover:bg-black hover:text-white transition-colors">
-            Volver al Inicio
-          </a>
-        </div>
       </div>
     );
   }
