@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Timer } from "lucide-react";
+import { Clock, Timer, Share, Award, Linkedin } from "lucide-react";
 
 const QuizGame = () => {
   const { 
@@ -16,13 +17,15 @@ const QuizGame = () => {
     currentQuestionIndex,
     setNextQuestion,
     countdown,
-    showCountdown
+    showCountdown,
+    saveQuizResults
   } = useQuiz();
   
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [roundCompleted, setRoundCompleted] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
@@ -70,6 +73,13 @@ const QuizGame = () => {
     }
   }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
   
+  useEffect(() => {
+    if (currentTeam && currentTeam.currentRound > 10 && !quizCompleted) {
+      setQuizCompleted(true);
+      saveQuizResults();
+    }
+  }, [currentTeam, quizCompleted, saveQuizResults]);
+  
   const handleTimeUp = () => {
     if (currentQuestion) {
       const elapsedTime = 10; // Max time
@@ -116,6 +126,20 @@ const QuizGame = () => {
   const handleStartRound = () => {
     startRound();
   };
+
+  const shareOnLinkedIn = () => {
+    if (!currentTeam) return;
+    
+    const text = encodeURIComponent(`He participado en el gran reto del disaigner y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`);
+    const url = encodeURIComponent(window.location.origin);
+    
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${text}`, '_blank');
+  };
+  
+  const getTotalTime = () => {
+    if (!currentTeam) return 0;
+    return currentTeam.roundScores.reduce((total, rs) => total + rs.totalTime, 0);
+  };
   
   if (!currentTeam || !gameStarted) {
     return (
@@ -133,6 +157,64 @@ const QuizGame = () => {
         <div className="text-9xl font-bold animate-pulse">
           {countdown === 0 ? "¡GO!" : countdown}
         </div>
+      </div>
+    );
+  }
+  
+  if (quizCompleted) {
+    const totalTime = getTotalTime();
+    
+    return (
+      <div className="my-8 brutalist-box animate-fade-in">
+        <h2 className="text-2xl font-bold mb-6 uppercase text-center">¡Reto Completado!</h2>
+        
+        <div className="p-6 brutalist-border mb-6 bg-brutalist-100">
+          <h3 className="text-xl font-bold mb-4">Resultados Finales</h3>
+          
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="p-4 brutalist-border bg-white">
+              <p className="text-sm uppercase font-bold">Puntuación Total</p>
+              <p className="text-4xl font-bold">{currentTeam.totalScore} pts</p>
+            </div>
+            
+            <div className="p-4 brutalist-border bg-white">
+              <p className="text-sm uppercase font-bold">Tiempo Total</p>
+              <p className="text-4xl font-bold">{totalTime.toFixed(2)} s</p>
+            </div>
+          </div>
+          
+          <h4 className="text-lg font-bold mb-3">Resultados por Round</h4>
+          
+          <div className="max-h-80 overflow-y-auto brutalist-border p-2 bg-white">
+            {[...Array(10)].map((_, index) => {
+              const roundNumber = index + 1;
+              const roundScore = currentTeam.roundScores.find(rs => rs.round === roundNumber);
+              
+              return (
+                <div key={roundNumber} className="p-3 brutalist-border mb-2 last:mb-0">
+                  <div className="flex justify-between items-center">
+                    <h5 className="font-bold">Round {roundNumber}</h5>
+                    <span className="text-sm font-mono">{roundScore?.score || 0} pts</span>
+                  </div>
+                  
+                  {roundScore && (
+                    <p className="text-xs mt-1">
+                      Tiempo: {roundScore.totalTime.toFixed(2)} s
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        
+        <button 
+          onClick={shareOnLinkedIn}
+          className="brutalist-btn w-full flex items-center justify-center gap-2"
+        >
+          <Linkedin className="h-5 w-5" />
+          Compartir en LinkedIn
+        </button>
       </div>
     );
   }

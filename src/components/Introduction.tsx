@@ -1,30 +1,14 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Introduction = () => {
-  return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
+  return (
+    <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
         <h1 className="brutalist-title mb-8">EL GRAN RETO DEL DISAINER</h1>
         
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h2 className="text-2xl font-bold mb-4 uppercase">Sobre el Creador</h2>
-            
-            
-            <p className="mb-4">
-              <strong>Marcos Ocaña Talavera</strong> es un diseñador con amplia experiencia en el campo del diseño gráfico y digital.
-            </p>
-            
-            <p className="mb-4">
-              Especializado en diseño de interfaces y experiencia de usuario, Marcos ha trabajado en diversos proyectos innovadores que combinan funcionalidad y estética.
-            </p>
-            
-            <p className="mb-4">
-              <a href="https://www.linkedin.com/in/marcosocana/" target="_blank" rel="noopener noreferrer" className="brutalist-border px-3 py-1 inline-block hover:bg-black hover:text-white transition-colors">
-                Perfil de LinkedIn
-              </a>
-            </p>
-          </div>
-          
+        <div className="grid grid-cols-1 gap-8">
           <div>
             <h2 className="text-2xl font-bold mb-4 uppercase">Sobre el Quiz</h2>
             
@@ -53,8 +37,28 @@ const Introduction = () => {
               ¡Comenzar el Reto!
             </Link>
           </div>
+          
+          <div>
+            <h2 className="text-2xl font-bold mb-4 uppercase">Nosotros</h2>
+            
+            <p className="mb-4">
+              <strong>Marcos Ocaña Talavera</strong> es un diseñador con amplia experiencia en el campo del diseño gráfico y digital.
+            </p>
+            
+            <p className="mb-4">
+              Especializado en diseño de interfaces y experiencia de usuario, Marcos ha trabajado en diversos proyectos innovadores que combinan funcionalidad y estética.
+            </p>
+            
+            <p className="mb-4">
+              <a href="https://www.linkedin.com/in/marcosocana/" target="_blank" rel="noopener noreferrer" className="brutalist-border px-3 py-1 inline-block hover:bg-black hover:text-white transition-colors">
+                Perfil de LinkedIn
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Introduction;
