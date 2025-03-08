@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QuizProvider } from "@/context/QuizContext";
 import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
-import Manifiesto from "./pages/Manifiesto";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,7 +21,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quiz" element={<Quiz />} />
-            <Route path="/manifiesto" element={<Manifiesto />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
