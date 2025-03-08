@@ -32,10 +32,12 @@ export interface Team {
   totalScore: number;
 }
 
-export interface Room {
+export interface ParticipantResult {
   id: string;
-  password: string;
-  teams: Team[];
+  teamName: string;
+  totalScore: number;
+  totalTime: number;
+  participationDate: Date;
 }
 
 export interface TeamProgress {
@@ -50,10 +52,7 @@ export interface TeamProgress {
 export interface QuizContextType {
   currentTeam: Team | null;
   setCurrentTeam: (team: Team) => void;
-  currentRoom: Room | null;
-  setCurrentRoom: (room: Room) => void;
-  createTeam: (name: string, memberNames: string[], logo: string | null, password: string) => void;
-  joinRoom: (password: string) => Room | null;
+  createTeam: (name: string, memberNames: string[], logo: string | null) => void;
   submitAnswer: (questionId: number, answerIndex: number, answerTime: number) => boolean;
   getCurrentRoundQuestions: () => Question[];
   getRoundProgress: (round: number) => { correct: number; total: number; percentage: number };
@@ -67,4 +66,5 @@ export interface QuizContextType {
   teamsProgress: TeamProgress[];
   countdown: number;
   showCountdown: boolean;
+  saveParticipantResult: () => void;
 }
