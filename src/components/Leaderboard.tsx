@@ -5,13 +5,13 @@ import { Badge } from "@/components/ui/badge";
 import { Trophy, Clock } from "lucide-react";
 
 const Leaderboard = () => {
-  const { leaderboard, currentRoom, gameStarted, teamsProgress } = useQuiz();
+  const { leaderboard, gameStarted, teamsProgress } = useQuiz();
 
-  if (!currentRoom || leaderboard.length === 0) {
+  if (leaderboard.length === 0) {
     return (
       <div className="my-8 brutalist-wireframe text-center p-6">
         <h2 className="text-xl font-bold mb-2">Tabla de Posiciones</h2>
-        <p>No hay equipos en esta sala todavía.</p>
+        <p>No hay equipos participando todavía.</p>
       </div>
     );
   }
@@ -20,7 +20,6 @@ const Leaderboard = () => {
     <div className="my-8 animate-slide-up">
       <div className="brutalist-box">
         <h2 className="text-2xl font-bold mb-6 uppercase">Tabla de Posiciones</h2>
-        <p className="mb-4 text-sm">Sala: {currentRoom.password}</p>
         
         {gameStarted && (
           <div className="brutalist-border p-3 mb-4 bg-brutalist-50">

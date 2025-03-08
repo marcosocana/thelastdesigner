@@ -51,6 +51,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [gameStarted, teams]);
 
+  // Updated createTeam function to handle 3 arguments instead of 4
   const createTeam = (name: string, memberNames: string[], logo: string | null) => {
     const newTeam: Team = {
       id: uuidv4(),

@@ -1,90 +1,98 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuiz } from "@/context/QuizContext";
-import { saveQuizResult } from "@/services/quizResultsService";
-import { Linkedin, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Linkedin } from "lucide-react";
+import { getQuizResult } from "@/services/quizResultsService";
 
 const QuizSummary = () => {
   const { currentTeam } = useQuiz();
   
-  useEffect(() => {
-    if (currentTeam) {
-      saveQuizResult(currentTeam);
-    }
-  }, [currentTeam]);
-  
   if (!currentTeam) {
-    return <div>No hay datos del equipo disponibles.</div>;
+    return (
+      <div className="my-8 brutalist-box text-center">
+        <h2 className="text-2xl font-bold mb-4">No hay datos disponibles</h2>
+        <p>No se encontró información del equipo.</p>
+      </div>
+    );
   }
   
+  // Get total time from all rounds
   const totalTime = currentTeam.roundScores.reduce((total, round) => total + round.totalTime, 0);
   
+  // Share on LinkedIn
   const handleShareOnLinkedIn = () => {
-    const text = `He participado en el Diseñathon y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`;
+    const text = `He participado en el gran reto del disaigner y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`;
     const url = window.location.origin;
-    
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${encodeURIComponent(text)}`,
-      '_blank'
-    );
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
+    window.open(linkedInUrl, '_blank');
   };
   
   return (
-    <div className="my-8 brutalist-box animate-fade-in">
-      <h2 className="text-2xl font-bold mb-6 uppercase">Resumen Final</h2>
-      
-      <div className="p-6 brutalist-border mb-6">
-        <h3 className="text-xl font-bold mb-2">Puntuación Total</h3>
-        <p className="text-5xl font-bold">{currentTeam.totalScore} pts</p>
-        <p className="mt-2">Tiempo total: {totalTime.toFixed(2)} segundos</p>
-      </div>
-      
-      <h3 className="text-xl font-bold mb-4">Desglose por Rounds</h3>
-      
-      <div className="grid gap-4 md:grid-cols-2">
-        {Array.from({ length: 10 }).map((_, index) => {
-          const roundNumber = index + 1;
-          const roundScore = currentTeam.roundScores.find(rs => rs.round === roundNumber);
+    <div className="my-8 animate-fade-in">
+      <div className="brutalist-box">
+        <h2 className="text-3xl font-bold mb-6 uppercase">Resumen Final</h2>
+        
+        <div className="brutalist-border p-6 mb-6 bg-brutalist-50">
+          <h3 className="text-xl font-bold mb-4">Resultados de {currentTeam.name}</h3>
           
-          return (
-            <div 
-              key={roundNumber}
-              className={`p-4 brutalist-border ${roundScore ? 'bg-white' : 'bg-gray-100'}`}
-            >
-              <h4 className="font-bold">Round {roundNumber}</h4>
-              {roundScore ? (
-                <>
-                  <p className="text-2xl font-bold">{roundScore.score} pts</p>
-                  <p className="text-sm">
-                    {roundScore.correctAnswers} respuestas correctas
-                  </p>
-                  <p className="text-sm">
-                    Tiempo: {roundScore.totalTime.toFixed(2)}s
-                  </p>
-                </>
-              ) : (
-                <p className="text-sm italic">Round no completado</p>
-              )}
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="brutalist-border p-4 bg-white">
+              <h4 className="font-bold mb-1">Puntuación Total</h4>
+              <p className="text-4xl font-bold">{currentTeam.totalScore} pts</p>
             </div>
-          );
-        })}
+            
+            <div className="brutalist-border p-4 bg-white">
+              <h4 className="font-bold mb-1">Tiempo Total</h4>
+              <p className="text-4xl font-bold">{totalTime.toFixed(2)} s</p>
+            </div>
+          </div>
+          
+          <div className="brutalist-border p-4 bg-white mb-6">
+            <h4 className="font-bold mb-4">Desglose por Rounds</h4>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full brutalist-border">
+                <thead>
+                  <tr className="bg-black text-white">
+                    <th className="brutalist-border p-2 text-center">Round</th>
+                    <th className="brutalist-border p-2 text-center">Puntuación</th>
+                    <th className="brutalist-border p-2 text-center">Correctas</th>
+                    <th className="brutalist-border p-2 text-center">Tiempo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.from({ length: 10 }, (_, i) => i + 1).map(round => {
+                    const roundScore = currentTeam.roundScores.find(rs => rs.round === round);
+                    return (
+                      <tr key={round} className={round % 2 === 0 ? "bg-white" : "bg-brutalist-100"}>
+                        <td className="brutalist-border p-2 text-center font-bold">{round}</td>
+                        <td className="brutalist-border p-2 text-center">
+                          {roundScore ? roundScore.score : "-"}
+                        </td>
+                        <td className="brutalist-border p-2 text-center">
+                          {roundScore ? `${roundScore.correctAnswers}/10` : "-"}
+                        </td>
+                        <td className="brutalist-border p-2 text-center">
+                          {roundScore ? `${roundScore.totalTime.toFixed(2)}s` : "-"}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <Button 
+            onClick={handleShareOnLinkedIn}
+            className="brutalist-btn w-full flex items-center justify-center gap-2"
+          >
+            <Linkedin className="h-5 w-5" />
+            Compartir en LinkedIn
+          </Button>
+        </div>
       </div>
-      
-      <button 
-        onClick={handleShareOnLinkedIn}
-        className="brutalist-btn w-full mt-6 flex items-center justify-center gap-2"
-      >
-        <Linkedin className="h-5 w-5" />
-        Compartir en LinkedIn
-      </button>
-      
-      <button 
-        onClick={() => navigator.clipboard.writeText(`He participado en el Diseñathon y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`)}
-        className="brutalist-border w-full mt-4 py-2 flex items-center justify-center gap-2 hover:bg-gray-100"
-      >
-        <Share2 className="h-5 w-5" />
-        Copiar Texto
-      </button>
     </div>
   );
 };
