@@ -32,12 +32,6 @@ export interface Team {
   totalScore: number;
 }
 
-export interface Room {
-  id: string;
-  password: string;
-  teams: Team[];
-}
-
 export interface TeamProgress {
   teamId: string;
   teamName: string;
@@ -50,14 +44,11 @@ export interface TeamProgress {
 export interface QuizContextType {
   currentTeam: Team | null;
   setCurrentTeam: (team: Team) => void;
-  currentRoom: Room | null;
-  setCurrentRoom: (room: Room) => void;
-  createTeam: (name: string, memberNames: string[], logo: string | null, password: string) => void;
-  joinRoom: (password: string) => Room | null;
+  leaderboard: Team[];
+  createTeam: (name: string, memberNames: string[], logo: string | null) => void;
   submitAnswer: (questionId: number, answerIndex: number, answerTime: number) => boolean;
   getCurrentRoundQuestions: () => Question[];
   getRoundProgress: (round: number) => { correct: number; total: number; percentage: number };
-  leaderboard: Team[];
   gameStarted: boolean;
   roundStarted: boolean;
   startGame: () => boolean;

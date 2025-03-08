@@ -3,6 +3,7 @@ import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
 import { Clock, Timer } from "lucide-react";
+import QuizSummary from "./QuizSummary";
 
 const QuizGame = () => {
   const { 
@@ -26,6 +27,7 @@ const QuizGame = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
+  const [allRoundsCompleted, setAllRoundsCompleted] = useState(false);
   
   const questions = getCurrentRoundQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
@@ -69,6 +71,12 @@ const QuizGame = () => {
       setRoundCompleted(false);
     }
   }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
+  
+  useEffect(() => {
+    if (currentTeam && currentTeam.currentRound > 10) {
+      setAllRoundsCompleted(true);
+    }
+  }, [currentTeam]);
   
   const handleTimeUp = () => {
     if (currentQuestion) {
@@ -124,6 +132,10 @@ const QuizGame = () => {
         <p>El juego comenzará cuando un equipo presione "Iniciar".</p>
       </div>
     );
+  }
+  
+  if (allRoundsCompleted) {
+    return <QuizSummary />;
   }
   
   if (showCountdown) {
@@ -195,6 +207,12 @@ const QuizGame = () => {
           <div className="p-4 brutalist-border bg-brutalist-100">
             <h3 className="text-xl font-bold mb-2">¡FELICIDADES!</h3>
             <p>Has completado todos los rounds del quiz. ¡Eres un verdadero Disainer!</p>
+            <button 
+              onClick={() => setAllRoundsCompleted(true)} 
+              className="brutalist-btn w-full mt-4"
+            >
+              Ver Resumen Final
+            </button>
           </div>
         )}
       </div>
