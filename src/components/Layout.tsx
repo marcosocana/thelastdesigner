@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="p-4 brutalist-border border-t-0 border-l-0 border-r-0">
         <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold tracking-tight hover:animate-glitch">
-            EL GRAN RETO DEL DISAINER
+            DISEÑATHON
           </Link>
           
           <nav>
@@ -23,8 +23,8 @@ const Layout = ({ children }: LayoutProps) => {
                 </Link>
               </li>
               <li>
-                <Link to="/quiz" className="uppercase font-bold hover:underline">
-                  Quiz
+                <Link to="/manifiesto" className="uppercase font-bold hover:underline">
+                  Manifiesto
                 </Link>
               </li>
             </ul>
@@ -38,7 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
       
       <footer className="p-4 brutalist-border border-b-0 border-l-0 border-r-0 mt-8">
         <div className="container mx-auto text-center">
-          <p className="text-sm">&copy; {new Date().getFullYear()} EL GRAN RETO DEL DISAINER - Todos los derechos reservados</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} DISEÑATHON - Todos los derechos reservados</p>
         </div>
       </footer>
     </div>
