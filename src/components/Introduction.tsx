@@ -20,11 +20,11 @@ const Introduction = () => {
             <p className="text-xl font-bold mt-6">¿Estás listo para el desafío?</p>
           </div>
           
-          <h2 className="text-2xl font-bold mb-4 uppercase">Estructura</h2>
+          <h2 className="text-2xl font-bold mb-4 uppercase">ESTRUCTURA Y REGLAS</h2>
           
           <div className="brutalist-wireframe mb-6">
             <ul className="list-disc pl-5 space-y-1">
-              <li>10 rounds con 10 preguntas cada uno</li>
+              <li>10 rounds con 10 preguntas cada uno. 100 puntos por pregunta. </li>
               <li>Cada round tiene una temática diferente</li>
               <li>Cada round debe completarse para desbloquear el siguiente</li>
               
@@ -38,15 +38,15 @@ const Introduction = () => {
           
           
           
-          <h2 className="text-2xl font-bold mb-4 uppercase">Reglas</h2>
+          
           
           <div className="brutalist-wireframe mb-6">
             <ul className="list-disc pl-5 space-y-1">
               <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
               <li>Las respuestas más rápidas obtienen más puntos</li>
               <li>Los equipos deben iniciar los rounds para competir</li>
-              <li>Al final se muestra una tabla resumen con todos los puntos acumulados</li>
-              <li>Para salvar el diseño, debes acertar al menos 70 preguntas</li>
+              
+              
             </ul>
           </div>
           
