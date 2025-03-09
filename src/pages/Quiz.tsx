@@ -15,6 +15,11 @@ const Quiz = () => {
       <div className="max-w-4xl mx-auto">
         <div className="brutalist-box mb-8">
           <h1 className="brutalist-title">THE LAST DESIGNER</h1>
+          {currentTeam && (
+            <p className="text-center text-sm mt-2">
+              Tu misión: Salvar al diseño y la humanidad. Si superas 5000 puntos, habrá esperanza.
+            </p>
+          )}
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">

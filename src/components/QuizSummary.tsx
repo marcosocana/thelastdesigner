@@ -29,10 +29,14 @@ const QuizSummary = () => {
   // Determine if design is saved (more than 70 correct answers)
   const isDesignSaved = totalCorrectAnswers >= 70;
   
+  // Determine if humanity is saved (more than 5000 points)
+  const isHumanitySaved = currentTeam.totalScore >= 5000;
+  
   // Share on LinkedIn
   const handleShareOnLinkedIn = () => {
     const result = isDesignSaved ? "he salvado el diseño" : "no he logrado salvar el diseño";
-    const text = `He participado en The Last Designer y ${result} con una puntuación de ${currentTeam.totalScore} puntos y ${totalCorrectAnswers}/100 respuestas correctas.`;
+    const humanityResult = isHumanitySaved ? "salvado a la humanidad" : "no he podido salvar a la humanidad";
+    const text = `He participado en The Last Designer y ${result} con una puntuación de ${currentTeam.totalScore} puntos y ${totalCorrectAnswers}/100 respuestas correctas. Además, ${humanityResult}.`;
     const url = window.location.origin;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
     window.open(linkedInUrl, '_blank');
@@ -72,6 +76,19 @@ const QuizSummary = () => {
                 {isDesignSaved 
                   ? "La humanidad aún tiene esperanza gracias a ti." 
                   : "La IA ha ganado. Las interfaces serán frías para siempre."}
+              </p>
+            </div>
+            
+            <div className={`mt-4 p-4 text-center ${isHumanitySaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border`}>
+              <h3 className="text-xl font-bold mb-2">
+                {isHumanitySaved 
+                  ? "¡HAS SALVADO A LA HUMANIDAD!" 
+                  : "LA HUMANIDAD SE HA EXTINGUIDO..."}
+              </h3>
+              <p>
+                {isHumanitySaved 
+                  ? "Tu maestría en diseño ha restaurado la esperanza. El mundo renacerá con interfaces humanas." 
+                  : "No has conseguido suficientes puntos. La humanidad no sobrevivirá sin buen diseño."}
               </p>
             </div>
           </div>
