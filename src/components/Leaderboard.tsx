@@ -21,48 +21,10 @@ const Leaderboard = () => {
       <div className="brutalist-box">
         <h2 className="text-2xl font-bold mb-6 uppercase">Tabla de Posiciones</h2>
         
-        {gameStarted && (
-          <div className="brutalist-border p-3 mb-4 bg-brutalist-50">
-            <h3 className="font-bold mb-2">Progreso en Tiempo Real:</h3>
-            <div className="space-y-2">
-              {teamsProgress.map((teamProgress) => (
-                <div key={teamProgress.teamId} className="flex items-center justify-between">
-                  <span className="font-bold truncate mr-2">{teamProgress.teamName}</span>
-                  <div className="flex items-center">
-                    <span className="mr-2">
-                      Pregunta {teamProgress.currentQuestionIndex + 1}
-                    </span>
-                    {teamProgress.answeredCorrectly ? (
-                      <Badge className="bg-green-100 text-green-800 border-green-500">
-                        ✓
-                      </Badge>
-                    ) : teamProgress.answeredIncorrectly ? (
-                      <Badge className="bg-red-100 text-red-800 border-red-500">
-                        ✗
-                      </Badge>
-                    ) : (
-                      <Badge className="bg-yellow-100 text-yellow-800 border-yellow-500">
-                        •
-                      </Badge>
-                    )}
-                    {teamProgress.answerTime > 0 && (
-                      <span className="ml-2 text-xs flex items-center">
-                        <Clock className="h-3 w-3 mr-1" />
-                        {teamProgress.answerTime.toFixed(1)}s
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        
         <div className="overflow-x-auto">
           <table className="w-full brutalist-border">
             <thead>
               <tr className="bg-black text-white">
-                <th className="brutalist-border p-2 text-left">Posición</th>
                 <th className="brutalist-border p-2 text-left">Equipo</th>
                 <th className="brutalist-border p-2 text-center">Rounds</th>
                 <th className="brutalist-border p-2 text-center">Total</th>
@@ -72,15 +34,6 @@ const Leaderboard = () => {
               {leaderboard.map((team, index) => {
                 return (
                   <tr key={team.id} className={index % 2 === 0 ? "bg-white" : "bg-brutalist-100"}>
-                    <td className="brutalist-border p-2 text-center font-bold">
-                      {index === 0 ? (
-                        <div className="flex justify-center">
-                          <Trophy className="h-5 w-5 text-yellow-500" />
-                        </div>
-                      ) : (
-                        index + 1
-                      )}
-                    </td>
                     <td className="brutalist-border p-2">
                       <div className="flex items-center gap-2">
                         {team.logo && (
@@ -93,6 +46,9 @@ const Leaderboard = () => {
                           </div>
                         )}
                         <span className="font-bold">{team.name}</span>
+                        {index === 0 && (
+                          <Trophy className="h-5 w-5 text-yellow-500 ml-2" />
+                        )}
                       </div>
                     </td>
                     <td className="brutalist-border p-2">
