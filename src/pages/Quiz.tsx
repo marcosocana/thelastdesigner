@@ -14,7 +14,7 @@ const Quiz = () => {
     <Layout>
       <div className="max-w-4xl mx-auto">
         <div className="brutalist-box mb-8">
-          <h1 className="brutalist-title">EL GRAN RETO DEL DISAINER</h1>
+          <h1 className="brutalist-title">THE LAST DESIGNER</h1>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">

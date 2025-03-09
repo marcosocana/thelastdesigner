@@ -20,9 +20,19 @@ const QuizSummary = () => {
   // Get total time from all rounds
   const totalTime = currentTeam.roundScores.reduce((total, round) => total + round.totalTime, 0);
   
+  // Get total correct answers
+  const totalCorrectAnswers = currentTeam.roundScores.reduce(
+    (total, round) => total + round.correctAnswers, 
+    0
+  );
+  
+  // Determine if design is saved (more than 70 correct answers)
+  const isDesignSaved = totalCorrectAnswers >= 70;
+  
   // Share on LinkedIn
   const handleShareOnLinkedIn = () => {
-    const text = `He participado en el gran reto del disaigner y he conseguido una puntuación de ${currentTeam.totalScore} puntos.`;
+    const result = isDesignSaved ? "he salvado el diseño" : "no he logrado salvar el diseño";
+    const text = `He participado en The Last Designer y ${result} con una puntuación de ${currentTeam.totalScore} puntos y ${totalCorrectAnswers}/100 respuestas correctas.`;
     const url = window.location.origin;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
     window.open(linkedInUrl, '_blank');
@@ -45,6 +55,24 @@ const QuizSummary = () => {
             <div className="brutalist-border p-4 bg-white">
               <h4 className="font-bold mb-1">Tiempo Total</h4>
               <p className="text-4xl font-bold">{totalTime.toFixed(2)} s</p>
+            </div>
+          </div>
+          
+          <div className="brutalist-border p-4 bg-white mb-6">
+            <h4 className="font-bold mb-4">Respuestas Correctas</h4>
+            <p className="text-4xl font-bold text-center">{totalCorrectAnswers}/100</p>
+            
+            <div className={`mt-4 p-4 text-center ${isDesignSaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border`}>
+              <h3 className="text-xl font-bold mb-2">
+                {isDesignSaved 
+                  ? "¡HAS SALVADO EL DISEÑO!" 
+                  : "EL DISEÑO HA MUERTO PARA SIEMPRE..."}
+              </h3>
+              <p>
+                {isDesignSaved 
+                  ? "La humanidad aún tiene esperanza gracias a ti." 
+                  : "La IA ha ganado. Las interfaces serán frías para siempre."}
+              </p>
             </div>
           </div>
           

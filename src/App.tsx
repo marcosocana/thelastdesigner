@@ -16,7 +16,7 @@ const queryClient = new QueryClient();
 const App = () => {
   // Set the page title
   useEffect(() => {
-    document.title = "Diseñathon";
+    document.title = "The Last Designer";
   }, []);
 
   return (
