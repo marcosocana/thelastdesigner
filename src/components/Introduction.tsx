@@ -17,7 +17,7 @@ const Introduction = () => {
             
             <p className="mb-4">Si fallas, el diseño morirá para siempre. Si triunfas, aún hay esperanza.</p>
             
-            <p className="text-xl font-bold mt-6">¿Estás listo para el desafío?</p>
+            <p className="font-bold mt-6 text-base">¿Estás listo para el desafío?</p>
           </div>
           
           <h2 className="text-2xl font-bold mb-4 uppercase">ESTRUCTURA Y REGLAS</h2>
@@ -50,9 +50,7 @@ const Introduction = () => {
             </ul>
           </div>
           
-          <Link to="/quiz" className="brutalist-btn block text-center uppercase mt-8">
-            ¡Aceptar el Desafío!
-          </Link>
+          <Link to="/quiz" className="brutalist-btn block text-center uppercase mt-8">¡SALVAR AL MUNDO!</Link>
         </div>
       </div>
     </div>;
