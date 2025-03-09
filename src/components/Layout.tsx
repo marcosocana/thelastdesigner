@@ -27,11 +27,7 @@ const Layout = ({ children }: LayoutProps) => {
                   Manifiesto
                 </Link>
               </li>
-              <li>
-                <Link to="/quiz" className="uppercase font-bold hover:underline">
-                  Reto
-                </Link>
-              </li>
+              {/* El enlace a "Reto" ha sido eliminado, ahora solo se accede mediante el botón de la home */}
             </ul>
           </nav>
         </div>

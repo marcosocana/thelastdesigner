@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
@@ -74,7 +73,7 @@ const TeamCreation = () => {
       }
       
       // Create the team with a default password for the room
-      createTeam(teamName, memberNames, teamLogo, "default-room");
+      createTeam(teamName, memberNames, teamLogo);
       
       toast({
         title: "¡Equipo creado con éxito!",
