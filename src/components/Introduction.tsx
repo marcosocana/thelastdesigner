@@ -27,10 +27,10 @@ const Introduction = () => {
               <li>10 rounds con 10 preguntas cada uno</li>
               <li>Cada round tiene una temática diferente</li>
               <li>Cada round debe completarse para desbloquear el siguiente</li>
-              <li>Cuenta atrás al inicio de cada round (3, 2, 1, ¡GO!)</li>
-              <li>Sistema de puntuación basado en velocidad y precisión</li>
+              
+              <li>Sistema de puntuación basado en aciertos y velocidad al responder</li>
               <li>Puntuación máxima de 1000 puntos por round</li>
-              <li>Debes acertar más de 70 preguntas para salvar el diseño</li>
+              <li>Debes conseguir más de 5000 puntos para salvar el diseño</li>
             </ul>
           </div>
           
