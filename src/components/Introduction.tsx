@@ -1,12 +1,9 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Introduction = () => {
-  return (
-    <div className="max-w-4xl mx-auto my-12 animate-slide-up">
+  return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
-        <h1 className="brutalist-title mb-8">THE LAST DESIGNER</h1>
+        <h1 className="brutalist-title mb-8 text-center text-3xl">BIENVENIDO. TE estábamos esperando.</h1>
         
         <div className="mx-auto max-w-2xl">
           <div className="brutalist-wireframe mb-8 p-6">
@@ -37,22 +34,9 @@ const Introduction = () => {
             </ul>
           </div>
           
-          <h2 className="text-2xl font-bold mb-4 uppercase">Temáticas</h2>
           
-          <div className="brutalist-wireframe mb-6 p-4">
-            <ol className="list-decimal pl-5 space-y-1">
-              <li>Fundamentos de UX</li>
-              <li>UI y Diseño Visual</li>
-              <li>Design Systems</li>
-              <li>Research y Data-Driven Design</li>
-              <li>UX Writing & Microcopy</li>
-              <li>Mobile UX y Responsive Design</li>
-              <li>Prototipado y Herramientas</li>
-              <li>Diseño Inclusivo y Accesibilidad</li>
-              <li>Heurísticas y Evaluación UX</li>
-              <li>Negocio y Estrategia de Producto</li>
-            </ol>
-          </div>
+          
+          
           
           <h2 className="text-2xl font-bold mb-4 uppercase">Reglas</h2>
           
@@ -71,8 +55,6 @@ const Introduction = () => {
           </Link>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Introduction;
