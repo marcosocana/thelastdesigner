@@ -2,7 +2,7 @@
 import { Question } from "@/types";
 
 export const questions: Question[] = [
-  // Round 1 questions - Basics of Design
+  // Round 1: Fundamentos de UX
   {
     id: 1,
     round: 1,
@@ -18,26 +18,26 @@ export const questions: Question[] = [
   {
     id: 2,
     round: 1,
-    text: "¿Cuál de estos NO es un principio del diseño?",
+    text: "¿Cuál de estos NO es uno de los 5 elementos de la UX según Jesse James Garrett?",
     options: [
-      "Contraste", 
-      "Alineación", 
-      "Monetización", 
-      "Repetición"
+      "Estrategia", 
+      "Alcance", 
+      "Estética", 
+      "Estructura"
     ],
     correctAnswer: 2
   },
   {
     id: 3,
     round: 1,
-    text: "¿Qué formato de imagen es mejor para fotografías en la web?",
+    text: "¿Quién es considerado el padre de la experiencia de usuario?",
     options: [
-      "PNG", 
-      "SVG", 
-      "JPEG", 
-      "GIF"
+      "Steve Jobs", 
+      "Don Norman", 
+      "Jakob Nielsen", 
+      "Alan Cooper"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 4,
@@ -54,77 +54,77 @@ export const questions: Question[] = [
   {
     id: 5,
     round: 1,
-    text: "¿Qué es el 'tracking' en tipografía?",
+    text: "¿Qué es la 'arquitectura de información'?",
     options: [
-      "El espacio entre caracteres", 
-      "El tamaño de la fuente", 
-      "El grosor de la fuente", 
-      "La altura de la línea"
+      "El diseño de edificios para oficinas", 
+      "La organización y estructura del contenido de un producto digital", 
+      "La infraestructura tecnológica de un sitio web", 
+      "El diseño del departamento de TI de una empresa"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 6,
     round: 1,
-    text: "¿Qué modelo de color se usa en diseño web?",
+    text: "¿Cuál es la diferencia principal entre UX y UI?",
     options: [
-      "CMYK", 
-      "RGB", 
-      "HSL", 
-      "Pantone"
+      "UX se enfoca en lo visual, UI en la funcionalidad", 
+      "UX es la experiencia completa, UI es la interfaz visual", 
+      "UX es para web, UI para móviles", 
+      "UX es para desarrolladores, UI para diseñadores"
     ],
     correctAnswer: 1
   },
   {
     id: 7,
     round: 1,
-    text: "¿Qué significa RGB?",
+    text: "¿Qué es un 'User Journey'?",
     options: [
-      "Red Green Blue", 
-      "Real Good Brightness", 
-      "Rate Gamut Balance", 
-      "Relative Gamma Bit"
+      "Un viaje organizado para usuarios de un producto", 
+      "El recorrido y experiencia de un usuario al usar un producto", 
+      "Una historia de ficción sobre un usuario ideal", 
+      "La documentación técnica para usuarios nuevos"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 8,
     round: 1,
-    text: "¿Qué herramienta es más adecuada para diseño de interfaces?",
+    text: "¿Qué es un 'Pain Point' en UX?",
     options: [
-      "Microsoft Word", 
-      "Adobe Photoshop", 
-      "Figma", 
-      "Visual Studio Code"
+      "Un error en el código que causa fallos", 
+      "Un problema o frustración que experimenta el usuario", 
+      "Un punto de referencia en un mapa de sitio", 
+      "Un elemento visual que causa fatiga visual"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 9,
     round: 1,
-    text: "¿Qué significa UI?",
+    text: "¿Qué es una 'Persona' en UX?",
     options: [
-      "User Interface", 
-      "User Interaction", 
-      "User Integration", 
-      "User Intelligence"
+      "Un personaje de ficción en una historia de usuario", 
+      "El perfil arquetípico de un usuario ideal", 
+      "Un avatar digital que representa al diseñador", 
+      "Un cliente importante de una empresa"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 10,
     round: 1,
-    text: "¿Qué formato de imagen permite transparencia?",
+    text: "¿Cuál de estos es un principio fundamental de la UX?",
     options: [
-      "JPEG", 
-      "PNG", 
-      "BMP", 
-      "TIFF"
+      "Hacer que el usuario trabaje más para valorar el producto", 
+      "Diseñar para impresionar a otros diseñadores", 
+      "Centrarse en las necesidades y objetivos del usuario", 
+      "Usar siempre las últimas tendencias en diseño"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   
-  // Round 2 questions - Color Theory & Typography
+  // Round 2: UI y Diseño Visual
   {
     id: 11,
     round: 2,
@@ -140,14 +140,14 @@ export const questions: Question[] = [
   {
     id: 12,
     round: 2,
-    text: "¿Qué es el contraste en diseño?",
+    text: "¿Qué significa el acrónimo RGB en diseño visual?",
     options: [
-      "La diferencia entre elementos adyacentes", 
-      "El brillo de una imagen", 
-      "La resolución de una pantalla", 
-      "La saturación de un color"
+      "Rapid Graphics Builder", 
+      "Real Good Brightness", 
+      "Red, Green, Blue", 
+      "Responsive Grid Basis"
     ],
-    correctAnswer: 0
+    correctAnswer: 2
   },
   {
     id: 13,
@@ -164,14 +164,14 @@ export const questions: Question[] = [
   {
     id: 14,
     round: 2,
-    text: "¿Qué significa 'responsive design'?",
+    text: "¿Qué es el 'kerning' en tipografía?",
     options: [
-      "Diseño que responde a las emociones del usuario", 
-      "Diseño que se adapta a diferentes tamaños de pantalla", 
-      "Diseño que carga rápidamente", 
-      "Diseño que utiliza animaciones"
+      "El tamaño de la fuente", 
+      "El grosor de los caracteres", 
+      "El espacio entre caracteres específicos", 
+      "La altura de la línea de texto"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 15,
@@ -188,128 +188,6 @@ export const questions: Question[] = [
   {
     id: 16,
     round: 2,
-    text: "¿Qué es un logotipo?",
-    options: [
-      "Un eslogan corporativo", 
-      "Un símbolo gráfico que identifica a una empresa o marca", 
-      "Un tipo de archivo de imagen", 
-      "Una tendencia de diseño"
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 17,
-    round: 2,
-    text: "¿Qué es el 'kerning' en tipografía?",
-    options: [
-      "El espacio entre líneas de texto", 
-      "El espacio entre palabras", 
-      "El espacio entre letras específicas", 
-      "El tamaño de la fuente"
-    ],
-    correctAnswer: 2
-  },
-  {
-    id: 18,
-    round: 2,
-    text: "¿Qué es un 'mock-up' en diseño?",
-    options: [
-      "Una representación a escala real de un diseño", 
-      "Un borrador inicial de un proyecto", 
-      "Una imagen de stock", 
-      "Un tipo de formato de archivo"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 19,
-    round: 2,
-    text: "¿Qué significa 'pixelado' en una imagen?",
-    options: [
-      "Una imagen de alta resolución", 
-      "Una imagen con pérdida de calidad donde se ven los píxeles individuales", 
-      "Una imagen en formato vectorial", 
-      "Una imagen con efecto de desenfoque"
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 20,
-    round: 2,
-    text: "¿Qué es un 'call to action' (CTA)?",
-    options: [
-      "Un mensaje de error en un formulario", 
-      "Un elemento de diseño que invita al usuario a realizar una acción", 
-      "Una animación automática", 
-      "Un menú desplegable"
-    ],
-    correctAnswer: 1
-  },
-  
-  // Round 3 questions - Design Principles
-  {
-    id: 21,
-    round: 3,
-    text: "¿Qué es el principio de proximidad en diseño?",
-    options: [
-      "Elementos similares deben estar cerca entre sí", 
-      "Los elementos importantes deben estar en el centro", 
-      "Todos los elementos deben tener el mismo tamaño", 
-      "Los elementos deben estar distribuidos uniformemente"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 22,
-    round: 3,
-    text: "¿Cuál es la regla de los tercios?",
-    options: [
-      "Dividir el presupuesto en tres partes iguales", 
-      "Usar solo tres colores en un diseño", 
-      "Dividir una composición en nueve partes iguales y colocar elementos en las intersecciones", 
-      "Limitar el diseño a tres elementos principales"
-    ],
-    correctAnswer: 2
-  },
-  {
-    id: 23,
-    round: 3,
-    text: "¿Qué significa 'affordance' en diseño UX?",
-    options: [
-      "El costo de implementar un diseño", 
-      "La propiedad de un objeto que sugiere cómo puede ser usado", 
-      "La velocidad con la que se carga una página", 
-      "La capacidad de un diseño para ser accesible"
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 24,
-    round: 3,
-    text: "¿Qué es el principio de Gestalt 'figura-fondo'?",
-    options: [
-      "La tendencia a percibir un elemento como figura y otro como fondo", 
-      "La tendencia a agrupar elementos similares", 
-      "La tendencia a completar formas incompletas", 
-      "La tendencia a percibir elementos simétricos"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 25,
-    round: 3,
-    text: "¿Qué es el 'whitespace' (espacio en blanco) en diseño?",
-    options: [
-      "Áreas sin contenido que ayudan a la legibilidad y el equilibrio", 
-      "Un área reservada para publicidad", 
-      "El fondo blanco de una página web", 
-      "Espacio reservado para añadir elementos en el futuro"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 26,
-    round: 3,
     text: "¿Qué tipo de contraste se crea al combinar colores complementarios?",
     options: [
       "Contraste de valor", 
@@ -320,906 +198,1028 @@ export const questions: Question[] = [
     correctAnswer: 2
   },
   {
-    id: 27,
-    round: 3,
-    text: "¿Qué es un 'mood board' en diseño?",
+    id: 17,
+    round: 2,
+    text: "¿Qué es una retícula (grid) en diseño UI?",
     options: [
-      "Un panel de opiniones de usuarios", 
-      "Una colección de elementos visuales que inspiran un concepto de diseño", 
-      "Un diagrama de flujo de trabajo", 
-      "Una lista de requisitos de diseño"
+      "Un patrón decorativo", 
+      "Una estructura que ayuda a organizar los elementos en la página", 
+      "Un tipo de gráfico estadístico", 
+      "Un efecto visual de degradado"
     ],
     correctAnswer: 1
+  },
+  {
+    id: 18,
+    round: 2,
+    text: "¿Qué es el 'whitespace' o espacio en blanco en diseño?",
+    options: [
+      "El color de fondo blanco", 
+      "Un error de renderizado en la pantalla", 
+      "El espacio vacío intencional entre elementos", 
+      "Una técnica para resaltar texto importante"
+    ],
+    correctAnswer: 2
+  },
+  {
+    id: 19,
+    round: 2,
+    text: "¿Qué es un 'call to action' (CTA)?",
+    options: [
+      "Un botón o enlace que invita al usuario a realizar una acción", 
+      "Una llamada telefónica para soporte técnico", 
+      "Una alerta de error en la interfaz", 
+      "Un recordatorio para los usuarios inactivos"
+    ],
+    correctAnswer: 0
+  },
+  {
+    id: 20,
+    round: 2,
+    text: "¿Qué formato de imagen es mejor para iconos e ilustraciones con líneas definidas?",
+    options: [
+      "JPEG", 
+      "GIF", 
+      "PNG", 
+      "SVG"
+    ],
+    correctAnswer: 3
+  },
+  
+  // Round 3: Design Systems
+  {
+    id: 21,
+    round: 3,
+    text: "¿Qué es un Design System?",
+    options: [
+      "Un software para diseñar interfaces", 
+      "Un conjunto de patrones, componentes y principios para crear productos digitales coherentes", 
+      "Un método de organización de archivos de diseño", 
+      "Un estilo visual específico creado por una empresa"
+    ],
+    correctAnswer: 1
+  },
+  {
+    id: 22,
+    round: 3,
+    text: "¿Cuál de estos NO es un beneficio principal de los Design Systems?",
+    options: [
+      "Mejora la consistencia visual y funcional", 
+      "Acelera el proceso de diseño y desarrollo", 
+      "Elimina la necesidad de hacer pruebas con usuarios", 
+      "Facilita la colaboración entre equipos"
+    ],
+    correctAnswer: 2
+  },
+  {
+    id: 23,
+    round: 3,
+    text: "¿Qué son los 'tokens' en un Design System?",
+    options: [
+      "Valores reutilizables que representan elementos de diseño", 
+      "Monedas digitales para acceder al sistema", 
+      "Permisos de acceso para los desarrolladores", 
+      "Los iconos y logotipos de la marca"
+    ],
+    correctAnswer: 0
+  },
+  {
+    id: 24,
+    round: 3,
+    text: "¿Qué es una 'biblioteca de componentes' en un Design System?",
+    options: [
+      "Una colección física de libros sobre diseño", 
+      "Un repositorio de elementos de UI reutilizables", 
+      "Un conjunto de plantillas de documentos", 
+      "El historial de versiones anteriores del sistema"
+    ],
+    correctAnswer: 1
+  },
+  {
+    id: 25,
+    round: 3,
+    text: "¿Qué conocido Design System fue creado por Google?",
+    options: [
+      "Carbon", 
+      "Material Design", 
+      "Human Interface Guidelines", 
+      "Fluent Design"
+    ],
+    correctAnswer: 1
+  },
+  {
+    id: 26,
+    round: 3,
+    text: "¿Qué es un 'atomic design'?",
+    options: [
+      "Un estilo minimalista de diseño", 
+      "Una metodología que construye interfaces desde elementos básicos hasta complejos", 
+      "Un software para crear animaciones", 
+      "Un tipo de diseño inspirado en la física cuántica"
+    ],
+    correctAnswer: 1
+  },
+  {
+    id: 27,
+    round: 3,
+    text: "En Atomic Design, ¿cuáles son los niveles de componentes en orden correcto?",
+    options: [
+      "Átomos, Moléculas, Organismos, Templates, Páginas", 
+      "Bits, Elementos, Componentes, Secciones, Páginas", 
+      "Partículas, Elementos, Bloques, Secciones, Vistas", 
+      "Puntos, Líneas, Formas, Composiciones, Interfaces"
+    ],
+    correctAnswer: 0
   },
   {
     id: 28,
     round: 3,
-    text: "¿Qué significa 'skeuomorfismo' en diseño?",
+    text: "¿Qué herramienta es especialmente útil para documentar Design Systems?",
     options: [
-      "Un diseño minimalista", 
-      "Un diseño que imita elementos del mundo real", 
-      "Un diseño basado en rejillas", 
-      "Un diseño con muchas animaciones"
+      "Microsoft Word", 
+      "Adobe Photoshop", 
+      "Storybook", 
+      "Google Analytics"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 29,
     round: 3,
-    text: "¿Qué es una 'retícula' (grid) en diseño?",
+    text: "¿Qué es un 'living Design System'?",
     options: [
-      "Una estructura de líneas que guía la composición", 
-      "Un tipo de fuente", 
-      "Un efecto visual de cuadrícula", 
-      "Un formato de archivo"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 30,
-    round: 3,
-    text: "¿Qué significa 'above the fold' en diseño web?",
-    options: [
-      "El contenido visible sin desplazamiento", 
-      "El encabezado de una página", 
-      "El área reservada para publicidad", 
-      "El pie de página de un sitio web"
-    ],
-    correctAnswer: 0
-  },
-  
-  // Round 4 questions - UI/UX Principles
-  {
-    id: 31,
-    round: 4,
-    text: "¿Qué es la 'usabilidad' en diseño UX?",
-    options: [
-      "La capacidad de un producto para ser usado fácilmente", 
-      "La capacidad de un producto para ser vendido", 
-      "La capacidad de un producto para ser actualizado", 
-      "La capacidad de un producto para ser personalizado"
-    ],
-    correctAnswer: 0
-  },
-  {
-    id: 32,
-    round: 4,
-    text: "¿Qué es un 'user flow' en UX?",
-    options: [
-      "El tiempo que un usuario pasa en un sitio", 
-      "La ruta que sigue un usuario para completar una tarea", 
-      "La cantidad de usuarios de un producto", 
-      "La satisfacción del usuario con un producto"
+      "Un Design System con animaciones", 
+      "Un Design System que evoluciona y se actualiza constantemente", 
+      "Un Design System inspirado en la naturaleza", 
+      "Un Design System con elementos 3D"
     ],
     correctAnswer: 1
   },
   {
+    id: 30,
+    round: 3,
+    text: "¿Qué aspecto es fundamental para mantener un Design System efectivo?",
+    options: [
+      "Cambiar completamente el sistema cada año", 
+      "Limitar el acceso solo al equipo de diseño", 
+      "Gobernanza y procesos de actualización claros", 
+      "Utilizar exclusivamente tecnologías propietarias"
+    ],
+    correctAnswer: 2
+  },
+  
+  // Round 4: Research y Data-Driven Design
+  {
+    id: 31,
+    round: 4,
+    text: "¿Qué es el 'User Research'?",
+    options: [
+      "Investigación de mercado para nuevos productos", 
+      "El estudio sistemático de usuarios para entender sus necesidades y comportamientos", 
+      "Un análisis de la competencia", 
+      "Una técnica para clasificar usuarios por demografía"
+    ],
+    correctAnswer: 1
+  },
+  {
+    id: 32,
+    round: 4,
+    text: "¿Qué es una 'entrevista contextual' en investigación UX?",
+    options: [
+      "Una entrevista realizada en el entorno donde el usuario utiliza el producto", 
+      "Una entrevista enfocada en el contexto del negocio", 
+      "Una entrevista improvisada sin preparación", 
+      "Una entrevista con varios participantes simultáneamente"
+    ],
+    correctAnswer: 0
+  },
+  {
     id: 33,
     round: 4,
-    text: "¿Qué es un 'design system'?",
+    text: "¿Qué es un 'test de usabilidad'?",
     options: [
-      "Un conjunto de archivos de diseño", 
-      "Un software de diseño", 
-      "Un conjunto de estándares para administrar el diseño a escala", 
-      "Un método de organización de archivos"
+      "Una prueba técnica del rendimiento del sistema", 
+      "Una evaluación de la seguridad de la aplicación", 
+      "Una evaluación de cómo los usuarios interactúan con un producto", 
+      "Un cuestionario sobre las preferencias del usuario"
     ],
     correctAnswer: 2
   },
   {
     id: 34,
     round: 4,
-    text: "¿Qué es una 'heurística' en evaluación de usabilidad?",
+    text: "¿Qué tipo de datos proporciona el análisis cuantitativo?",
     options: [
-      "Una prueba A/B", 
-      "Una regla general basada en la experiencia que ayuda a evaluar interfaces", 
-      "Un test con usuarios reales", 
-      "Un análisis de métricas"
+      "Datos narrativos y descriptivos", 
+      "Datos numéricos y estadísticos", 
+      "Datos sobre las emociones de los usuarios", 
+      "Datos sobre la historia de la empresa"
     ],
     correctAnswer: 1
   },
   {
     id: 35,
     round: 4,
-    text: "¿Qué busca medir la métrica 'time on task' en UX?",
+    text: "¿Qué es un 'heat map' en el análisis de datos UX?",
     options: [
-      "El tiempo que un usuario pasa en un sitio web", 
-      "El tiempo que tarda un usuario en completar una tarea específica", 
-      "El tiempo de carga de una página", 
-      "El tiempo entre visitas a un sitio"
+      "Un mapa del clima global", 
+      "Una representación visual que muestra las áreas donde los usuarios hacen clic o prestan más atención", 
+      "Un diagrama de temperatura del servidor", 
+      "Un análisis del rendimiento del equipo de diseño"
     ],
     correctAnswer: 1
   },
   {
     id: 36,
     round: 4,
-    text: "¿Qué es un 'design sprint'?",
+    text: "¿Qué es la tasa de conversión en el contexto de UX?",
     options: [
-      "Un concurso de diseño rápido", 
-      "Una metodología para resolver problemas mediante diseño, prototipado y testeo", 
-      "Una herramienta de diseño rápido", 
-      "Una competencia entre diseñadores"
+      "El porcentaje de usuarios que visitan más de una página", 
+      "El porcentaje de usuarios que completan una acción deseada", 
+      "La velocidad a la que los usuarios cambian de dispositivo", 
+      "El número de conversaciones iniciadas en el chat de soporte"
     ],
     correctAnswer: 1
   },
   {
     id: 37,
     round: 4,
-    text: "¿Qué es la 'arquitectura de información' en UX?",
+    text: "¿Qué es el 'card sorting' en investigación UX?",
     options: [
-      "El diseño de edificios para oficinas de diseño", 
-      "La estructura y organización del contenido de un sitio o aplicación", 
-      "El hardware necesario para ejecutar software de diseño", 
-      "La infraestructura tecnológica de un sitio web"
+      "Una técnica para organizar tarjetas de presentación", 
+      "Un método donde los usuarios organizan temas en categorías para entender su modelo mental", 
+      "Una forma de ordenar componentes visuales", 
+      "Un juego para entretener a los participantes durante las pruebas"
     ],
     correctAnswer: 1
   },
   {
     id: 38,
     round: 4,
-    text: "¿Qué es una 'persona' en diseño UX?",
+    text: "¿Qué métrica mide el esfuerzo que un usuario debe realizar para completar una tarea?",
     options: [
-      "El diseñador principal de un proyecto", 
-      "Un perfil ficticio que representa a un grupo de usuarios", 
-      "Un cliente importante", 
-      "Un avatar digital"
+      "Tasa de rebote", 
+      "Puntuación de satisfacción", 
+      "Índice de esfuerzo del cliente (CES)", 
+      "Tasa de conversión"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 39,
     round: 4,
-    text: "¿Qué es el 'card sorting' en UX?",
+    text: "¿Qué es un 'A/B test' en diseño basado en datos?",
     options: [
-      "Una técnica para organizar productos en un e-commerce", 
-      "Un juego de cartas para diseñadores", 
-      "Una técnica para entender cómo los usuarios organizan y agrupan la información", 
-      "Un método para seleccionar colores"
+      "Una prueba alfabética de nombres de productos", 
+      "Una comparación entre dos versiones (A y B) para ver cuál funciona mejor", 
+      "Un test para comparar dos grupos demográficos diferentes", 
+      "Una evaluación de la versión alfa versus la beta"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 40,
     round: 4,
-    text: "¿Qué es un 'user journey map'?",
+    text: "¿Qué significa NPS en el contexto de investigación de usuarios?",
     options: [
-      "Un mapa de navegación de un sitio web", 
-      "Una representación visual de la experiencia completa de un usuario con un producto", 
-      "Un diagrama de flujo de desarrollo", 
-      "Un mapa de sitio"
+      "New Product Strategy", 
+      "Net Profit Score", 
+      "Net Promoter Score", 
+      "Natural Person Survey"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   
-  // Round 5 questions - Design Tools & Software
+  // Round 5: UX Writing & Microcopy
   {
     id: 41,
     round: 5,
-    text: "¿Qué herramienta es específica para prototipado de interfaces?",
+    text: "¿Qué es el UX Writing?",
     options: [
-      "Adobe Illustrator", 
-      "Adobe InDesign", 
-      "Sketch", 
-      "Microsoft Excel"
+      "La documentación técnica de un producto", 
+      "La redacción de textos para la interfaz de usuario que guían al usuario", 
+      "La escritura de artículos sobre experiencia de usuario", 
+      "La creación de manuales para diseñadores UX"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 42,
     round: 5,
-    text: "¿Qué herramienta NO es de Adobe?",
+    text: "¿Qué es el 'microcopy'?",
     options: [
-      "Photoshop", 
-      "Illustrator", 
-      "Figma", 
-      "InDesign"
+      "Textos muy pequeños difíciles de leer", 
+      "Palabras o frases breves en la interfaz que guían al usuario", 
+      "Derechos de autor de elementos pequeños", 
+      "Una forma de copyright para fragmentos de texto"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 43,
     round: 5,
-    text: "¿Qué formato es específico para gráficos vectoriales?",
+    text: "¿Cuál es un principio fundamental del UX Writing?",
     options: [
-      "JPEG", 
-      "PNG", 
-      "SVG", 
-      "GIF"
+      "Usar terminología técnica para parecer profesional", 
+      "Escribir textos largos y detallados", 
+      "Ser claro, conciso y útil", 
+      "Usar jerga específica de la industria"
     ],
     correctAnswer: 2
   },
   {
     id: 44,
     round: 5,
-    text: "¿Qué herramienta permite la colaboración en tiempo real entre diseñadores?",
+    text: "¿Qué es un 'empty state'?",
     options: [
-      "Adobe Photoshop", 
-      "Figma", 
-      "CorelDRAW", 
-      "GIMP"
+      "Un error en la aplicación", 
+      "Una página en blanco sin diseñar", 
+      "Una pantalla que se muestra cuando no hay contenido disponible", 
+      "Un estado de depresión del diseñador"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 45,
     round: 5,
-    text: "¿Qué herramienta se utiliza principalmente para diseño editorial?",
+    text: "¿Qué es la 'voz de marca' en UX Writing?",
     options: [
-      "Adobe InDesign", 
-      "Adobe Premiere", 
-      "Sketch", 
-      "Blender"
+      "Un asistente de voz como Siri o Alexa", 
+      "El tono y personalidad consistentes en todos los textos", 
+      "La voz del narrador en videos promocionales", 
+      "El volumen recomendado para usar la aplicación"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 46,
     round: 5,
-    text: "¿Qué software se utiliza para animación de interfaces?",
+    text: "¿Qué es un 'mensaje de error' efectivo?",
     options: [
-      "Adobe Photoshop", 
-      "Adobe Illustrator", 
-      "Adobe After Effects", 
-      "Adobe Lightroom"
+      "Uno que usa términos técnicos detallados", 
+      "Uno que culpa al usuario por el error", 
+      "Uno que explica qué salió mal y cómo resolverlo", 
+      "Uno que incluye un código de error numérico largo"
     ],
     correctAnswer: 2
   },
   {
     id: 47,
     round: 5,
-    text: "¿Qué método en Photoshop permite seleccionar áreas por color?",
+    text: "¿Qué es un 'CTA' (Call to Action) en el contexto de UX Writing?",
     options: [
-      "Varita mágica", 
-      "Lazo magnético", 
-      "Pluma", 
-      "Pincel"
+      "Un texto que anima al usuario a realizar una acción específica", 
+      "Un aviso de cierre temporal de la aplicación", 
+      "Un mensaje automático generado por el sistema", 
+      "Una notificación crítica sobre problemas técnicos"
     ],
     correctAnswer: 0
   },
   {
     id: 48,
     round: 5,
-    text: "¿Qué herramienta se utiliza para crear mockups interactivos?",
+    text: "¿Qué es la 'jerarquía de información' en UX Writing?",
     options: [
-      "Trello", 
-      "InVision", 
-      "Slack", 
-      "Asana"
+      "La organización del texto según su importancia", 
+      "El tamaño de diferentes fuentes en la página", 
+      "El número de palabras permitidas en cada sección", 
+      "El organigrama del equipo de contenido"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 49,
     round: 5,
-    text: "¿Qué es 'Behance'?",
+    text: "¿Por qué es importante la consistencia en UX Writing?",
     options: [
-      "Un software de diseño de Adobe", 
-      "Una plataforma para compartir portfolios", 
-      "Una herramienta de prototipado", 
-      "Un plugin de Photoshop"
+      "Para ahorrar tiempo al equipo de diseño", 
+      "Para evitar confusiones y crear familiaridad para el usuario", 
+      "Para facilitar las traducciones a otros idiomas", 
+      "Para cumplir con requisitos legales"
     ],
     correctAnswer: 1
   },
   {
     id: 50,
     round: 5,
-    text: "¿Qué técnica en Illustrator permite crear copias en patrón?",
+    text: "¿Qué es un 'tone map' en UX Writing?",
     options: [
-      "Repetición", 
-      "Fusión", 
-      "Patrón", 
-      "Mosaico"
+      "Un mapa del sitio web con colores que representan diferentes secciones", 
+      "Una guía de cómo ajustar el tono del contenido según el contexto", 
+      "Una herramienta para analizar la entonación en asistentes de voz", 
+      "Un gráfico que muestra las opiniones de los usuarios"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   
-  // Round 6 questions - Advanced Color Theory
+  // Round 6: Mobile UX y Responsive Design
   {
     id: 51,
     round: 6,
-    text: "¿Qué es la teoría de color de Munsell?",
+    text: "¿Qué es el 'diseño responsive'?",
     options: [
-      "Un sistema que organiza el color en tres dimensiones: matiz, valor y croma", 
-      "Un sistema que solo usa RGB", 
-      "Un sistema basado en las emociones", 
-      "Un sistema para daltónicos"
+      "Un diseño que responde a las interacciones del usuario", 
+      "Un enfoque de diseño que permite que las páginas se adapten a diferentes tamaños de pantalla", 
+      "Un diseño que responde rápidamente a cambios en el sistema", 
+      "Un diseño que incluye animaciones interactivas"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 52,
     round: 6,
-    text: "¿Qué es el 'gamut' en color digital?",
+    text: "¿Qué es un 'breakpoint' en diseño responsive?",
     options: [
-      "La temperatura del color", 
-      "El rango total de colores que un dispositivo puede reproducir", 
-      "La saturación máxima", 
-      "El brillo máximo"
+      "Un punto donde el código deja de funcionar", 
+      "Un punto de interrupción donde el diseño cambia para adaptarse a diferentes tamaños de pantalla", 
+      "Un error en el código CSS", 
+      "Un punto donde se coloca un descanso visual en la interfaz"
     ],
     correctAnswer: 1
   },
   {
     id: 53,
     round: 6,
-    text: "¿Qué significa que un color sea 'web safe'?",
+    text: "¿Qué significa 'mobile-first design'?",
     options: [
-      "Que tiene licencia para uso web", 
-      "Que es visible para personas daltónicas", 
-      "Que se visualizará correctamente en navegadores antiguos", 
-      "Que ha pasado pruebas de seguridad"
+      "Diseñar exclusivamente para dispositivos móviles", 
+      "Un enfoque donde se diseña primero para dispositivos móviles y luego se amplía para pantallas más grandes", 
+      "Una técnica donde los móviles son los primeros en probar un diseño", 
+      "Un diseño que solo funciona en teléfonos de última generación"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 54,
     round: 6,
-    text: "¿Qué sistema de color se basa en cian, magenta, amarillo y negro?",
+    text: "¿Qué es un 'hamburger menu' en el diseño de interfaces móviles?",
     options: [
-      "RGB", 
-      "HSB", 
-      "CMYK", 
-      "LAB"
+      "Un menú para pedir comida", 
+      "Un icono de tres líneas horizontales que despliega el menú principal", 
+      "Un tipo específico de menú para restaurantes", 
+      "Un diseño de navegación inspirado en capas"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 55,
     round: 6,
-    text: "¿Qué es un 'color acromático'?",
+    text: "¿Cuál es la principal diferencia entre una aplicación nativa y una web app?",
     options: [
-      "Un color con bajo croma", 
-      "Un color sin tonalidad (blanco, negro, gris)", 
-      "Un color opuesto en el círculo cromático", 
-      "Un color que cambia según la luz"
+      "Las aplicaciones nativas están escritas en idiomas locales", 
+      "Las aplicaciones nativas están instaladas directamente en el dispositivo y están optimizadas para él", 
+      "Las web apps son siempre de pago mientras que las nativas son gratuitas", 
+      "Las web apps funcionan sin conexión a internet mientras que las nativas requieren conexión"
     ],
     correctAnswer: 1
   },
   {
     id: 56,
     round: 6,
-    text: "¿Qué tipo de armonía de color utiliza colores adyacentes en el círculo cromático?",
+    text: "¿Qué es la 'zona de alcance del pulgar' en diseño móvil?",
     options: [
-      "Complementaria", 
-      "Análoga", 
-      "Triádica", 
-      "Tetráda"
-    ],
-    correctAnswer: 1
-  },
-  {
-    id: 57,
-    round: 6,
-    text: "¿Qué significan las siglas LAB en el espacio de color LAB?",
-    options: [
-      "Light, Absolute, Blue", 
-      "Luminance, A channel, B channel", 
-      "Lightness, A (green-red), B (blue-yellow)", 
-      "Layer, Ambience, Background"
-    ],
-    correctAnswer: 2
-  },
-  {
-    id: 58,
-    round: 6,
-    text: "¿Qué es la 'metacromasia' en diseño?",
-    options: [
-      "El cambio aparente de color debido a la yuxtaposición con otros colores", 
-      "Una técnica para seleccionar colores", 
-      "Un defecto visual en monitores", 
-      "Un tipo de paleta de colores"
+      "El área de la pantalla que un usuario puede alcanzar cómodamente con el pulgar mientras sostiene el dispositivo", 
+      "El espacio necesario para colocar huellas dactilares en la pantalla", 
+      "El tamaño mínimo recomendado para botones táctiles", 
+      "Una técnica para medir el tamaño de la pantalla"
     ],
     correctAnswer: 0
   },
   {
+    id: 57,
+    round: 6,
+    text: "¿Qué es una 'unidad relativa' en CSS para diseño responsive?",
+    options: [
+      "Una medida que depende del tamaño de otro elemento", 
+      "Una unidad que solo se usa en tablets", 
+      "Un valor estándar determinado por el W3C", 
+      "Una unidad que cambia según la conexión a internet"
+    ],
+    correctAnswer: 0
+  },
+  {
+    id: 58,
+    round: 6,
+    text: "¿Qué es el 'scroll infinito' en diseño móvil?",
+    options: [
+      "Un error que hace que la página no tenga fin", 
+      "Una técnica donde el contenido se carga continuamente al llegar al final de la página", 
+      "Un tipo de animación que simula un pergamino infinito", 
+      "Una característica que permite desplazarse horizontalmente sin límites"
+    ],
+    correctAnswer: 1
+  },
+  {
     id: 59,
     round: 6,
-    text: "¿Qué es el 'dithering' en imágenes digitales?",
+    text: "¿Qué significa PWA?",
     options: [
-      "Un efecto de desenfoque", 
-      "Una técnica para simular más colores mezclando píxeles", 
-      "Un filtro para aumentar el contraste", 
-      "Un método para reducir el tamaño de archivo"
+      "Personal Web Application", 
+      "Progressive Web App", 
+      "Powerful Web Access", 
+      "Professional Web Architecture"
     ],
     correctAnswer: 1
   },
   {
     id: 60,
     round: 6,
-    text: "¿Qué es el 'metamerismo' en teoría del color?",
+    text: "¿Qué técnica de diseño responsive permite reorganizar elementos en diferentes columnas según el tamaño de pantalla?",
     options: [
-      "Un efecto donde dos colores parecen iguales bajo una luz pero diferentes bajo otra", 
-      "La capacidad de un color para cambiar con el tiempo", 
-      "Un error en la reproducción de color en pantallas", 
-      "Una técnica para crear ilusiones ópticas"
+      "Sticky positioning", 
+      "Media queries", 
+      "Fixed layout", 
+      "Absolute positioning"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   
-  // Round 7 questions - Advanced Typography
+  // Round 7: Prototipado y Herramientas
   {
     id: 61,
     round: 7,
-    text: "¿Qué es un 'ligadura' en tipografía?",
+    text: "¿Qué es un prototipo en UX/UI?",
     options: [
-      "Un espacio entre párrafos", 
-      "Un tipo de fuente", 
-      "La unión de dos o más caracteres en un solo glifo", 
-      "El espacio entre líneas"
+      "Una versión final del producto", 
+      "Una simulación o modelo de cómo funcionará el producto final", 
+      "Un boceto a mano alzada", 
+      "Un documento que describe las funcionalidades"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 62,
     round: 7,
-    text: "¿Qué es el 'tracking' en tipografía avanzada?",
+    text: "¿Cuál es la diferencia entre un prototipo de baja fidelidad y uno de alta fidelidad?",
     options: [
-      "La distancia entre caracteres específicos", 
-      "El espacio uniforme entre todos los caracteres", 
-      "El espacio entre líneas", 
-      "El tamaño de la fuente"
+      "Los de baja fidelidad son digitales y los de alta fidelidad son impresos", 
+      "Los de baja fidelidad son básicos y conceptuales, mientras que los de alta fidelidad se parecen más al producto final", 
+      "Los de baja fidelidad son más caros de producir", 
+      "No hay diferencia, son términos intercambiables"
     ],
     correctAnswer: 1
   },
   {
     id: 63,
     round: 7,
-    text: "¿Qué es una fuente variable?",
+    text: "¿Qué herramienta NO es principalmente para diseño de interfaces?",
     options: [
-      "Una fuente que cambia de color", 
-      "Una fuente que contiene múltiples pesos y estilos en un solo archivo", 
-      "Una fuente con caracteres de tamaño variable", 
-      "Una fuente que solo funciona en ciertos dispositivos"
+      "Figma", 
+      "Sketch", 
+      "Adobe XD", 
+      "GIMP"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 64,
     round: 7,
-    text: "¿Qué es una 'huérfana' en tipografía?",
+    text: "¿Qué permite hacer la función 'Auto Layout' en Figma?",
     options: [
-      "Una palabra sola al final de un párrafo", 
-      "Una línea sola al comienzo de una página", 
-      "Una letra suelta al final de una línea", 
-      "Un párrafo sin título"
+      "Distribuir automáticamente los elementos en la pantalla aleatoriamente", 
+      "Crear layouts que se adaptan y reorganizan cuando se modifican los contenidos", 
+      "Convertir automáticamente un diseño web en un diseño móvil", 
+      "Actualizar automáticamente el diseño según la hora del día"
     ],
     correctAnswer: 1
   },
   {
     id: 65,
     round: 7,
-    text: "¿Qué significa 'x-height' en tipografía?",
+    text: "¿Qué son los 'componentes' en herramientas como Figma o Sketch?",
     options: [
-      "La altura total de un caracter", 
-      "La altura de la letra x minúscula", 
-      "La altura de las letras mayúsculas", 
-      "La altura de los ascendentes"
+      "Elementos decorativos", 
+      "Partes del hardware necesarias para ejecutar el software", 
+      "Elementos reutilizables que mantienen consistencia en todo el diseño", 
+      "Códigos específicos para programar la interfaz"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 66,
     round: 7,
-    text: "¿Qué es un 'dingbat'?",
+    text: "¿Qué es un 'handoff' en el proceso de diseño?",
     options: [
-      "Un error tipográfico", 
-      "Un tipo de fuente que contiene símbolos y ornamentos en lugar de letras", 
-      "Una fuente para títulos", 
-      "Una técnica de impresión"
+      "El momento en que se entrega el diseño finalizado a los desarrolladores", 
+      "Una técnica para pasar el control de un proyecto a otro equipo", 
+      "El acto de descartar un diseño obsoleto", 
+      "Una reunión donde se rechazan ideas de diseño"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 67,
     round: 7,
-    text: "¿Qué es la 'sangría francesa' en tipografía?",
+    text: "¿Qué herramienta permite la colaboración en tiempo real entre diseñadores?",
     options: [
-      "Un párrafo sin sangría en la primera línea", 
-      "Un formato donde la primera línea sobresale y el resto del párrafo tiene sangría", 
-      "Un tipo de alineación centrada", 
-      "Un estilo decorativo francés"
+      "Adobe Photoshop", 
+      "Figma", 
+      "CorelDRAW", 
+      "Paint"
     ],
     correctAnswer: 1
   },
   {
     id: 68,
     round: 7,
-    text: "¿Qué es una fuente 'monoespaciada'?",
+    text: "¿Qué es un 'design token'?",
     options: [
-      "Una fuente donde todos los caracteres ocupan el mismo espacio horizontal", 
-      "Una fuente con un solo estilo", 
-      "Una fuente que solo tiene un tamaño", 
-      "Una fuente minimalista"
+      "Una moneda digital para diseñadores", 
+      "Un certificado de autenticidad del diseño", 
+      "Un valor estilístico almacenado (como colores, espaciado) que se puede reutilizar", 
+      "Un premio otorgado a diseños excepcionales"
     ],
-    correctAnswer: 0
+    correctAnswer: 2
   },
   {
     id: 69,
     round: 7,
-    text: "¿Qué es el 'tipo de contador' en tipografía?",
+    text: "¿Qué permite hacer InVision como herramienta?",
     options: [
-      "Una herramienta para contar palabras", 
-      "El espacio cerrado o parcialmente cerrado dentro de un carácter", 
-      "Un sistema para medir el tamaño de fuente", 
-      "Una técnica para espaciar letras"
+      "Programar el backend de una aplicación", 
+      "Crear y compartir prototipos interactivos", 
+      "Analizar el rendimiento del sitio web", 
+      "Editar videos para tutoriales"
     ],
     correctAnswer: 1
   },
   {
     id: 70,
     round: 7,
-    text: "¿Qué es un 'specimen' tipográfico?",
+    text: "¿Qué formato de archivo es nativo de Adobe Photoshop?",
     options: [
-      "Un documento que muestra todos los caracteres de una fuente", 
-      "Una fuente especial para títulos", 
-      "Un error en la tipografía", 
-      "Una muestra impresa de un diseño"
+      "PNG", 
+      "SVG", 
+      "PSD", 
+      "FIG"
     ],
-    correctAnswer: 0
+    correctAnswer: 2
   },
   
-  // Round 8 questions - Design History & Theory
+  // Round 8: Diseño Inclusivo y Accesibilidad
   {
     id: 71,
     round: 8,
-    text: "¿Qué movimiento de diseño se asocia con la frase 'menos es más'?",
+    text: "¿Qué es el diseño inclusivo?",
     options: [
-      "Art Deco", 
-      "Bauhaus", 
-      "Minimalismo", 
-      "Pop Art"
+      "Diseñar exclusivamente para personas con discapacidades", 
+      "Diseñar productos que pueden ser utilizados por personas con el más amplio rango de capacidades", 
+      "Incluir elementos de diferentes culturas en el diseño", 
+      "Un tipo de diseño que incluye muchos elementos gráficos"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 72,
     round: 8,
-    text: "¿Quién fundó la escuela Bauhaus?",
+    text: "¿Qué significan las siglas WCAG?",
     options: [
-      "Le Corbusier", 
-      "Walter Gropius", 
-      "Paul Rand", 
-      "Dieter Rams"
+      "Web Content Accessibility Guidelines", 
+      "World Creative Arts Guild", 
+      "Web Creators Association Group", 
+      "Wireframe Creation and Architecture Guide"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 73,
     round: 8,
-    text: "¿Qué movimiento artístico surgió en la década de 1960 y utilizaba imágenes de la cultura popular?",
+    text: "¿Qué es el contraste de color en términos de accesibilidad?",
     options: [
-      "Art Nouveau", 
-      "Futurismo", 
-      "Pop Art", 
-      "Constructivismo"
+      "La diferencia entre colores claros y oscuros para asegurar la legibilidad", 
+      "Un efecto visual para hacer el diseño más atractivo", 
+      "Una técnica para destacar elementos importantes", 
+      "La cantidad de colores utilizados en un diseño"
     ],
-    correctAnswer: 2
+    correctAnswer: 0
   },
   {
     id: 74,
     round: 8,
-    text: "¿Qué diseñador suizo es conocido por su sistema de rejilla y tipografía?",
+    text: "¿Qué es un 'screen reader'?",
     options: [
-      "Paul Rand", 
-      "Milton Glaser", 
-      "Josef Müller-Brockmann", 
-      "Saul Bass"
-    ],
-    correctAnswer: 2
-  },
-  {
-    id: 75,
-    round: 8,
-    text: "¿Qué estilo de diseño se caracteriza por líneas orgánicas y motivos florales?",
-    options: [
-      "Art Deco", 
-      "Art Nouveau", 
-      "Bauhaus", 
-      "Constructivismo"
+      "Una pantalla grande para leer mejor", 
+      "Una herramienta que lee el contenido en pantalla para personas con discapacidad visual", 
+      "Un software para extraer texto de imágenes", 
+      "Una aplicación para mejorar la resolución de la pantalla"
     ],
     correctAnswer: 1
   },
   {
+    id: 75,
+    round: 8,
+    text: "¿Qué representa el atributo 'alt' en una imagen para la accesibilidad?",
+    options: [
+      "Una versión alternativa de la imagen en otro color", 
+      "La alineación de la imagen en la página", 
+      "Un texto descriptivo del contenido de la imagen para quienes no pueden verla", 
+      "El autor de la imagen"
+    ],
+    correctAnswer: 2
+  },
+  {
     id: 76,
     round: 8,
-    text: "¿Qué movimiento de diseño surgió en Italia en la década de 1980?",
+    text: "¿Qué es el 'keyboard navigation' en diseño accesible?",
     options: [
-      "Bauhaus", 
-      "Memphis", 
-      "Futurismo", 
-      "De Stijl"
+      "Un teclado especial para personas con movilidad reducida", 
+      "La capacidad de navegar por un sitio web usando solo el teclado", 
+      "Un atajo de teclado para acceder al menú de navegación", 
+      "Un teclado digital que aparece en pantalla"
     ],
     correctAnswer: 1
   },
   {
     id: 77,
     round: 8,
-    text: "¿Qué principio del diseño suizo enfatiza la claridad, legibilidad y objetividad?",
+    text: "¿Qué nivel de conformidad WCAG es el más estricto?",
     options: [
-      "Expresionismo", 
-      "Diseño Internacional", 
-      "Postmodernismo", 
-      "Deconstruccionismo"
+      "Nivel A", 
+      "Nivel AA", 
+      "Nivel AAA", 
+      "Nivel AAAA"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 78,
     round: 8,
-    text: "¿Qué diseñador creó el famoso logo 'I ❤ NY'?",
+    text: "¿Por qué es importante proporcionar subtítulos en los videos?",
     options: [
-      "Paul Rand", 
-      "Milton Glaser", 
-      "Saul Bass", 
-      "Massimo Vignelli"
+      "Para hacer los videos más estéticos", 
+      "Para que los usuarios puedan ver el video sin sonido o si tienen discapacidad auditiva", 
+      "Para aumentar el SEO del video", 
+      "Para proteger el contenido con derechos de autor"
     ],
     correctAnswer: 1
   },
   {
     id: 79,
     round: 8,
-    text: "¿Qué movimiento de diseño predominó en los años 1920 y 1930 y se caracterizó por líneas rectas y formas geométricas?",
+    text: "¿Qué es el 'daltonismo' y cómo afecta al diseño?",
     options: [
-      "Art Nouveau", 
-      "Art Deco", 
-      "Bauhaus", 
-      "Constructivismo"
+      "Una teoría de diseño basada en las ideas de John Dalton", 
+      "Una condición que afecta la percepción del color, requiriendo considerar combinaciones de colores accesibles", 
+      "Un estilo minimalista de diseño", 
+      "Una técnica para simplificar interfaces complejas"
     ],
     correctAnswer: 1
   },
   {
     id: 80,
     round: 8,
-    text: "¿Quién diseñó el sistema de señalización del metro de Nueva York en 1970?",
+    text: "¿Qué es una 'trampa de foco' en términos de accesibilidad?",
     options: [
-      "Paul Rand", 
-      "Saul Bass", 
-      "Massimo Vignelli", 
-      "Milton Glaser"
+      "Un error donde el usuario no puede salir de un elemento usando el teclado", 
+      "Un elemento de diseño que atrae demasiada atención", 
+      "Una característica para mantener la concentración del usuario", 
+      "Una técnica para resaltar elementos importantes"
     ],
-    correctAnswer: 2
+    correctAnswer: 0
   },
   
-  // Round 9 questions - Specialized Design Fields
+  // Round 9: Heurísticas y Evaluación UX
   {
     id: 81,
     round: 9,
-    text: "¿Qué es la 'señalética'?",
+    text: "¿Qué son las 'heurísticas de Nielsen' en UX?",
     options: [
-      "El diseño de señales de tráfico", 
-      "Un sistema de comunicación visual que guía y orienta en un espacio", 
-      "Un tipo de señal luminosa", 
-      "Una técnica de ilustración"
+      "Algoritmos para analizar datos de usuarios", 
+      "Principios generales para evaluar la usabilidad de interfaces", 
+      "Medidas para calcular el ROI de un proyecto de UX", 
+      "Técnicas para realizar entrevistas con usuarios"
     ],
     correctAnswer: 1
   },
   {
     id: 82,
     round: 9,
-    text: "¿Qué es el 'diseño de interacción'?",
+    text: "¿Cuántas heurísticas de usabilidad definió Jakob Nielsen originalmente?",
     options: [
-      "El diseño de interiores interactivos", 
-      "La creación de elementos interactivos para redes sociales", 
-      "La práctica de diseñar productos interactivos para facilitar la interacción entre humanos", 
-      "Un sistema de animación web"
+      "5", 
+      "10", 
+      "12", 
+      "15"
     ],
-    correctAnswer: 2
+    correctAnswer: 1
   },
   {
     id: 83,
     round: 9,
-    text: "¿Qué es el 'diseño paramétrico'?",
+    text: "¿Qué es una 'evaluación heurística'?",
     options: [
-      "Un proceso de diseño basado en algoritmos y parámetros", 
-      "Un diseño que se adapta a diferentes tamaños", 
-      "Un diseño basado en medidas exactas", 
-      "Un diseño que utiliza solo formas geométricas"
+      "Un test con usuarios reales", 
+      "Una revisión de usabilidad realizada por expertos basada en principios establecidos", 
+      "Un análisis automático mediante software", 
+      "Una encuesta enviada a los usuarios"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 84,
     round: 9,
-    text: "¿Qué es el 'diseño generativo'?",
+    text: "Según Nielsen, ¿qué heurística se refiere a la correspondencia entre el sistema y el mundo real?",
     options: [
-      "Diseño que genera ingresos", 
-      "Diseño creado utilizando sistemas y algoritmos que pueden funcionar autónomamente", 
-      "Diseño para nuevas generaciones", 
-      "Diseño de interfaces generales"
+      "Visibilidad del estado del sistema", 
+      "Coincidencia entre el sistema y el mundo real", 
+      "Control y libertad del usuario", 
+      "Consistencia y estándares"
     ],
     correctAnswer: 1
   },
   {
     id: 85,
     round: 9,
-    text: "¿Qué es el 'motion graphics'?",
+    text: "¿Qué es la 'severidad' en una evaluación heurística?",
     options: [
-      "Gráficos en movimiento que combinan animación y diseño gráfico", 
-      "Gráficos para emocionar al usuario", 
-      "Ilustraciones para películas", 
-      "Efectos visuales en fotografía"
+      "La dificultad para implementar una solución", 
+      "La valoración del impacto de un problema de usabilidad", 
+      "La frecuencia con la que ocurre un error", 
+      "El costo de solucionar un problema"
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 86,
     round: 9,
-    text: "¿Qué es el 'diseño sostenible'?",
+    text: "¿Qué es un 'think-aloud protocol' en evaluación UX?",
     options: [
-      "Diseño que dura mucho tiempo sin deteriorarse", 
-      "Diseño de estructuras que se mantienen en pie", 
-      "Diseño que considera el impacto ambiental y social", 
-      "Diseño que genera ingresos constantes"
+      "Una técnica donde los usuarios verbalizan sus pensamientos mientras usan el producto", 
+      "Un documento que establece las reglas para el equipo de UX", 
+      "Una metodología para que los diseñadores expliquen sus decisiones", 
+      "Una herramienta para grabar las sesiones de prueba"
     ],
-    correctAnswer: 2
+    correctAnswer: 0
   },
   {
     id: 87,
     round: 9,
-    text: "¿Qué es el 'diseño de servicios'?",
+    text: "¿Qué es un 'cognitive walkthrough' en evaluación UX?",
     options: [
-      "Diseño de menús para restaurantes", 
-      "Planificación y organización de personas, infraestructura y materiales para mejorar la calidad del servicio", 
-      "Diseño de uniformes para personal de servicio", 
-      "Diseño de aplicaciones de servicios"
+      "Un paseo físico con los usuarios por el espacio de trabajo", 
+      "Una revisión paso a paso de cómo los usuarios realizarían tareas específicas", 
+      "Un análisis de los procesos cognitivos de los usuarios", 
+      "Una técnica para mapear el conocimiento de los usuarios"
     ],
     correctAnswer: 1
   },
   {
     id: 88,
     round: 9,
-    text: "¿Qué es el 'diseño de información'?",
+    text: "¿Qué es un 'eye-tracking' en evaluación UX?",
     options: [
-      "Diseño de bases de datos", 
-      "Diseño de noticias y artículos", 
-      "Diseño de interfaces informativas", 
-      "La práctica de presentar información compleja de manera clara y accesible"
+      "Una tecnología que rastrea el movimiento ocular para ver dónde miran los usuarios", 
+      "Un método para seguir la evolución de las tendencias visuales", 
+      "Una técnica para evaluar la fatiga visual", 
+      "Un software para detectar problemas visuales en los diseños"
     ],
-    correctAnswer: 3
+    correctAnswer: 0
   },
   {
     id: 89,
     round: 9,
-    text: "¿Qué es el 'diseño crítico'?",
+    text: "Según la heurística de Nielsen, ¿qué significa 'reconocer en lugar de recordar'?",
     options: [
-      "Diseño que critica otros diseños", 
-      "Diseño que cuestiona y desafía suposiciones y normas establecidas en lugar de resolver problemas", 
-      "Diseño para críticos de arte", 
-      "Diseño que requiere revisión crítica"
+      "Los usuarios deben poder reconocer a los desarrolladores del sistema", 
+      "El sistema debe mostrar elementos visibles para que el usuario no tenga que memorizar información", 
+      "Los usuarios deben reconocer sus errores", 
+      "El sistema debe recordar las preferencias del usuario"
     ],
     correctAnswer: 1
   },
   {
     id: 90,
     round: 9,
-    text: "¿Qué es el 'design thinking'?",
+    text: "¿Qué es una 'prueba de los 5 segundos' en evaluación UX?",
     options: [
-      "Un software de diseño", 
-      "Una metodología para resolver problemas complejos centrada en el usuario", 
-      "Un proceso de pensamiento creativo", 
-      "Una técnica de meditación para diseñadores"
+      "Verificar si un sitio carga en menos de 5 segundos", 
+      "Mostrar un diseño durante 5 segundos y preguntar qué recuerdan los usuarios", 
+      "Una prueba para verificar si una acción toma más de 5 segundos", 
+      "Un test para verificar la velocidad de respuesta del sistema"
     ],
     correctAnswer: 1
   },
   
-  // Round 10 questions - Future of Design & Ethics
+  // Round 10: Negocio y Estrategia de Producto
   {
     id: 91,
     round: 10,
-    text: "¿Qué es el 'diseño ético'?",
+    text: "¿Qué es un 'product roadmap'?",
     options: [
-      "Diseño que cumple con estándares legales", 
-      "Diseño que considera los impactos de las decisiones de diseño en las personas y la sociedad", 
-      "Diseño para organizaciones éticas", 
-      "Diseño que evita elementos controvertidos"
+      "Un mapa físico para encontrar productos en una tienda", 
+      "Un plan que comunica la dirección y progreso del producto a lo largo del tiempo", 
+      "Una guía para transportar productos físicos", 
+      "Un esquema de las rutas de distribución del producto"
     ],
     correctAnswer: 1
   },
   {
     id: 92,
     round: 10,
-    text: "¿Qué es el 'diseño inclusivo'?",
+    text: "¿Qué es un 'MVP' en desarrollo de producto?",
     options: [
-      "Diseño que incluye muchos elementos", 
-      "Diseño que busca incluir a todas las personas independientemente de sus capacidades", 
-      "Diseño para sociedades inclusivas", 
-      "Diseño que incluye todas las tendencias"
+      "Most Valuable Professional", 
+      "Multiple Variation Product", 
+      "Minimum Viable Product", 
+      "Maximum Value Proposition"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 93,
     round: 10,
-    text: "¿Qué significa 'dark pattern' en diseño UX?",
+    text: "¿Qué es el 'ROI' en el contexto de UX?",
     options: [
-      "Un patrón de color oscuro", 
-      "Una interfaz con modo oscuro", 
-      "Trucos en el diseño de interfaces que hacen que los usuarios hagan cosas que no pretendían hacer", 
-      "Un estilo gótico de diseño"
-    ],
-    correctAnswer: 2
-  },
-  {
-    id: 94,
-    round: 10,
-    text: "¿Qué es la 'ley GDPR' y cómo afecta al diseño?",
-    options: [
-      "Una ley sobre diseño gráfico que no afecta a diseñadores", 
-      "Una regulación de la UE sobre protección de datos que exige diseñar con privacidad desde el inicio", 
-      "Una ley de derechos de autor para diseñadores", 
-      "Una normativa sobre colores accesibles"
+      "Range Of Interaction", 
+      "Return On Investment", 
+      "Review Of Interface", 
+      "Rate Of Implementation"
     ],
     correctAnswer: 1
   },
   {
-    id: 95,
+    id: 94,
     round: 10,
-    text: "¿Qué es el 'bias' (sesgo) en el diseño de inteligencia artificial?",
+    text: "¿Qué es un 'KPI' en estrategia de producto?",
     options: [
-      "Una característica deseada en los algoritmos", 
-      "Una preferencia estética del diseñador", 
-      "Prejuicios injustos incorporados en los sistemas de IA por los diseñadores o los datos", 
-      "Una técnica para mejorar la precisión"
+      "Knowledge Process Integration", 
+      "Key Product Innovation", 
+      "Key Performance Indicator", 
+      "Kinetic Product Interface"
     ],
     correctAnswer: 2
   },
   {
+    id: 95,
+    round: 10,
+    text: "¿Qué es el 'Product-Market Fit'?",
+    options: [
+      "El proceso de adaptar físicamente un producto al mercado", 
+      "El grado en que un producto satisface una fuerte demanda del mercado", 
+      "Un método para posicionar productos en estanterías", 
+      "La forma en que un producto encaja en una tienda física"
+    ],
+    correctAnswer: 1
+  },
+  {
     id: 96,
     round: 10,
-    text: "¿Qué es el 'diseño especulativo'?",
+    text: "¿Qué es una 'propuesta de valor' en estrategia de producto?",
     options: [
-      "Diseño basado en especulaciones financieras", 
-      "Diseño que propone futuros alternativos para fomentar el debate y la reflexión", 
-      "Diseño sin una finalidad clara", 
-      "Diseño experimental sin bases teóricas"
+      "Un documento legal que establece el valor de un producto", 
+      "La declaración que resume por qué un cliente debería comprar o usar tu producto", 
+      "Un precio sugerido para un producto", 
+      "Una promesa de descuento para clientes fieles"
     ],
     correctAnswer: 1
   },
   {
     id: 97,
     round: 10,
-    text: "¿Cómo afecta la ley de accesibilidad digital (WCAG) al diseño web?",
+    text: "¿Qué metodología utiliza 'sprints' para el desarrollo de productos?",
     options: [
-      "No afecta al diseño, solo a la programación", 
-      "Exige que los diseños web sean accesibles para personas con discapacidades", 
-      "Solo afecta a sitios gubernamentales", 
-      "Restringe el uso de ciertos colores"
+      "Waterfall", 
+      "Six Sigma", 
+      "Agile/Scrum", 
+      "Lean Manufacturing"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 98,
     round: 10,
-    text: "¿Qué es el 'tecnostress' en relación al diseño UX?",
+    text: "¿Qué es un 'product owner' en metodologías ágiles?",
     options: [
-      "Un nuevo estilo de diseño tecnológico", 
-      "El estrés causado por interfaces mal diseñadas o tecnología intrusiva", 
-      "Una herramienta para medir la usabilidad", 
-      "Un tipo de tecnología estresante"
+      "El dueño legal de los derechos del producto", 
+      "La persona responsable de maximizar el valor del producto y representar los intereses del cliente", 
+      "El inventor original del producto", 
+      "El gerente que supervisa la fabricación del producto"
     ],
     correctAnswer: 1
   },
   {
     id: 99,
     round: 10,
-    text: "¿Qué es el 'digital wellbeing' y cómo influye en el diseño?",
+    text: "¿Qué es un 'feature creep' en desarrollo de producto?",
     options: [
-      "Un nuevo estándar de salud digital", 
-      "Un conjunto de prácticas y características diseñadas para ayudar a los usuarios a mantener un equilibrio saludable con la tecnología", 
-      "Un certificado de bienestar para diseñadores", 
-      "Un tipo de diseño que promueve el bienestar"
+      "Una característica que se implementa lentamente", 
+      "Un equipo dedicado a desarrollar nuevas características", 
+      "La tendencia a agregar continuamente características al producto más allá del alcance original", 
+      "Un error que aparece gradualmente con el tiempo"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 100,
     round: 10,
-    text: "¿Qué es la 'soberanía de datos' en el diseño de productos digitales?",
+    text: "¿Qué representa el acrónimo 'AARRR' en métricas de producto?",
     options: [
-      "El control total del diseñador sobre el producto", 
-      "El derecho de los individuos a controlar sus propios datos personales", 
-      "Una técnica para proteger los archivos de diseño", 
-      "Una restricción en el uso de datos en el diseño"
+      "Acquisition, Activation, Retention, Referral, Revenue (el embudo pirata de crecimiento)", 
+      "Analysis, Assessment, Research, Review, Results", 
+      "Awareness, Adaptation, Reaction, Response, Return", 
+      "Attract, Adapt, Reward, Retain, Repeat"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   }
 ];
 

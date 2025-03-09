@@ -56,6 +56,7 @@ const QuizSummary = () => {
                 <thead>
                   <tr className="bg-black text-white">
                     <th className="brutalist-border p-2 text-center">Round</th>
+                    <th className="brutalist-border p-2 text-center">Temática</th>
                     <th className="brutalist-border p-2 text-center">Puntuación</th>
                     <th className="brutalist-border p-2 text-center">Correctas</th>
                     <th className="brutalist-border p-2 text-center">Tiempo</th>
@@ -64,9 +65,11 @@ const QuizSummary = () => {
                 <tbody>
                   {Array.from({ length: 10 }, (_, i) => i + 1).map(round => {
                     const roundScore = currentTeam.roundScores.find(rs => rs.round === round);
+                    const roundTheme = getRoundTheme(round);
                     return (
                       <tr key={round} className={round % 2 === 0 ? "bg-white" : "bg-brutalist-100"}>
                         <td className="brutalist-border p-2 text-center font-bold">{round}</td>
+                        <td className="brutalist-border p-2 text-left">{roundTheme}</td>
                         <td className="brutalist-border p-2 text-center">
                           {roundScore ? roundScore.score : "-"}
                         </td>
@@ -95,6 +98,24 @@ const QuizSummary = () => {
       </div>
     </div>
   );
+};
+
+// Helper function to get round theme
+const getRoundTheme = (round: number): string => {
+  const themes = [
+    "Fundamentos de UX",
+    "UI y Diseño Visual",
+    "Design Systems",
+    "Research y Data-Driven Design",
+    "UX Writing & Microcopy",
+    "Mobile UX y Responsive Design",
+    "Prototipado y Herramientas",
+    "Diseño Inclusivo y Accesibilidad",
+    "Heurísticas y Evaluación UX",
+    "Negocio y Estrategia de Producto"
+  ];
+  
+  return themes[round - 1] || "";
 };
 
 export default QuizSummary;

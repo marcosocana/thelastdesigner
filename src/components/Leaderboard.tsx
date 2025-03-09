@@ -10,7 +10,7 @@ const Leaderboard = () => {
   if (leaderboard.length === 0) {
     return (
       <div className="my-8 brutalist-wireframe text-center p-6">
-        <h2 className="text-xl font-bold mb-2">Tabla de Posiciones</h2>
+        <h2 className="text-xl font-bold mb-2">Progreso</h2>
         <p>No hay equipos participando todavía.</p>
       </div>
     );
@@ -19,7 +19,7 @@ const Leaderboard = () => {
   return (
     <div className="my-8 animate-slide-up">
       <div className="brutalist-box">
-        <h2 className="text-2xl font-bold mb-6 uppercase">Tabla de Posiciones</h2>
+        <h2 className="text-2xl font-bold mb-6 uppercase">Progreso</h2>
         
         <div className="overflow-x-auto">
           <table className="w-full brutalist-border">
