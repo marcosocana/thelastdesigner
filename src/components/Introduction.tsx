@@ -6,7 +6,7 @@ const Introduction = () => {
         <h1 className="brutalist-title mb-8 text-center text-3xl">BIENVENIDO. TE estábamos esperando.</h1>
         
         <div className="mx-auto max-w-2xl">
-          <div className="brutalist-wireframe mb-8 p-6">
+          <div className="brutalist-wireframe">
             <p className="text-lg mb-6">Año 2077.</p>
             
             <p className="mb-4">La IA lo ha arrasado todo. Las interfaces son frías, carentes de alma. La creatividad ha sido sustituida por patrones genéricos y decisiones automatizadas. La humanidad ha olvidado lo que es el buen diseño… excepto una persona.</p>
