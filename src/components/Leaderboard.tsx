@@ -113,7 +113,7 @@ const Leaderboard = () => {
               </table>
             </div>
             
-            {/* Terminar juego button */}
+            {/* Terminar juego button - always visible during gameplay */}
             <Button 
               onClick={handleFinishGame}
               className="brutalist-btn w-full mt-4 flex items-center justify-center gap-2"
@@ -123,6 +123,18 @@ const Leaderboard = () => {
               Terminar juego
             </Button>
           </div>}
+        
+        {/* Show Terminar juego button even when round scores aren't visible */}
+        {gameStarted && !currentTeam?.completedRounds.includes(10) && 
+          <Button 
+            onClick={handleFinishGame}
+            className="brutalist-btn w-full mt-4 flex items-center justify-center gap-2"
+            variant="outline"
+          >
+            <CheckSquare className="h-5 w-5" />
+            Terminar juego
+          </Button>
+        }
       </div>
     </div>;
 };
