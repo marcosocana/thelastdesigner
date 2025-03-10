@@ -2,14 +2,28 @@
 import React from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, Clock } from "lucide-react";
+import { Trophy, Clock, CheckSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Leaderboard = () => {
   const {
     leaderboard,
     gameStarted,
-    teamsProgress
+    teamsProgress,
+    currentTeam,
+    setCurrentTeam
   } = useQuiz();
+
+  const handleFinishGame = () => {
+    if (currentTeam) {
+      // Set current round to 11 to trigger game completion
+      const updatedTeam = {
+        ...currentTeam,
+        currentRound: 11
+      };
+      setCurrentTeam(updatedTeam);
+    }
+  };
 
   if (leaderboard.length === 0) {
     return <div className="my-8 brutalist-wireframe text-center p-6">
@@ -98,6 +112,16 @@ const Leaderboard = () => {
                 </tbody>
               </table>
             </div>
+            
+            {/* Terminar juego button */}
+            <Button 
+              onClick={handleFinishGame}
+              className="brutalist-btn w-full mt-4 flex items-center justify-center gap-2"
+              variant="outline"
+            >
+              <CheckSquare className="h-5 w-5" />
+              Terminar juego
+            </Button>
           </div>}
       </div>
     </div>;

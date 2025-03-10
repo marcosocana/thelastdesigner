@@ -2,11 +2,11 @@
 import React from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
-import { Linkedin } from "lucide-react";
-import { getQuizResult } from "@/services/quizResultsService";
+import { Linkedin, ArrowLeft, Trophy } from "lucide-react";
+import { getQuizResult, getQuizResults } from "@/services/quizResultsService";
 
 const QuizSummary = () => {
-  const { currentTeam } = useQuiz();
+  const { currentTeam, setCurrentTeam } = useQuiz();
   
   if (!currentTeam) {
     return (
@@ -32,6 +32,10 @@ const QuizSummary = () => {
   // Determine if humanity is saved (more than 5000 points)
   const isHumanitySaved = currentTeam.totalScore >= 5000;
   
+  // Get all quiz results for the ranking
+  const allResults = getQuizResults();
+  const sortedResults = [...allResults].sort((a, b) => b.totalScore - a.totalScore);
+  
   // Share on LinkedIn
   const handleShareOnLinkedIn = () => {
     const result = isDesignSaved ? "he salvado el diseño" : "no he logrado salvar el diseño";
@@ -42,8 +46,13 @@ const QuizSummary = () => {
     window.open(linkedInUrl, '_blank');
   };
   
+  // Restart game
+  const handleRestart = () => {
+    setCurrentTeam(null);
+  };
+  
   return (
-    <div className="my-8 animate-fade-in">
+    <div className="my-8 animate-fade-in w-full">
       <div className="brutalist-box">
         <h2 className="text-3xl font-bold mb-6 uppercase">Resumen Final</h2>
         
@@ -132,13 +141,78 @@ const QuizSummary = () => {
             </div>
           </div>
           
-          <Button 
-            onClick={handleShareOnLinkedIn}
-            className="brutalist-btn w-full flex items-center justify-center gap-2"
-          >
-            <Linkedin className="h-5 w-5" />
-            Compartir en LinkedIn
-          </Button>
+          {/* Ranking of all participants */}
+          {sortedResults.length > 1 && (
+            <div className="brutalist-border p-4 bg-white mb-6">
+              <h4 className="font-bold mb-4 flex items-center">
+                <Trophy className="h-5 w-5 mr-2 text-yellow-500" />
+                Ranking de Participantes
+              </h4>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full brutalist-border">
+                  <thead>
+                    <tr className="bg-black text-white">
+                      <th className="brutalist-border p-2 text-center">Posición</th>
+                      <th className="brutalist-border p-2 text-left">Nombre</th>
+                      <th className="brutalist-border p-2 text-center">Puntuación</th>
+                      <th className="brutalist-border p-2 text-center">Correctas</th>
+                      <th className="brutalist-border p-2 text-center">Tiempo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortedResults.map((result, index) => {
+                      const correctAnswers = result.roundScores.reduce(
+                        (total, round) => total + round.correctAnswers, 
+                        0
+                      );
+                      
+                      return (
+                        <tr 
+                          key={result.id} 
+                          className={`${index % 2 === 0 ? "bg-white" : "bg-brutalist-100"} ${result.id === currentTeam.id ? "font-bold" : ""}`}
+                        >
+                          <td className="brutalist-border p-2 text-center">
+                            {index === 0 ? (
+                              <Trophy className="h-5 w-5 text-yellow-500 mx-auto" />
+                            ) : (
+                              index + 1
+                            )}
+                          </td>
+                          <td className="brutalist-border p-2">
+                            {result.userName}
+                            {result.id === currentTeam.id && " (Tú)"}
+                          </td>
+                          <td className="brutalist-border p-2 text-center">{result.totalScore}</td>
+                          <td className="brutalist-border p-2 text-center">{correctAnswers}/100</td>
+                          <td className="brutalist-border p-2 text-center">{result.totalTime.toFixed(2)}s</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Button 
+              onClick={handleShareOnLinkedIn}
+              className="brutalist-btn flex items-center justify-center gap-2"
+            >
+              <Linkedin className="h-5 w-5" />
+              Compartir en LinkedIn
+            </Button>
+            
+            <Button 
+              onClick={handleRestart}
+              variant="outline"
+              className="brutalist-btn flex items-center justify-center gap-2"
+            >
+              <ArrowLeft className="h-5 w-5" />
+              Volver a empezar
+            </Button>
+          </div>
         </div>
       </div>
     </div>

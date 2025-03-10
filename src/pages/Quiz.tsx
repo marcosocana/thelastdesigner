@@ -10,6 +10,9 @@ import { useQuiz } from "@/context/QuizContext";
 const Quiz = () => {
   const { currentTeam, gameStarted } = useQuiz();
   
+  // Check if we're showing the final summary (current round > 10)
+  const showingSummary = currentTeam && currentTeam.currentRound > 10;
+  
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
@@ -22,8 +25,8 @@ const Quiz = () => {
           )}
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
+        <div className={`grid ${showingSummary ? '' : 'md:grid-cols-2'} gap-8`}>
+          <div className={showingSummary ? 'w-full' : ''}>
             {!currentTeam ? (
               <TeamCreation />
             ) : !gameStarted ? (
@@ -33,9 +36,11 @@ const Quiz = () => {
             )}
           </div>
           
-          <div>
-            <Leaderboard />
-          </div>
+          {!showingSummary && (
+            <div>
+              <Leaderboard />
+            </div>
+          )}
         </div>
       </div>
     </Layout>
