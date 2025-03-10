@@ -1,19 +1,23 @@
+
 import React from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Clock } from "lucide-react";
+
 const Leaderboard = () => {
   const {
     leaderboard,
     gameStarted,
     teamsProgress
   } = useQuiz();
+
   if (leaderboard.length === 0) {
     return <div className="my-8 brutalist-wireframe text-center p-6">
         <h2 className="text-xl font-bold mb-2">Progreso</h2>
         <p>Aquí aparecerá tu avance en el juego.</p>
       </div>;
   }
+
   return <div className="my-8 animate-slide-up">
       <div className="brutalist-box">
         <h2 className="text-2xl font-bold mb-6 uppercase">Progreso</h2>
@@ -98,4 +102,5 @@ const Leaderboard = () => {
       </div>
     </div>;
 };
+
 export default Leaderboard;

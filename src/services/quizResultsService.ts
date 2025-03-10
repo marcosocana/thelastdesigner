@@ -15,12 +15,10 @@ export interface QuizResult {
   }[];
 }
 
-const STORAGE_KEY = 'quiz_results';
+// Changed to use in-memory storage instead of localStorage
+let quizResults: QuizResult[] = [];
 
 export const saveQuizResult = (team: Team): void => {
-  const existingResultsStr = localStorage.getItem(STORAGE_KEY);
-  const existingResults: QuizResult[] = existingResultsStr ? JSON.parse(existingResultsStr) : [];
-  
   // Calculate total time
   const totalTime = team.roundScores.reduce((total, round) => total + round.totalTime, 0);
   
@@ -34,24 +32,20 @@ export const saveQuizResult = (team: Team): void => {
   };
   
   // Check if result already exists
-  const existingIndex = existingResults.findIndex(r => r.id === team.id);
+  const existingIndex = quizResults.findIndex(r => r.id === team.id);
   if (existingIndex >= 0) {
     // Update existing result
-    existingResults[existingIndex] = newResult;
+    quizResults[existingIndex] = newResult;
   } else {
     // Add new result
-    existingResults.push(newResult);
+    quizResults.push(newResult);
   }
-  
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(existingResults));
 };
 
 export const getQuizResults = (): QuizResult[] => {
-  const resultsStr = localStorage.getItem(STORAGE_KEY);
-  return resultsStr ? JSON.parse(resultsStr) : [];
+  return quizResults;
 };
 
 export const getQuizResult = (id: string): QuizResult | undefined => {
-  const results = getQuizResults();
-  return results.find(r => r.id === id);
+  return quizResults.find(r => r.id === id);
 };
