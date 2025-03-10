@@ -9,7 +9,7 @@ const Introduction = () => {
           <div className="brutalist-wireframe mb-8 p-6">
             <p className="text-lg mb-6">Año 2077.</p>
             
-            <p className="mb-4">La IA lo ha arrasado todo. Las interfaces son frías, carentes de alma. La creatividad ha sido sustituida por patrones genéricos y decisiones automatizadas. La humanidad ha olvidado lo que es el buen diseño… excepto una persona.</p>
+            <p className="mb-4">La IA lo ha arrasado todo. Las interfaces son frías, carentes de alma. Son réplicas unas de otras. La creatividad ha sido sustituida por patrones genéricos y decisiones automatizadas. La humanidad ha olvidado lo que es el buen diseño… excepto una persona.</p>
             
             <p className="mb-4 font-bold">Tú.</p>
             
