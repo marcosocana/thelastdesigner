@@ -15,7 +15,7 @@ const Introduction = () => {
             
             <p className="mb-4">Eres el último diseñador. La única esperanza para restaurar la esencia del diseño en un mundo dominado por lo artificial. Pero demostrar tu valía no será fácil: 10 rondas, 100 preguntas, un solo destino.</p>
             
-            <p className="mb-4">Si fallas, el diseño morirá para siempre. Si triunfas, aún hay esperanza.</p>
+            <p className="mb-4">Si fallas, el diseño morirá para siempre. Si triunfas, tendremos esperanza.</p>
             
             <p className="font-bold mt-6 text-base">¿Estás listo para el desafío?</p>
           </div>
@@ -30,7 +30,7 @@ const Introduction = () => {
               
               <li>Sistema de puntuación basado en aciertos y velocidad al responder</li>
               <li>Puntuación máxima de 1000 puntos por round</li>
-              <li>Debes conseguir más de 5000 puntos para salvar el diseño</li>
+              <li>Debes acertar más de 70 preguntas para salvar el diseño</li>
             </ul>
           </div>
           
