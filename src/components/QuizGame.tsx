@@ -117,7 +117,7 @@ const QuizGame = () => {
       const elapsedTime = 10; // Max time
       setAnswerTime(elapsedTime);
       
-      submitAnswer(currentQuestion.id, -1, elapsedTime);
+      const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
       setIsCorrect(false);
       setShowFeedback(true);
       
@@ -127,7 +127,7 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
-      }, 2000);
+      }, 3000); // Increased from 2000 to 3000ms
     }
   };
   
@@ -152,7 +152,7 @@ const QuizGame = () => {
       } else {
         setRoundCompleted(true);
       }
-    }, 2000);
+    }, 3000); // Increased from 2000 to 3000ms
   };
   
   const handleStartRound = () => {
@@ -358,11 +358,11 @@ const QuizGame = () => {
                   : "bg-white hover:bg-gray-100"
               } ${
                 showFeedback && index === currentQuestion.correctAnswer
-                  ? "bg-green-200 border-green-500"
+                  ? "bg-green-200 border-green-500 text-black"
                   : ""
               } ${
                 showFeedback && selectedOption === index && index !== currentQuestion.correctAnswer
-                  ? "bg-red-200 border-red-500"
+                  ? "bg-red-200 border-red-500 text-black"
                   : ""
               }`}
               disabled={showFeedback}
