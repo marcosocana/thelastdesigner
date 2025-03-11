@@ -26,11 +26,11 @@ const QuizSummary = () => {
     0
   );
   
-  // Determine if design is saved (more than 70 correct answers or 7000 points)
-  const isDesignSaved = totalCorrectAnswers >= 70 || currentTeam.totalScore >= 7000;
+  // Determine if design is saved (more than 70 correct answers)
+  const isDesignSaved = totalCorrectAnswers >= 70;
   
-  // Determine if humanity is saved (more than 7000 points)
-  const isHumanitySaved = currentTeam.totalScore >= 7000 || totalCorrectAnswers >= 70;
+  // Determine if humanity is saved (more than 5000 points)
+  const isHumanitySaved = currentTeam.totalScore >= 5000;
   
   // Get all quiz results for the ranking
   const allResults = getQuizResults();
@@ -76,12 +76,12 @@ const QuizSummary = () => {
             <p className="text-4xl font-bold text-center">{totalCorrectAnswers}/100</p>
             
             <div className={`mt-4 p-4 text-center ${isDesignSaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border`}>
-              <h3 className="text-xl font-bold mb-2 text-black">
+              <h3 className="text-xl font-bold mb-2">
                 {isDesignSaved 
                   ? "¡HAS SALVADO EL DISEÑO!" 
                   : "EL DISEÑO HA MUERTO PARA SIEMPRE..."}
               </h3>
-              <p className="text-black">
+              <p>
                 {isDesignSaved 
                   ? "La humanidad aún tiene esperanza gracias a ti." 
                   : "La IA ha ganado. Las interfaces serán frías para siempre."}
@@ -89,15 +89,15 @@ const QuizSummary = () => {
             </div>
             
             <div className={`mt-4 p-4 text-center ${isHumanitySaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border`}>
-              <h3 className="text-xl font-bold mb-2 text-black">
+              <h3 className="text-xl font-bold mb-2">
                 {isHumanitySaved 
                   ? "¡HAS SALVADO A LA HUMANIDAD!" 
                   : "LA HUMANIDAD SE HA EXTINGUIDO..."}
               </h3>
-              <p className="text-black">
+              <p>
                 {isHumanitySaved 
                   ? "Tu maestría en diseño ha restaurado la esperanza. El mundo renacerá con interfaces humanas." 
-                  : "No has conseguido suficientes puntos o respuestas correctas. La humanidad no sobrevivirá sin buen diseño."}
+                  : "No has conseguido suficientes puntos. La humanidad no sobrevivirá sin buen diseño."}
               </p>
             </div>
           </div>
@@ -206,7 +206,8 @@ const QuizSummary = () => {
             
             <Button 
               onClick={handleRestart}
-              className="flex items-center justify-center gap-2 bg-gray-100 text-black brutalist-border hover:bg-gray-200"
+              variant="outline"
+              className="brutalist-btn flex items-center justify-center gap-2"
             >
               <ArrowLeft className="h-5 w-5" />
               Volver a empezar

@@ -1,32 +1,29 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from "@/hooks/use-mobile";
-
 interface LayoutProps {
   children: React.ReactNode;
 }
-
 const Layout = ({
   children
 }: LayoutProps) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  
   return <div className="min-h-screen flex flex-col bg-white brutalist-grid">
       <header className="p-4 brutalist-border border-t-0 border-l-0 border-r-0">
         <div className="container mx-auto flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold tracking-tight hover:animate-glitch">
-            {isMobile ? "🔥🌎 TLD" : "🔥🌎 THE LAST DESIGNER"}
-          </Link>
+          <Link to="/" className="text-2xl font-bold tracking-tight hover:animate-glitch">🔥🌎 THE LAST DESIGNER</Link>
           
           <nav>
             <ul className="flex gap-6">
+              <li>
+                <Link to="/" className="uppercase font-bold hover:underline">
+                  Inicio
+                </Link>
+              </li>
               <li>
                 <Link to="/manifiesto" className="uppercase font-bold hover:underline">
                   Manifiesto
                 </Link>
               </li>
-              {/* "Inicio" link has been removed */}
+              {/* El enlace a "Reto" ha sido eliminado, ahora solo se accede mediante el botón de la home */}
             </ul>
           </nav>
         </div>
@@ -43,5 +40,4 @@ const Layout = ({
       </footer>
     </div>;
 };
-
 export default Layout;

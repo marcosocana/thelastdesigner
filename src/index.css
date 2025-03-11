@@ -87,17 +87,4 @@
       linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   }
-  
-  /* Ensure answer feedback text is always black */
-  .answer-feedback {
-    @apply text-black !important;
-  }
-  
-  .correct-answer {
-    @apply bg-green-500 text-black !important;
-  }
-  
-  .incorrect-answer {
-    @apply bg-red-500 text-black !important;
-  }
 }
