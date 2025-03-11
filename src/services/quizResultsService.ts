@@ -15,7 +15,7 @@ export interface QuizResult {
   }[];
 }
 
-// Changed to use in-memory storage instead of localStorage
+// In-memory storage only - no persistence
 let quizResults: QuizResult[] = [];
 
 export const saveQuizResult = (team: Team): void => {
