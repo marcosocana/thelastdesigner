@@ -87,4 +87,30 @@
       linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   }
+
+  /* New responsive table styles */
+  .responsive-table {
+    @apply w-full overflow-x-auto;
+  }
+  
+  .responsive-table table {
+    @apply min-w-full;
+  }
+  
+  .responsive-text {
+    @apply break-words;
+  }
+  
+  /* Fix for options in quiz to wrap properly */
+  .quiz-option {
+    @apply flex flex-wrap items-start;
+  }
+  
+  .quiz-option-label {
+    @apply inline-block w-8 text-center flex-shrink-0;
+  }
+  
+  .quiz-option-text {
+    @apply flex-1 break-words;
+  }
 }

@@ -22,11 +22,11 @@ const Quiz = () => {
     <Layout>
       <div className="w-full max-w-4xl mx-auto px-2">
         <div className={`grid ${isMobile || showingSummary ? '' : 'md:grid-cols-2'} gap-4 md:gap-8`}>
-          <div className={showingSummary ? 'w-full' : ''}>
+          <div className={`${showingSummary ? 'w-full' : ''} max-w-full overflow-x-hidden`}>
             {!currentTeam ? <TeamCreation /> : !gameStarted ? <GameState /> : <QuizGame />}
           </div>
           
-          {!showingSummary && <div className="w-full">
+          {!showingSummary && <div className="w-full max-w-full overflow-x-hidden">
             <Leaderboard />
           </div>}
         </div>

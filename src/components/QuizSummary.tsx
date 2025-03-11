@@ -108,14 +108,14 @@ const QuizSummary = () => {
           <div className="brutalist-border p-4 bg-white mb-6">
             <h4 className="font-bold mb-4">Desglose por Rounds</h4>
             
-            <div className="overflow-x-auto">
+            <div className="responsive-table overflow-x-auto">
               <table className="w-full brutalist-border">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="brutalist-border p-2 text-center">Round</th>
+                    <th className="brutalist-border p-2 text-center">R</th>
                     <th className="brutalist-border p-2 text-center">Temática</th>
-                    <th className="brutalist-border p-2 text-center">Puntuación</th>
-                    <th className="brutalist-border p-2 text-center">Correctas</th>
+                    <th className="brutalist-border p-2 text-center">Pts</th>
+                    <th className="brutalist-border p-2 text-center">Corr</th>
                     <th className="brutalist-border p-2 text-center">Tiempo</th>
                   </tr>
                 </thead>
@@ -126,7 +126,7 @@ const QuizSummary = () => {
                     return (
                       <tr key={round} className={round % 2 === 0 ? "bg-white" : "bg-brutalist-100"}>
                         <td className="brutalist-border p-2 text-center font-bold">{round}</td>
-                        <td className="brutalist-border p-2 text-left">{roundTheme}</td>
+                        <td className="brutalist-border p-2 text-left responsive-text">{roundTheme}</td>
                         <td className="brutalist-border p-2 text-center">
                           {roundScore ? roundScore.score : "-"}
                         </td>
@@ -149,17 +149,17 @@ const QuizSummary = () => {
             <div className="brutalist-border p-4 bg-white mb-6">
               <h4 className="font-bold mb-4 flex items-center">
                 <Trophy className="h-5 w-5 mr-2 text-yellow-500" />
-                Ranking de Participantes
+                Ranking
               </h4>
               
-              <div className="overflow-x-auto">
+              <div className="responsive-table overflow-x-auto">
                 <table className="w-full brutalist-border">
                   <thead>
                     <tr className="bg-black text-white">
-                      <th className="brutalist-border p-2 text-center">Posición</th>
+                      <th className="brutalist-border p-2 text-center">Pos</th>
                       <th className="brutalist-border p-2 text-left">Nombre</th>
-                      <th className="brutalist-border p-2 text-center">Puntuación</th>
-                      <th className="brutalist-border p-2 text-center">Correctas</th>
+                      <th className="brutalist-border p-2 text-center">Pts</th>
+                      <th className="brutalist-border p-2 text-center">Corr</th>
                       <th className="brutalist-border p-2 text-center">Tiempo</th>
                     </tr>
                   </thead>
@@ -182,7 +182,7 @@ const QuizSummary = () => {
                               index + 1
                             )}
                           </td>
-                          <td className="brutalist-border p-2">
+                          <td className="brutalist-border p-2 responsive-text">
                             {result.userName}
                             {result.id === currentTeam.id && " (Tú)"}
                           </td>
@@ -204,7 +204,7 @@ const QuizSummary = () => {
               className="brutalist-btn flex items-center justify-center gap-2"
             >
               <Linkedin className="h-5 w-5" />
-              Compartir en LinkedIn
+              Compartir
             </Button>
             
             <Button 
@@ -213,7 +213,7 @@ const QuizSummary = () => {
               className="flex items-center justify-center gap-2 bg-gray-100 text-black brutalist-border hover:bg-gray-200"
             >
               <ArrowLeft className="h-5 w-5" />
-              Volver a empezar
+              Reiniciar
             </Button>
           </div>
         </div>

@@ -36,7 +36,7 @@ const Leaderboard = () => {
       <div className="brutalist-box">
         <h2 className="text-2xl font-bold mb-6 uppercase">Progreso</h2>
         
-        <div className="overflow-x-auto">
+        <div className="responsive-table overflow-x-auto">
           <table className="w-full brutalist-border">
             <thead>
               <tr className="bg-black text-white">
@@ -53,7 +53,7 @@ const Leaderboard = () => {
                         {team.logo && <div className="w-8 h-8 brutalist-border overflow-hidden">
                             <img src={team.logo} alt={`Logo de ${team.name}`} className="w-full h-full object-cover" />
                           </div>}
-                        <span className="font-bold">{team.name}</span>
+                        <span className="font-bold responsive-text">{team.name}</span>
                         {index === 0 && <Trophy className="h-5 w-5 text-yellow-500 ml-2" />}
                       </div>
                     </td>
@@ -85,11 +85,10 @@ const Leaderboard = () => {
         {/* Round Scores Summary with "Equipo" column removed */}
         {gameStarted && <div className="mt-6">
             <h3 className="font-bold mb-2">Puntuaciones por Round:</h3>
-            <div className="overflow-x-auto">
+            <div className="responsive-table overflow-x-auto">
               <table className="w-full brutalist-border text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    {/* Equipo column removed */}
                     {Array.from({
                   length: 10
                 }, (_, i) => i + 1).map(round => <th key={round} className="brutalist-border p-2 text-center">
@@ -99,7 +98,6 @@ const Leaderboard = () => {
                 </thead>
                 <tbody>
                   {leaderboard.map(team => <tr key={team.id}>
-                      {/* Equipo column removed */}
                       {Array.from({
                   length: 10
                 }, (_, i) => i + 1).map(round => {
@@ -121,7 +119,7 @@ const Leaderboard = () => {
             className="w-full mt-4 flex items-center justify-center gap-2 bg-gray-100 text-black brutalist-border hover:bg-gray-200"
           >
             <CheckSquare className="h-5 w-5" />
-            Terminar juego
+            Finalizar
           </Button>
         }
       </div>
