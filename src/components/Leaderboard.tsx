@@ -32,7 +32,7 @@ const Leaderboard = () => {
       </div>;
   }
 
-  return <div className="my-8 animate-slide-up">
+  return <div className="my-8 animate-slide-up w-full">
       <div className="brutalist-box">
         <h2 className="text-2xl font-bold mb-6 uppercase">Progreso</h2>
         
@@ -82,14 +82,14 @@ const Leaderboard = () => {
           </table>
         </div>
         
-        {/* Round Scores Summary */}
+        {/* Round Scores Summary with "Equipo" column removed */}
         {gameStarted && <div className="mt-6">
             <h3 className="font-bold mb-2">Puntuaciones por Round:</h3>
             <div className="overflow-x-auto">
               <table className="w-full brutalist-border text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="brutalist-border p-2 text-left">Equipo</th>
+                    {/* Equipo column removed */}
                     {Array.from({
                   length: 10
                 }, (_, i) => i + 1).map(round => <th key={round} className="brutalist-border p-2 text-center">
@@ -99,7 +99,7 @@ const Leaderboard = () => {
                 </thead>
                 <tbody>
                   {leaderboard.map(team => <tr key={team.id}>
-                      <td className="brutalist-border p-2 font-bold">{team.name}</td>
+                      {/* Equipo column removed */}
                       {Array.from({
                   length: 10
                 }, (_, i) => i + 1).map(round => {
@@ -114,7 +114,7 @@ const Leaderboard = () => {
             </div>
           </div>}
         
-        {/* Single Terminar juego button with consistent styling */}
+        {/* Single "Terminar juego" button with consistent styling */}
         {gameStarted && 
           <Button 
             onClick={handleFinishGame}

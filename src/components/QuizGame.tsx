@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
 import { Clock, Timer, Pencil } from "lucide-react";
 import QuizSummary from "./QuizSummary";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const roundThemes = [
   { name: "Fundamentos de UX", textColor: "text-blue-700" },
@@ -46,6 +48,7 @@ const QuizGame = () => {
     showCountdown
   } = useQuiz();
   
+  const isMobile = useIsMobile();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -127,7 +130,7 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
-      }, 3000); // Increased from 2000 to 3000ms
+      }, 3000); // Kept at 3000ms as requested earlier
     }
   };
   
@@ -152,7 +155,7 @@ const QuizGame = () => {
       } else {
         setRoundCompleted(true);
       }
-    }, 3000); // Increased from 2000 to 3000ms
+    }, 3000); // Kept at 3000ms as requested earlier
   };
   
   const handleStartRound = () => {
@@ -161,7 +164,7 @@ const QuizGame = () => {
   
   if (!currentTeam || !gameStarted) {
     return (
-      <div className="my-8 brutalist-box text-center">
+      <div className="my-8 brutalist-box text-center w-full">
         <h2 className="text-2xl font-bold mb-4">Esperando el inicio del juego</h2>
         <p>El juego comenzará cuando un equipo presione "Iniciar".</p>
       </div>
@@ -174,7 +177,7 @@ const QuizGame = () => {
   
   if (showCountdown) {
     return (
-      <div className="my-8 brutalist-box text-center py-16">
+      <div className="my-8 brutalist-box text-center py-16 w-full">
         <h2 className="text-4xl font-bold mb-8">Preparados...</h2>
         <div className="text-9xl font-bold animate-pulse">
           {countdown === 0 ? "¡GO!" : countdown}
@@ -187,7 +190,7 @@ const QuizGame = () => {
     const encouragement = getRandomEncouragement();
     
     return (
-      <div className="my-8 brutalist-box animate-fade-in">
+      <div className="my-8 brutalist-box animate-fade-in w-full">
         <h2 className="text-2xl font-bold mb-4 uppercase">
           Round {currentTeam.currentRound}: <span className={roundTheme.textColor}>{roundTheme.name}</span>
         </h2>
@@ -226,7 +229,7 @@ const QuizGame = () => {
         {currentTeam.currentRound <= 10 ? (
           <>
             {currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1) && (
-              <div className="p-4 brutalist-border bg-yellow-100 mb-4">
+              <div className="p-4 brutalist-border bg-yellow-100 mb-4 text-black">
                 <p className="font-bold">¡Atención!</p>
                 <p>Debes completar el Round {currentTeam.currentRound - 1} antes de avanzar.</p>
               </div>
@@ -265,7 +268,7 @@ const QuizGame = () => {
     const encouragement = getRandomEncouragement();
     
     return (
-      <div className="my-8 brutalist-box animate-fade-in">
+      <div className="my-8 brutalist-box animate-fade-in w-full">
         <h2 className="text-2xl font-bold mb-4 uppercase">
           Round {currentTeam.currentRound - 1} Completado: <span className={roundThemes[currentTeam.currentRound - 2]?.textColor}>{roundThemes[currentTeam.currentRound - 2]?.name}</span>
         </h2>
@@ -304,7 +307,7 @@ const QuizGame = () => {
   
   if (!currentQuestion) {
     return (
-      <div className="my-8 brutalist-box text-center">
+      <div className="my-8 brutalist-box text-center w-full">
         <h2 className="text-2xl font-bold mb-4">Error al cargar la pregunta</h2>
         <p>No se pudo cargar la pregunta actual.</p>
       </div>
@@ -312,7 +315,7 @@ const QuizGame = () => {
   }
   
   return (
-    <div className="my-8">
+    <div className="my-8 w-full">
       <div className="brutalist-box animate-fade-in">
         <div className="mb-6">
           <h2 className="text-xl font-bold uppercase">
@@ -376,7 +379,7 @@ const QuizGame = () => {
         </div>
         
         {showFeedback ? (
-          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4`}>
+          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4 text-black`}>
             <p className="font-bold">
               {isCorrect ? "¡Correcto!" : "Incorrecto"}
             </p>
