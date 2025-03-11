@@ -1,5 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Introduction = () => {
   return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
@@ -24,29 +26,21 @@ const Introduction = () => {
           
           <div className="brutalist-wireframe mb-6">
             <ul className="list-disc pl-5 space-y-1">
-              <li>10 rounds con 10 preguntas cada uno. 100 puntos por pregunta. </li>
+              <li>10 rounds con 10 preguntas cada uno. 100 puntos por pregunta. </li>
               <li>Cada round tiene una temática diferente</li>
               <li>Cada round debe completarse para desbloquear el siguiente</li>
               
               <li>Sistema de puntuación basado en aciertos y velocidad al responder</li>
               <li>Puntuación máxima de 1000 puntos por round</li>
-              <li>Debes acertar más de 70 preguntas para salvar el diseño</li>
+              <li>Debes acertar más de 70 preguntas o conseguir 7000 puntos para salvar el diseño</li>
             </ul>
           </div>
-          
-          
-          
-          
-          
-          
           
           <div className="brutalist-wireframe mb-6">
             <ul className="list-disc pl-5 space-y-1">
               <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
               <li>Las respuestas más rápidas obtienen más puntos</li>
               <li>Los equipos deben iniciar los rounds para competir</li>
-              
-              
             </ul>
           </div>
           
@@ -55,4 +49,5 @@ const Introduction = () => {
       </div>
     </div>;
 };
+
 export default Introduction;

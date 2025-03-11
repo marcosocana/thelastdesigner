@@ -15,12 +15,12 @@ const Quiz = () => {
   
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         <div className="brutalist-box mb-8">
           <h1 className="brutalist-title">THE LAST DESIGNER</h1>
           {currentTeam && (
             <p className="text-center text-sm mt-2">
-              Tu misión: Salvar al diseño y la humanidad. Si superas 5000 puntos, habrá esperanza.
+              Tu misión: Salvar al diseño y la humanidad. Si superas 70 preguntas o 7000 puntos, habrá esperanza.
             </p>
           )}
         </div>
@@ -37,7 +37,7 @@ const Quiz = () => {
           </div>
           
           {!showingSummary && (
-            <div>
+            <div className="w-full">
               <Leaderboard />
             </div>
           )}
