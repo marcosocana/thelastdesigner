@@ -25,13 +25,12 @@ const Layout = ({ children }: LayoutProps) => {
                   Manifiesto
                 </Link>
               </li>
-              {/* El enlace a "Reto" ha sido eliminado, ahora solo se accede mediante el botón de la home */}
             </ul>
           </nav>
         </div>
       </header>
       
-      <main className="flex-1 container mx-auto p-6">
+      <main className="flex-1 container mx-auto p-4 md:p-6 overflow-x-hidden">
         {children}
       </main>
       

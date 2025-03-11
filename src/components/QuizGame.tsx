@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
@@ -49,7 +48,6 @@ const QuizGame = () => {
   } = useQuiz();
   
   const isMobile = useIsMobile();
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [roundCompleted, setRoundCompleted] = useState(false);
@@ -90,7 +88,6 @@ const QuizGame = () => {
   useEffect(() => {
     if (roundStarted && currentQuestion) {
       setTimeLeft(10);
-      setSelectedOption(null);
       setShowFeedback(false);
       setStartTime(Date.now());
     }
@@ -130,32 +127,30 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
-      }, 3000); // Kept at 3000ms as requested earlier
+      }, 3000);
     }
   };
   
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
-    setSelectedOption(optionIndex);
-  };
-  
-  const handleSubmit = () => {
-    if (selectedOption === null || !currentQuestion) return;
     
-    const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
-    setAnswerTime(elapsedTime);
-    
-    const result = submitAnswer(currentQuestion.id, selectedOption, elapsedTime);
-    setIsCorrect(result);
-    setShowFeedback(true);
-    
-    setTimeout(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        setNextQuestion();
-      } else {
-        setRoundCompleted(true);
-      }
-    }, 3000); // Kept at 3000ms as requested earlier
+    // Auto-submit the answer when option is selected
+    if (currentQuestion) {
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+      setAnswerTime(elapsedTime);
+      
+      const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
+      setIsCorrect(result);
+      setShowFeedback(true);
+      
+      setTimeout(() => {
+        if (currentQuestionIndex < questions.length - 1) {
+          setNextQuestion();
+        } else {
+          setRoundCompleted(true);
+        }
+      }, 3000);
+    }
   };
   
   const handleStartRound = () => {
@@ -164,8 +159,8 @@ const QuizGame = () => {
   
   if (!currentTeam || !gameStarted) {
     return (
-      <div className="my-8 brutalist-box text-center w-full">
-        <h2 className="text-2xl font-bold mb-4">Esperando el inicio del juego</h2>
+      <div className="my-4 md:my-8 brutalist-box text-center w-full">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Esperando el inicio del juego</h2>
         <p>El juego comenzará cuando un equipo presione "Iniciar".</p>
       </div>
     );
@@ -177,9 +172,9 @@ const QuizGame = () => {
   
   if (showCountdown) {
     return (
-      <div className="my-8 brutalist-box text-center py-16 w-full">
-        <h2 className="text-4xl font-bold mb-8">Preparados...</h2>
-        <div className="text-9xl font-bold animate-pulse">
+      <div className="my-4 md:my-8 brutalist-box text-center py-8 md:py-16 w-full">
+        <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">Preparados...</h2>
+        <div className="text-6xl md:text-9xl font-bold animate-pulse">
           {countdown === 0 ? "¡GO!" : countdown}
         </div>
       </div>
@@ -190,14 +185,14 @@ const QuizGame = () => {
     const encouragement = getRandomEncouragement();
     
     return (
-      <div className="my-8 brutalist-box animate-fade-in w-full">
-        <h2 className="text-2xl font-bold mb-4 uppercase">
+      <div className="my-4 md:my-8 brutalist-box animate-fade-in w-full">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 uppercase">
           Round {currentTeam.currentRound}: <span className={roundTheme.textColor}>{roundTheme.name}</span>
         </h2>
         
         {roundCompleted ? (
-          <div className="my-6 p-4 brutalist-border">
-            <h3 className="text-xl mb-2">Resultados del Round {currentTeam.currentRound - 1}:</h3>
+          <div className="my-4 md:my-6 p-4 brutalist-border">
+            <h3 className="text-lg md:text-xl mb-2">Resultados del Round {currentTeam.currentRound - 1}:</h3>
             
             {currentTeam.roundScores
               .filter(rs => rs.round === currentTeam.currentRound - 1)
@@ -212,7 +207,7 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              <Pencil className="h-24 w-24 text-gray-400" />
+              <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
@@ -268,8 +263,8 @@ const QuizGame = () => {
     const encouragement = getRandomEncouragement();
     
     return (
-      <div className="my-8 brutalist-box animate-fade-in w-full">
-        <h2 className="text-2xl font-bold mb-4 uppercase">
+      <div className="my-4 md:my-8 brutalist-box animate-fade-in w-full">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 uppercase">
           Round {currentTeam.currentRound - 1} Completado: <span className={roundThemes[currentTeam.currentRound - 2]?.textColor}>{roundThemes[currentTeam.currentRound - 2]?.name}</span>
         </h2>
         
@@ -287,7 +282,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          <Pencil className="h-24 w-24 text-gray-400" />
+          <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
@@ -307,21 +302,21 @@ const QuizGame = () => {
   
   if (!currentQuestion) {
     return (
-      <div className="my-8 brutalist-box text-center w-full">
-        <h2 className="text-2xl font-bold mb-4">Error al cargar la pregunta</h2>
+      <div className="my-4 md:my-8 brutalist-box text-center w-full">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Error al cargar la pregunta</h2>
         <p>No se pudo cargar la pregunta actual.</p>
       </div>
     );
   }
   
   return (
-    <div className="my-8 w-full">
+    <div className="my-4 md:my-8 w-full">
       <div className="brutalist-box animate-fade-in">
         <div className="mb-6">
-          <h2 className="text-xl font-bold uppercase">
+          <h2 className="text-lg md:text-xl font-bold uppercase">
             Round {currentTeam.currentRound}: <span className={roundTheme.textColor}>{roundTheme.name}</span>
           </h2>
-          <span className="text-lg font-mono block mt-2">
+          <span className="text-base md:text-lg font-mono block mt-2">
             Pregunta {currentQuestionIndex + 1} / {questions.length}
           </span>
         </div>
@@ -347,60 +342,56 @@ const QuizGame = () => {
         </div>
         
         <div className="brutalist-wireframe mb-6">
-          <h3 className="text-2xl font-bold mb-4">{currentQuestion.text}</h3>
+          <h3 className="text-xl md:text-2xl font-bold mb-4">{currentQuestion.text}</h3>
         </div>
         
-        <div className="space-y-3 mb-6">
+        <div className="space-y-3 mb-4">
           {currentQuestion.options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleOptionSelect(index)}
-              className={`w-full p-4 brutalist-border text-left transition-all ${
-                selectedOption === index
-                  ? "bg-black text-white"
+              className={`w-full p-3 md:p-4 brutalist-border text-left transition-all ${
+                showFeedback && index === currentQuestion.correctAnswer
+                  ? "bg-green-200 border-green-500"
+                  : showFeedback && index !== currentQuestion.correctAnswer
+                  ? "bg-white"
                   : "bg-white hover:bg-gray-100"
               } ${
                 showFeedback && index === currentQuestion.correctAnswer
-                  ? "bg-green-200 border-green-500 text-black"
+                  ? "text-black"
                   : ""
               } ${
-                showFeedback && selectedOption === index && index !== currentQuestion.correctAnswer
-                  ? "bg-red-200 border-red-500 text-black"
+                showFeedback && index === currentQuestion.correctAnswer
+                  ? "text-black"
                   : ""
               }`}
               disabled={showFeedback}
             >
-              <span className="inline-block w-8 text-center brutalist-border mr-2">
+              <span className="inline-block w-8 text-center brutalist-border mr-2 text-black">
                 {String.fromCharCode(65 + index)}
               </span>
-              {option}
+              <span className={showFeedback ? "text-black" : ""}>
+                {option}
+              </span>
             </button>
           ))}
         </div>
         
-        {showFeedback ? (
-          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4 text-black`}>
-            <p className="font-bold">
+        {showFeedback && (
+          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4`}>
+            <p className="font-bold text-black">
               {isCorrect ? "¡Correcto!" : "Incorrecto"}
             </p>
-            <p>
+            <p className="text-black">
               {isCorrect 
                 ? "¡Bien hecho! Has seleccionado la respuesta correcta."
                 : `La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}`
               }
             </p>
-            <p className="mt-2 text-sm flex items-center">
+            <p className="mt-2 text-sm flex items-center text-black">
               <Timer className="h-4 w-4 mr-1" /> Tiempo de respuesta: {answerTime.toFixed(2)} segundos
             </p>
           </div>
-        ) : (
-          <button
-            onClick={handleSubmit}
-            className="brutalist-btn w-full"
-            disabled={selectedOption === null}
-          >
-            Confirmar Respuesta
-          </button>
         )}
       </div>
     </div>

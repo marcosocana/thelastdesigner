@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "@/components/Layout";
 import TeamCreation from "@/components/TeamCreation";
@@ -6,6 +7,7 @@ import Leaderboard from "@/components/Leaderboard";
 import GameState from "@/components/GameState";
 import { useQuiz } from "@/context/QuizContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const Quiz = () => {
   const {
     currentTeam,
@@ -15,20 +17,22 @@ const Quiz = () => {
 
   // Check if we're showing the final summary (current round > 10)
   const showingSummary = currentTeam && currentTeam.currentRound > 10;
-  return <Layout>
-      <div className="w-full max-w-4xl mx-auto">
-        
-        
-        <div className={`grid ${isMobile || showingSummary ? '' : 'md:grid-cols-2'} gap-8`}>
+  
+  return (
+    <Layout>
+      <div className="w-full max-w-4xl mx-auto px-2">
+        <div className={`grid ${isMobile || showingSummary ? '' : 'md:grid-cols-2'} gap-4 md:gap-8`}>
           <div className={showingSummary ? 'w-full' : ''}>
             {!currentTeam ? <TeamCreation /> : !gameStarted ? <GameState /> : <QuizGame />}
           </div>
           
           {!showingSummary && <div className="w-full">
-              <Leaderboard />
-            </div>}
+            <Leaderboard />
+          </div>}
         </div>
       </div>
-    </Layout>;
+    </Layout>
+  );
 };
+
 export default Quiz;

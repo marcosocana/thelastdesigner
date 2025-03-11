@@ -74,7 +74,7 @@
   }
   
   .brutalist-title {
-    @apply text-4xl md:text-6xl font-bold uppercase tracking-tight;
+    @apply text-3xl md:text-4xl lg:text-6xl font-bold uppercase tracking-tight;
   }
 
   .brutalist-wireframe {
