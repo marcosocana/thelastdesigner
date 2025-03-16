@@ -31,6 +31,9 @@ const Introduction = () => {
               <li>Sistema de puntuación basado en aciertos y velocidad al responder</li>
               <li>Puntuación máxima de 1000 puntos por round</li>
               <li>Debes acertar más de 70 preguntas para salvar el diseño</li>
+              <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
+              <li>Las respuestas más rápidas obtienen más puntos</li>
+              <li>Los equipos deben iniciar los rounds para competir</li>
             </ul>
           </div>
           
