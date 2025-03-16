@@ -20,7 +20,7 @@ const Introduction = () => {
             <p className="font-bold mt-6 text-base">¿Estás listo para el desafío?</p>
           </div>
           
-          <h2 className="text-2xl font-bold mb-4 uppercase">ESTRUCTURA Y REGLAS</h2>
+          <h2 className="text-2xl font-bold mb-4 uppercase">REGLAS</h2>
           
           <div className="brutalist-wireframe mb-6">
             <ul className="list-disc pl-5 space-y-1">
@@ -34,22 +34,6 @@ const Introduction = () => {
               <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
               <li>Las respuestas más rápidas obtienen más puntos</li>
               <li>Los equipos deben iniciar los rounds para competir</li>
-            </ul>
-          </div>
-          
-          
-          
-          
-          
-          
-          
-          <div className="brutalist-wireframe mb-6">
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Cada pregunta tiene 4 opciones con una única respuesta correcta</li>
-              <li>Las respuestas más rápidas obtienen más puntos</li>
-              <li>Los equipos deben iniciar los rounds para competir</li>
-              
-              
             </ul>
           </div>
           
