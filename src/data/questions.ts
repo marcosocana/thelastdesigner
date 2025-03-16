@@ -18,7 +18,7 @@ export const questions: Question[] = [
   {
     id: 2,
     round: 1,
-    text: "¿Cuál de estos NO es uno de los 5 elementos de la UX según Jesse James Garrett?",
+    text: "¿Cuál de estos NO es uno de los 5 elementos de UX según Jesse James Garrett?",
     options: [
       "Estrategia", 
       "Alcance", 
@@ -45,11 +45,11 @@ export const questions: Question[] = [
     text: "¿Qué es un wireframe?",
     options: [
       "Un archivo de imagen de alta resolución", 
+      "Una animación en 3D con mucho detalle", 
       "Un esquema visual de bajo nivel de una interfaz", 
-      "Una animación en 3D", 
-      "Un componente de JavaScript"
+      "Un componente de JavaScript de alta fidelidad"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ export const questions: Question[] = [
     text: "¿Qué es la 'arquitectura de información'?",
     options: [
       "El diseño de edificios para oficinas", 
-      "La organización y estructura del contenido de un producto digital", 
+      "La organización y estructura del contenido de una interfaz", 
       "La infraestructura tecnológica de un sitio web", 
       "El diseño del departamento de TI de una empresa"
     ],
@@ -69,23 +69,23 @@ export const questions: Question[] = [
     text: "¿Cuál es la diferencia principal entre UX y UI?",
     options: [
       "UX se enfoca en lo visual, UI en la funcionalidad", 
-      "UX es la experiencia completa, UI es la interfaz visual", 
+      "UX es para desarrolladores, UI para diseñadores", 
       "UX es para web, UI para móviles", 
-      "UX es para desarrolladores, UI para diseñadores"
+      "UX es la experiencia completa, UI es la interfaz visual"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 7,
     round: 1,
     text: "¿Qué es un 'User Journey'?",
     options: [
-      "Un viaje organizado para usuarios de un producto", 
-      "El recorrido y experiencia de un usuario al usar un producto", 
-      "Una historia de ficción sobre un usuario ideal", 
-      "La documentación técnica para usuarios nuevos"
+      "Un viaje organizado para usuarios de un producto digital", 
+      "La documentación técnica para usuarios nuevos de un producto", 
+      "Una historia de ficción sobre el PO de un producto", 
+      "El recorrido y experiencia de un usuario al usar un producto"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 8,
@@ -104,7 +104,7 @@ export const questions: Question[] = [
     round: 1,
     text: "¿Qué es una 'Persona' en UX?",
     options: [
-      "Un personaje de ficción en una historia de usuario", 
+      "El desarrollador principal de un producto", 
       "El perfil arquetípico de un usuario ideal", 
       "Un avatar digital que representa al diseñador", 
       "Un cliente importante de una empresa"
