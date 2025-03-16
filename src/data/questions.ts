@@ -496,12 +496,12 @@ export const questions: Question[] = [
     round: 5,
     text: "¿Qué es el UX Writing?",
     options: [
-      "La documentación técnica de un producto", 
-      "La redacción de textos para la interfaz de usuario que guían al usuario", 
-      "La escritura de artículos sobre experiencia de usuario", 
-      "La creación de manuales para diseñadores UX"
+      "La documentación técnica de un producto digital", 
+      "La creación de manuales para diseñadores UX", 
+      "La escritura de artículos sobre experiencia de usuario para blogs", 
+      "La redacción de textos para la interfaz de usuario que guían al usuario"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 42,
@@ -545,11 +545,11 @@ export const questions: Question[] = [
     text: "¿Qué es la 'voz de marca' en UX Writing?",
     options: [
       "Un asistente de voz como Siri o Alexa", 
-      "El tono y personalidad consistentes en todos los textos", 
+      "El volumen recomendado para usar la aplicación", 
       "La voz del narrador en videos promocionales", 
-      "El volumen recomendado para usar la aplicación"
+      "El tono y personalidad consistentes en todos los textos"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 46,
@@ -583,7 +583,7 @@ export const questions: Question[] = [
       "La organización del texto según su importancia", 
       "El tamaño de diferentes fuentes en la página", 
       "El número de palabras permitidas en cada sección", 
-      "El organigrama del equipo de contenido"
+      "Todas son correctas"
     ],
     correctAnswer: 0
   },
@@ -593,7 +593,7 @@ export const questions: Question[] = [
     text: "¿Por qué es importante la consistencia en UX Writing?",
     options: [
       "Para ahorrar tiempo al equipo de diseño", 
-      "Para evitar confusiones y crear familiaridad para el usuario", 
+      "Para evitar confusiones para el usuario", 
       "Para facilitar las traducciones a otros idiomas", 
       "Para cumplir con requisitos legales"
     ],
@@ -605,11 +605,11 @@ export const questions: Question[] = [
     text: "¿Qué es un 'tone map' en UX Writing?",
     options: [
       "Un mapa del sitio web con colores que representan diferentes secciones", 
-      "Una guía de cómo ajustar el tono del contenido según el contexto", 
+      "Un gráfico que muestra las opiniones de los usuarios", 
       "Una herramienta para analizar la entonación en asistentes de voz", 
-      "Un gráfico que muestra las opiniones de los usuarios"
+      "Una guía de cómo ajustar el tono del contenido según el contexto"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   
   // Round 6: Mobile UX y Responsive Design
@@ -630,22 +630,22 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué es un 'breakpoint' en diseño responsive?",
     options: [
-      "Un punto donde el código deja de funcionar", 
-      "Un punto de interrupción donde el diseño cambia para adaptarse a diferentes tamaños de pantalla", 
-      "Un error en el código CSS", 
-      "Un punto donde se coloca un descanso visual en la interfaz"
+      "Un punto donde el código deja de funcionar y necesita un desarrollador para arreglarlo", 
+      "Un punto donde se coloca un descanso visual en la interfaz para no saturar al usuario", 
+      "Un error en el código CSS donde la interfaz se pone en modo oscuro", 
+      "Un punto de interrupción donde el diseño cambia para adaptarse a diferentes tamaños de pantalla"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 53,
     round: 6,
     text: "¿Qué significa 'mobile-first design'?",
     options: [
-      "Diseñar exclusivamente para dispositivos móviles", 
+      "Diseñar exclusivamente para dispositivos móviles modernos, sin tener en cuenta los antiguos", 
       "Un enfoque donde se diseña primero para dispositivos móviles y luego se amplía para pantallas más grandes", 
-      "Una técnica donde los móviles son los primeros en probar un diseño", 
-      "Un diseño que solo funciona en teléfonos de última generación"
+      "Una técnica donde los desarrolladores de movilidad son los primeros en probar un diseño", 
+      "Un diseño que solo funciona en teléfonos Android"
     ],
     correctAnswer: 1
   },
@@ -654,24 +654,24 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué es un 'hamburger menu' en el diseño de interfaces móviles?",
     options: [
-      "Un menú para pedir comida", 
-      "Un icono de tres líneas horizontales que despliega el menú principal", 
-      "Un tipo específico de menú para restaurantes", 
-      "Un diseño de navegación inspirado en capas"
+      "Un menú para pedir comida en apps como Uber Eats", 
+      "Un diseño de navegación inspirado en capas (como una cebolla)", 
+      "Un tipo específico de menú para restaurantes de lujo", 
+      "Un icono de tres líneas horizontales que despliega el menú principal"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 55,
     round: 6,
     text: "¿Cuál es la principal diferencia entre una aplicación nativa y una web app?",
     options: [
-      "Las aplicaciones nativas están escritas en idiomas locales", 
-      "Las aplicaciones nativas están instaladas directamente en el dispositivo y están optimizadas para él", 
+      "Las aplicaciones nativas están escritas en idiomas locales. Nunca están traducidas", 
       "Las web apps son siempre de pago mientras que las nativas son gratuitas", 
+      "Las aplicaciones nativas están instaladas directamente en el dispositivo y están optimizadas para él", 
       "Las web apps funcionan sin conexión a internet mientras que las nativas requieren conexión"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 56,
@@ -679,9 +679,9 @@ export const questions: Question[] = [
     text: "¿Qué es la 'zona de alcance del pulgar' en diseño móvil?",
     options: [
       "El área de la pantalla que un usuario puede alcanzar cómodamente con el pulgar mientras sostiene el dispositivo", 
-      "El espacio necesario para colocar huellas dactilares en la pantalla", 
+      "El espacio necesario para colocar huellas dactilares en la pantalla durante una firma biométrica", 
       "El tamaño mínimo recomendado para botones táctiles", 
-      "Una técnica para medir el tamaño de la pantalla"
+      "Una técnica para medir el tamaño de la pantalla en pulgadas"
     ],
     correctAnswer: 0
   },
@@ -702,9 +702,9 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué es el 'scroll infinito' en diseño móvil?",
     options: [
-      "Un error que hace que la página no tenga fin", 
+      "Un error que hace que la página directamente se vaya al final", 
       "Una técnica donde el contenido se carga continuamente al llegar al final de la página", 
-      "Un tipo de animación que simula un pergamino infinito", 
+      "Un tipo de animación que simula un pergamino infinito mágico", 
       "Una característica que permite desplazarse horizontalmente sin límites"
     ],
     correctAnswer: 1
@@ -715,11 +715,11 @@ export const questions: Question[] = [
     text: "¿Qué significa PWA?",
     options: [
       "Personal Web Application", 
-      "Progressive Web App", 
+      "Professional Web Architecture", 
       "Powerful Web Access", 
-      "Professional Web Architecture"
+      "Progressive Web App"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 60,
@@ -738,14 +738,14 @@ export const questions: Question[] = [
   {
     id: 61,
     round: 7,
-    text: "¿Qué es un prototipo en UX/UI?",
+    text: "¿Qué es un prototipo interactivo en UX/UI?",
     options: [
-      "Una versión final del producto", 
+      "Una versión final del producto ya lista en Producción", 
+      "Un boceto a mano alzada siempre en papel", 
       "Una simulación o modelo de cómo funcionará el producto final", 
-      "Un boceto a mano alzada", 
-      "Un documento que describe las funcionalidades"
+      "Un documento que describe las funcionalidades con todo detalle"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 62,
@@ -754,7 +754,7 @@ export const questions: Question[] = [
     options: [
       "Los de baja fidelidad son digitales y los de alta fidelidad son impresos", 
       "Los de baja fidelidad son básicos y conceptuales, mientras que los de alta fidelidad se parecen más al producto final", 
-      "Los de baja fidelidad son más caros de producir", 
+      "Los de baja fidelidad son más caros de producir que los de alta fidelidad", 
       "No hay diferencia, son términos intercambiables"
     ],
     correctAnswer: 1
@@ -767,7 +767,7 @@ export const questions: Question[] = [
       "Figma", 
       "Sketch", 
       "Adobe XD", 
-      "GIMP"
+      "Excel"
     ],
     correctAnswer: 3
   },
@@ -788,10 +788,10 @@ export const questions: Question[] = [
     round: 7,
     text: "¿Qué son los 'componentes' en herramientas como Figma o Sketch?",
     options: [
-      "Elementos decorativos", 
+      "Elementos decorativos que aportan belleza al diseño", 
       "Partes del hardware necesarias para ejecutar el software", 
       "Elementos reutilizables que mantienen consistencia en todo el diseño", 
-      "Códigos específicos para programar la interfaz"
+      "Códigos específicos para programar la interfaz en VueJs"
     ],
     correctAnswer: 2
   },
@@ -801,9 +801,9 @@ export const questions: Question[] = [
     text: "¿Qué es un 'handoff' en el proceso de diseño?",
     options: [
       "El momento en que se entrega el diseño finalizado a los desarrolladores", 
-      "Una técnica para pasar el control de un proyecto a otro equipo", 
-      "El acto de descartar un diseño obsoleto", 
-      "Una reunión donde se rechazan ideas de diseño"
+      "Una técnica para pasar el control de un proyecto a otro equipo de negocio", 
+      "El acto de descartar un diseño obsoleto para modernizarlo", 
+      "Una reunión donde se rechazan ideas de diseño desde el equipo funcional"
     ],
     correctAnswer: 0
   },
@@ -812,7 +812,7 @@ export const questions: Question[] = [
     round: 7,
     text: "¿Qué herramienta permite la colaboración en tiempo real entre diseñadores?",
     options: [
-      "Adobe Photoshop", 
+      "Dreamweaver", 
       "Figma", 
       "CorelDRAW", 
       "Paint"
@@ -822,19 +822,19 @@ export const questions: Question[] = [
   {
     id: 68,
     round: 7,
-    text: "¿Qué es un 'design token'?",
+    text: "¿Cuál es la principal desventaja de un prototipo de alta fidelidad en una fase temprana del proceso de diseño?",
     options: [
-      "Una moneda digital para diseñadores", 
-      "Un certificado de autenticidad del diseño", 
-      "Un valor estilístico almacenado (como colores, espaciado) que se puede reutilizar", 
-      "Un premio otorgado a diseños excepcionales"
+      "No permite realizar pruebas con usuarios reales", 
+      "Es más difícil de iterar que un wireframe en papel", 
+      "Los stakeholders se centran demasiado en los detalles visuales", 
+      "No es posible conectar flujos de interacción"
     ],
     correctAnswer: 2
   },
   {
     id: 69,
     round: 7,
-    text: "¿Qué permite hacer InVision como herramienta?",
+    text: "¿Qué permitía hacer InVision como herramienta?",
     options: [
       "Programar el backend de una aplicación", 
       "Crear y compartir prototipos interactivos", 
@@ -862,10 +862,10 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el diseño inclusivo?",
     options: [
-      "Diseñar exclusivamente para personas con discapacidades", 
+      "Diseñar exclusivamente para personas con discapacidades físicas visibles", 
       "Diseñar productos que pueden ser utilizados por personas con el más amplio rango de capacidades", 
-      "Incluir elementos de diferentes culturas en el diseño", 
-      "Un tipo de diseño que incluye muchos elementos gráficos"
+      "Incluir elementos de diferentes culturas en el diseño para que ninguna raza se sienta excluída", 
+      "Un tipo de diseño que incluye muchos elementos gráficos y de todos los colores"
     ],
     correctAnswer: 1
   },
@@ -886,22 +886,22 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el contraste de color en términos de accesibilidad?",
     options: [
-      "La diferencia entre colores claros y oscuros para asegurar la legibilidad", 
+      "La cantidad de colores utilizados en un diseño", 
       "Un efecto visual para hacer el diseño más atractivo", 
       "Una técnica para destacar elementos importantes", 
-      "La cantidad de colores utilizados en un diseño"
+      "La diferencia entre colores claros y oscuros para asegurar la legibilidad"
     ],
-    correctAnswer: 0
+    correctAnswer: 3
   },
   {
     id: 74,
     round: 8,
     text: "¿Qué es un 'screen reader'?",
     options: [
-      "Una pantalla grande para leer mejor", 
+      "Una pantalla grande para leer mejor y más rápido", 
       "Una herramienta que lee el contenido en pantalla para personas con discapacidad visual", 
-      "Un software para extraer texto de imágenes", 
-      "Una aplicación para mejorar la resolución de la pantalla"
+      "Un software para extraer texto de imágenes como el OCR", 
+      "Una aplicación para mejorar la resolución de la pantalla y tener mejores colores"
     ],
     correctAnswer: 1
   },
@@ -923,11 +923,11 @@ export const questions: Question[] = [
     text: "¿Qué es el 'keyboard navigation' en diseño accesible?",
     options: [
       "Un teclado especial para personas con movilidad reducida", 
-      "La capacidad de navegar por un sitio web usando solo el teclado", 
+      "Un teclado digital que aparece en pantalla", 
       "Un atajo de teclado para acceder al menú de navegación", 
-      "Un teclado digital que aparece en pantalla"
+      "La capacidad de navegar por un sitio web usando solo el teclado"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 77,
@@ -958,10 +958,10 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el 'daltonismo' y cómo afecta al diseño?",
     options: [
-      "Una teoría de diseño basada en las ideas de John Dalton", 
+      "Una teoría de diseño basada en las ideas de John Dalton, que dice que los colores no valen para nada", 
       "Una condición que afecta la percepción del color, requiriendo considerar combinaciones de colores accesibles", 
-      "Un estilo minimalista de diseño", 
-      "Una técnica para simplificar interfaces complejas"
+      "Un estilo minimalista de diseño donde los colores siempre deben ser complementarios", 
+      "Una técnica para simplificar interfaces complejas a través del uso de colores vibrantes"
     ],
     correctAnswer: 1
   },
@@ -985,11 +985,11 @@ export const questions: Question[] = [
     text: "¿Qué son las 'heurísticas de Nielsen' en UX?",
     options: [
       "Algoritmos para analizar datos de usuarios", 
-      "Principios generales para evaluar la usabilidad de interfaces", 
+      "Técnicas para realizar entrevistas con usuarios", 
       "Medidas para calcular el ROI de un proyecto de UX", 
-      "Técnicas para realizar entrevistas con usuarios"
+      "Principios generales para evaluar la usabilidad de interfaces"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 82,
@@ -1008,36 +1008,24 @@ export const questions: Question[] = [
     round: 9,
     text: "¿Qué es una 'evaluación heurística'?",
     options: [
-      "Un test con usuarios reales", 
+      "Un test con usuarios reales que hayan usado el producto solo 1 vez", 
+      "Un análisis automático mediante software con inteligencia artificial", 
       "Una revisión de usabilidad realizada por expertos basada en principios establecidos", 
-      "Un análisis automático mediante software", 
-      "Una encuesta enviada a los usuarios"
+      "Una encuesta enviada a los usuarios más activos de un producto"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 84,
     round: 9,
-    text: "Según Nielsen, ¿qué heurística se refiere a la correspondencia entre el sistema y el mundo real?",
+    text: "Si un sistema permite deshacer o rehacer acciones fácilmente, ¿qué heurística de Nielsen está aplicando?",
     options: [
-      "Visibilidad del estado del sistema", 
-      "Coincidencia entre el sistema y el mundo real", 
-      "Control y libertad del usuario", 
-      "Consistencia y estándares"
+      "Prevención de errores", 
+      "Flexibilidad y eficiencia de uso", 
+      "Diseño estético y minimalista", 
+      "Control y libertad del usuario"
     ],
-    correctAnswer: 1
-  },
-  {
-    id: 85,
-    round: 9,
-    text: "¿Qué es la 'severidad' en una evaluación heurística?",
-    options: [
-      "La dificultad para implementar una solución", 
-      "La valoración del impacto de un problema de usabilidad", 
-      "La frecuencia con la que ocurre un error", 
-      "El costo de solucionar un problema"
-    ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 86,
@@ -1093,11 +1081,11 @@ export const questions: Question[] = [
     text: "¿Qué es una 'prueba de los 5 segundos' en evaluación UX?",
     options: [
       "Verificar si un sitio carga en menos de 5 segundos", 
-      "Mostrar un diseño durante 5 segundos y preguntar qué recuerdan los usuarios", 
+      "Un test para verificar la velocidad de respuesta del sistema", 
       "Una prueba para verificar si una acción toma más de 5 segundos", 
-      "Un test para verificar la velocidad de respuesta del sistema"
+      "Mostrar un diseño durante 5 segundos y preguntar qué recuerdan los usuarios"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   
   // Round 10: Negocio y Estrategia de Producto
@@ -1106,10 +1094,10 @@ export const questions: Question[] = [
     round: 10,
     text: "¿Qué es un 'product roadmap'?",
     options: [
-      "Un mapa físico para encontrar productos en una tienda", 
+      "Un mapa físico para encontrar productos en una tienda de cualquier tipo", 
       "Un plan que comunica la dirección y progreso del producto a lo largo del tiempo", 
-      "Una guía para transportar productos físicos", 
-      "Un esquema de las rutas de distribución del producto"
+      "Una guía para transportar productos físicos dentro de un almacén", 
+      "Un esquema de las rutas de distribución del producto en cualquier idioma"
     ],
     correctAnswer: 1
   },
@@ -1131,11 +1119,11 @@ export const questions: Question[] = [
     text: "¿Qué es el 'ROI' en el contexto de UX?",
     options: [
       "Range Of Interaction", 
-      "Return On Investment", 
+      "Rate Of Implementation", 
       "Review Of Interface", 
-      "Rate Of Implementation"
+      "Return On Investment"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 94,
@@ -1166,12 +1154,12 @@ export const questions: Question[] = [
     round: 10,
     text: "¿Qué es una 'propuesta de valor' en estrategia de producto?",
     options: [
-      "Un documento legal que establece el valor de un producto", 
       "La declaración que resume por qué un cliente debería comprar o usar tu producto", 
+      "Un documento legal que establece el valor de un producto", 
       "Un precio sugerido para un producto", 
       "Una promesa de descuento para clientes fieles"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 97,
@@ -1190,10 +1178,10 @@ export const questions: Question[] = [
     round: 10,
     text: "¿Qué es un 'product owner' en metodologías ágiles?",
     options: [
-      "El dueño legal de los derechos del producto", 
+      "El dueño legal de los derechos del producto y propietario del código fuente", 
       "La persona responsable de maximizar el valor del producto y representar los intereses del cliente", 
-      "El inventor original del producto", 
-      "El gerente que supervisa la fabricación del producto"
+      "El inventor original del producto y el que lo ha pagado", 
+      "El gerente que supervisa la fabricación del producto y se queja si los trabajandores van lentos"
     ],
     correctAnswer: 1
   },
