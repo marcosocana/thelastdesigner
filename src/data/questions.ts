@@ -143,9 +143,9 @@ export const questions: Question[] = [
     text: "¿Qué significa el acrónimo RGB en diseño visual?",
     options: [
       "Rapid Graphics Builder", 
-      "Real Good Brightness", 
+      "Rápido Guapo y Bueno", 
       "Red, Green, Blue", 
-      "Responsive Grid Basis"
+      "Responsive Grid Basics"
     ],
     correctAnswer: 2
   },
@@ -168,7 +168,7 @@ export const questions: Question[] = [
     options: [
       "El tamaño de la fuente", 
       "El grosor de los caracteres", 
-      "El espacio entre caracteres específicos", 
+      "El espacio entre caracteres", 
       "La altura de la línea de texto"
     ],
     correctAnswer: 2
@@ -202,17 +202,17 @@ export const questions: Question[] = [
     round: 2,
     text: "¿Qué es una retícula (grid) en diseño UI?",
     options: [
-      "Un patrón decorativo", 
+      "Un patrón decorativo para desarrolladores", 
       "Una estructura que ayuda a organizar los elementos en la página", 
-      "Un tipo de gráfico estadístico", 
-      "Un efecto visual de degradado"
+      "Un tipo de gráfico para Data Visualization", 
+      "Un efecto visual de degradado 'to guapo'"
     ],
     correctAnswer: 1
   },
   {
     id: 18,
     round: 2,
-    text: "¿Qué es el 'whitespace' o espacio en blanco en diseño?",
+    text: "¿Qué es el espacio en blanco en diseño?",
     options: [
       "El color de fondo blanco", 
       "Un error de renderizado en la pantalla", 
@@ -253,7 +253,7 @@ export const questions: Question[] = [
     text: "¿Qué es un Design System?",
     options: [
       "Un software para diseñar interfaces", 
-      "Un conjunto de patrones, componentes y principios para crear productos digitales coherentes", 
+      "Un conjunto de patrones, componentes y principios para diseñar", 
       "Un método de organización de archivos de diseño", 
       "Un estilo visual específico creado por una empresa"
     ],
@@ -313,7 +313,7 @@ export const questions: Question[] = [
     text: "¿Qué es un 'atomic design'?",
     options: [
       "Un estilo minimalista de diseño", 
-      "Una metodología que construye interfaces desde elementos básicos hasta complejos", 
+      "Una metodología que construye interfaces", 
       "Un software para crear animaciones", 
       "Un tipo de diseño inspirado en la física cuántica"
     ],
@@ -360,10 +360,10 @@ export const questions: Question[] = [
     round: 3,
     text: "¿Qué aspecto es fundamental para mantener un Design System efectivo?",
     options: [
-      "Cambiar completamente el sistema cada año", 
-      "Limitar el acceso solo al equipo de diseño", 
+      "Cambiar completamente el sistema cada 6 meses", 
+      "Limitar el acceso solo al equipo de diseño y de negocio", 
       "Gobernanza y procesos de actualización claros", 
-      "Utilizar exclusivamente tecnologías propietarias"
+      "Utilizar exclusivamente tecnologías propias"
     ],
     correctAnswer: 2
   },
@@ -374,10 +374,10 @@ export const questions: Question[] = [
     round: 4,
     text: "¿Qué es el 'User Research'?",
     options: [
-      "Investigación de mercado para nuevos productos", 
-      "El estudio sistemático de usuarios para entender sus necesidades y comportamientos", 
-      "Un análisis de la competencia", 
-      "Una técnica para clasificar usuarios por demografía"
+      "Investigación de mercado para nuevos productos, sobretodo apps", 
+      "El estudio de usuarios para entender sus necesidades y comportamientos", 
+      "Un análisis de la competencia de un producto digital", 
+      "Una técnica para clasificar usuarios por demografía y por geografía"
     ],
     correctAnswer: 1
   },
@@ -387,9 +387,9 @@ export const questions: Question[] = [
     text: "¿Qué es una 'entrevista contextual' en investigación UX?",
     options: [
       "Una entrevista realizada en el entorno donde el usuario utiliza el producto", 
-      "Una entrevista enfocada en el contexto del negocio", 
-      "Una entrevista improvisada sin preparación", 
-      "Una entrevista con varios participantes simultáneamente"
+      "Una entrevista enfocada en el contexto del negocio del producto", 
+      "Una entrevista improvisada sin preparación alguna", 
+      "Una entrevista con varios participantes simultáneamente y siempre en remoto"
     ],
     correctAnswer: 0
   },
@@ -420,11 +420,11 @@ export const questions: Question[] = [
   {
     id: 35,
     round: 4,
-    text: "¿Qué es un 'heat map' en el análisis de datos UX?",
+    text: "¿Qué es un 'mapa de calor' en el análisis de datos UX?",
     options: [
-      "Un mapa del clima global", 
+      "Un mapa del clima global, incluyendo las precipitaciones en Despeñaperros", 
       "Una representación visual que muestra las áreas donde los usuarios hacen clic o prestan más atención", 
-      "Un diagrama de temperatura del servidor", 
+      "Un diagrama de temperatura del servidor, resaltando los CPUs con más grados", 
       "Un análisis del rendimiento del equipo de diseño"
     ],
     correctAnswer: 1
@@ -435,21 +435,21 @@ export const questions: Question[] = [
     text: "¿Qué es la tasa de conversión en el contexto de UX?",
     options: [
       "El porcentaje de usuarios que visitan más de una página", 
-      "El porcentaje de usuarios que completan una acción deseada", 
+      "El número de conversaciones iniciadas en el chat de soporte", 
       "La velocidad a la que los usuarios cambian de dispositivo", 
-      "El número de conversaciones iniciadas en el chat de soporte"
+      "El porcentaje de usuarios que completan una acción deseada"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 37,
     round: 4,
     text: "¿Qué es el 'card sorting' en investigación UX?",
     options: [
-      "Una técnica para organizar tarjetas de presentación", 
+      "Una técnica para organizar tarjetas de presentación de una empresa", 
       "Un método donde los usuarios organizan temas en categorías para entender su modelo mental", 
-      "Una forma de ordenar componentes visuales", 
-      "Un juego para entretener a los participantes durante las pruebas"
+      "Una forma de ordenar componentes visuales en formato cards", 
+      "Un juego para entretener a los participantes durante las pruebas de usabilidad de un producto"
     ],
     correctAnswer: 1
   },
@@ -471,11 +471,11 @@ export const questions: Question[] = [
     text: "¿Qué es un 'A/B test' en diseño basado en datos?",
     options: [
       "Una prueba alfabética de nombres de productos", 
-      "Una comparación entre dos versiones (A y B) para ver cuál funciona mejor", 
-      "Un test para comparar dos grupos demográficos diferentes", 
-      "Una evaluación de la versión alfa versus la beta"
+      "Reunión de 2 o más personas donde cada uno representa a una letra", 
+      "Un test para comparar dos o más grupos demográficos diferentes", 
+      "Una comparación entre dos o más versiones para ver cuál funciona mejor"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 40,
