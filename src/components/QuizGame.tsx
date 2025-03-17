@@ -230,18 +230,18 @@ const QuizGame = () => {
               </div>
             )}
             
-            <button
-              onClick={handleStartRound}
-              className="brutalist-btn w-full"
-              disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
-            >
-              {roundCompleted 
-                ? Round :{currentTeam.currentRound}
-                : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
-                  ? Round ${currentTeam.currentRound}
-                  : Round ${currentTeam.currentRound}
-              }
-            </button>
+        <button
+  onClick={handleStartRound}
+  className="brutalist-btn w-full"
+  disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
+>
+  {roundCompleted 
+    ? `Round ${currentTeam.currentRound}`
+    : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
+      ? `Round ${currentTeam.currentRound}`
+      : `Round ${currentTeam.currentRound}`
+  }
+</button>
           </>
         ) : (
           <div className="p-4 brutalist-border bg-brutalist-100">
