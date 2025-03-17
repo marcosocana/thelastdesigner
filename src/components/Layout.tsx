@@ -16,10 +16,10 @@ const Layout = ({ children }: LayoutProps) => {
         <div className="container mx-auto flex justify-between items-center">
       <Link to="/" className="flex items-center">
   {/* Logo para móvil */}
-  <img src="/APP.png" alt="The Last Designer" className="h-10 w-auto md:hidden" />
+  <img src="src/APP.png" alt="The Last Designer" className="h-10 w-auto md:hidden" />
   
   {/* Logo para escritorio */}
-  <img src="/TLD.png" alt="The Last Designer" className="h-10 w-auto hidden md:block" />
+  <img src="src/TLD.png" alt="The Last Designer" className="h-10 w-auto hidden md:block" />
 </Link>
           
           <nav>
