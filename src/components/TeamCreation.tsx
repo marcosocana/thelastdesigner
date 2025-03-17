@@ -55,24 +55,17 @@ const TeamCreation = () => {
     if (step === 1) {
       // Validar el primer paso
       if (teamName.trim() === "") {
-        // Eliminar Toast y manejar la validación de forma visual si es necesario
-        alert("Por favor, completa todos los campos obligatorios");
         return;
       }
       setStep(2);
     } else {
       // Validar el segundo paso
       if (memberNames.some(name => name.trim() === "")) {
-        // Eliminar Toast y manejar la validación de forma visual si es necesario
-        alert("Por favor, ingresa el nombre de todos los miembros");
         return;
       }
       
       // Crear el equipo con una contraseña por defecto para la sala
       createTeam(teamName, memberNames, teamLogo);
-      
-      // Eliminar Toast y reemplazar con una notificación visual si es necesario
-      alert("¡Equipo creado con éxito! Te has unido a la sala.");
     }
   };
   
