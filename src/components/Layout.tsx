@@ -14,9 +14,13 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen flex flex-col bg-white brutalist-grid">
       <header className="p-4 brutalist-border border-t-0 border-l-0 border-r-0">
         <div className="container mx-auto flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold tracking-tight hover:animate-glitch">
-            {isMobile ? "🔥🌎 TLD" : "🔥🌎 THeeE LAST DESIGNER"}
-          </Link>
+      <Link to="/" className="flex items-center">
+  {/* Logo para móvil */}
+  <img src="/APP.png" alt="The Last Designer" className="h-10 w-auto md:hidden" />
+  
+  {/* Logo para escritorio */}
+  <img src="/TLD.png" alt="The Last Designer" className="h-10 w-auto hidden md:block" />
+</Link>
           
           <nav>
             <ul className="flex gap-6">
