@@ -13,16 +13,19 @@ const TeamCreation = () => {
   const [step, setStep] = useState(1);
   
   const handleMemberCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const count = parseInt(e.target.value);
-    if (count > 0 && count <= 10) {
-      setMemberCount(count);
-      
-      // Update member names array length
+    const value = e.target.value;
+    const count = value === "" ? "" : parseInt(value);
+
+    // Verifica si es un número válido y dentro del rango permitido
+    if (count === "" || (count > 0 && count <= 10)) {
+      setMemberCount(value);
+
+      // Actualiza la longitud de la lista de nombres de miembros
       if (count > memberNames.length) {
-        // Add empty names
+        // Agrega nombres vacíos si se incrementa el número de miembros
         setMemberNames([...memberNames, ...Array(count - memberNames.length).fill("")]);
       } else {
-        // Remove excess names
+        // Elimina nombres adicionales si se reduce el número de miembros
         setMemberNames(memberNames.slice(0, count));
       }
     }
@@ -51,7 +54,7 @@ const TeamCreation = () => {
     e.preventDefault();
     
     if (step === 1) {
-      // Validate first step
+      // Validar el primer paso
       if (teamName.trim() === "") {
         toast({
           variant: "destructive",
@@ -62,7 +65,7 @@ const TeamCreation = () => {
       }
       setStep(2);
     } else {
-      // Validate second step
+      // Validar el segundo paso
       if (memberNames.some(name => name.trim() === "")) {
         toast({
           variant: "destructive",
@@ -72,7 +75,7 @@ const TeamCreation = () => {
         return;
       }
       
-      // Create the team with a default password for the room
+      // Crear el equipo con una contraseña por defecto para la sala
       createTeam(teamName, memberNames, teamLogo);
       
       toast({
@@ -138,17 +141,16 @@ const TeamCreation = () => {
             </>
           ) : (
             <>
-<div className="space-y-4">
-  <div>
-    <label className="block mb-1 font-bold">Número de Miembros</label>
-    <input
-      type="tel"
-      inputMode="numeric"
-      value={memberCount}
-      onChange={(e) => handleMemberCountChange(e.target.value)}
-      className="brutalist-input appearance-none"
-    />
-  </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block mb-1 font-bold">Número de Miembros</label>
+                  <input
+                    type="number"
+                    value={memberCount}
+                    onChange={handleMemberCountChange}
+                    className="brutalist-input"
+                  />
+                </div>
                 
                 {memberNames.map((name, index) => (
                   <div key={index}>
