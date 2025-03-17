@@ -46,6 +46,4 @@ const GameState = () => {
   Iniciar Reto
 </Button>
   return null;
-};
-
-export default GameState;
+;
