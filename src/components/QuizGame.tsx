@@ -65,8 +65,25 @@ const QuizGame = () => {
     return roundThemes[currentTeam.currentRound - 1] || roundThemes[0];
   };
   
-  const roundTheme = getCurrentRoundTheme();
-  const getRandomEncouragement = () => encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
+  let mensajesIndex = 0;
+const mensajes = [
+  "¡Sigue así! Estás a una respuesta correcta de que te llamen ‘Senior Visionary Designer’ en LinkedIn.",
+  "Cada respuesta correcta es un píxel más en el gran diseño de la humanidad. ¡No dejes espacios en blanco!",
+  "¡Máquina, fiera, figura! Si sigues así, los clientes van a dejar de pedirte ‘algo tipo Apple’.",
+  "Estás demostrando que la IA jamás podrá diseñar con flow. ¡Sigue adelante!",
+  "Estás a un par de respuestas correctas de que tu madre entienda qué es lo que haces en el trabajo.",
+  "¡Cuidado! Si sigues respondiendo así de bien, te van a pedir ‘un diseño rapidito’ en la oficina.",
+  "Vas más fuerte que una mascletà en fallas. ¡Sigue así!",
+  "¡No te detengas! La IA no podrá robarte el puesto si demuestras que el diseño es más que pintar pantallitas.",
+  "Ere un crá. ¿Un piquito?",
+  "¡Wow! Si sigues así, vas a hacer que los clientes dejen de pedir el logo más grande."
+];
+
+function obtenerMensaje() {
+  const mensaje = mensajes[mensajesIndex];
+  mensajesIndex = (mensajesIndex + 1) % mensajes.length; // Asegura rotación sin repetir
+  return mensaje;
+}
   
   useEffect(() => {
     if (!gameStarted || showFeedback || !currentQuestion || !roundStarted) return;
