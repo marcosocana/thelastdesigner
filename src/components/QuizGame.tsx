@@ -207,7 +207,7 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              </Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+              <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
@@ -282,7 +282,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          </Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+          <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
