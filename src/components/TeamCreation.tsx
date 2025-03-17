@@ -157,7 +157,6 @@ const TeamCreation = () => {
       }}
       className="brutalist-input"
     />
-  </div>
 </div>
                 
                 {memberNames.map((name, index) => (
