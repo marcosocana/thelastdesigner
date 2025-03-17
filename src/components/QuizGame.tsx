@@ -94,15 +94,13 @@ const QuizGame = () => {
   }, [currentQuestionIndex, roundStarted, currentQuestion]);
   
   useEffect(() => {
-    if (
-      currentTeam && 
-      roundStarted &&
-      currentQuestionIndex >= questions.length
-    ) {
-      setRoundCompleted(true);
-      setStartTime(0);
-    } else {
-      setRoundCompleted(false);
+    if (currentTeam && roundStarted) {
+      if (currentQuestionIndex >= questions.length - 1) {
+        setRoundCompleted(true);
+        setStartTime(0);
+      } else {
+        setRoundCompleted(false);
+      }
     }
   }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
   
@@ -114,7 +112,7 @@ const QuizGame = () => {
   
   const handleTimeUp = () => {
     if (currentQuestion) {
-      const elapsedTime = 10; // Max time
+      const elapsedTime = 10;
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
@@ -134,7 +132,6 @@ const QuizGame = () => {
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
     
-    // Auto-submit the answer when option is selected
     if (currentQuestion) {
       const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
       setAnswerTime(elapsedTime);
@@ -207,7 +204,7 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+              <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
@@ -282,7 +279,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+          <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
@@ -385,6 +382,11 @@ const QuizGame = () => {
             <p className="mt-2 text-sm flex items-center text-black">
               <Timer className="h-4 w-4 mr-1" /> Tiempo: {answerTime.toFixed(2)}s
             </p>
+            {currentQuestionIndex === questions.length - 1 && (
+              <p className="mt-2 text-sm font-bold text-black">
+                Redirigiendo al resumen...
+              </p>
+            )}
           </div>
         )}
       </div>
