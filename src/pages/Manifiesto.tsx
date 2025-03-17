@@ -4,7 +4,7 @@ const Manifiesto = () => {
   return <Layout>
       <div className="max-w-4xl mx-auto my-12 animate-slide-up">
         <div className="brutalist-box">
-          <h1 className="brutalist-title mb-8 text-7xl">MANIFIESTO</h1>
+          <h1 className="brutalist-title mb-8 text-5xl">MANIFIESTO</h1>
           
           <div className="prose max-w-none">
             <p className="mb-4">El diseño no es solo una tarea técnica. No es un conjunto de patrones predefinidos ni un conjunto de restricciones a seguir. El diseño es libertad.</p>
