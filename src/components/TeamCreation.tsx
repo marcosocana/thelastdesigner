@@ -75,7 +75,7 @@ const TeamCreation = () => {
   return (
     <div className="my-8 max-w-md mx-auto animate-fade-in">
       <div className="brutalist-box">
-        <h2 className="brutalist-btn flex-1">
+        <h2 className="text-2xl font-bold mb-6 uppercase">
           {step === 1 ? "Crear Equipo" : "Añadir Miembros"}
         </h2>
         
