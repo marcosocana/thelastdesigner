@@ -41,7 +41,7 @@ const GameState = () => {
         </div>
 <Button 
   onClick={handleStartGame}
-        className="brutalist-btn flex-1"
+        className="brutalist-btn block text-center uppercase mt-8"
 >
   Iniciar Reto
 </Button>
