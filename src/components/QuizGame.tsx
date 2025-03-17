@@ -94,13 +94,15 @@ const QuizGame = () => {
   }, [currentQuestionIndex, roundStarted, currentQuestion]);
   
   useEffect(() => {
-    if (currentTeam && roundStarted) {
-      if (currentQuestionIndex >= questions.length - 1) {
-        setRoundCompleted(true);
-        setStartTime(0);
-      } else {
-        setRoundCompleted(false);
-      }
+    if (
+      currentTeam && 
+      roundStarted &&
+      currentQuestionIndex >= questions.length
+    ) {
+      setRoundCompleted(true);
+      setStartTime(0);
+    } else {
+      setRoundCompleted(false);
     }
   }, [currentTeam, roundStarted, currentQuestionIndex, questions.length]);
   
@@ -112,7 +114,7 @@ const QuizGame = () => {
   
   const handleTimeUp = () => {
     if (currentQuestion) {
-      const elapsedTime = 10;
+      const elapsedTime = 10; // Max time
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
@@ -132,6 +134,7 @@ const QuizGame = () => {
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
     
+    // Auto-submit the answer when option is selected
     if (currentQuestion) {
       const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
       setAnswerTime(elapsedTime);
@@ -204,7 +207,7 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+              <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
@@ -213,7 +216,7 @@ const QuizGame = () => {
           <p className="mb-4">
             {currentTeam.completedRounds.length === 0 
               ? "¡Es hora de comenzar tu primer round!" 
-              : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+              : Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.
             }
           </p>
         )}
@@ -233,10 +236,10 @@ const QuizGame = () => {
               disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
             >
               {roundCompleted 
-                ? `Round ${currentTeam.currentRound}`
+                ? Round ${currentTeam.currentRound}
                 : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
-                  ? `Round ${currentTeam.currentRound}`
-                  : `Round ${currentTeam.currentRound}`
+                  ? Round ${currentTeam.currentRound}
+                  : Round ${currentTeam.currentRound}
               }
             </button>
           </>
@@ -279,7 +282,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+          <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
@@ -289,7 +292,7 @@ const QuizGame = () => {
           className="brutalist-btn w-full"
         >
           {currentTeam.currentRound <= 10 
-            ? `Round ${currentTeam.currentRound}`
+            ? Round ${currentTeam.currentRound}
             : "Ver Resultados"
           }
         </button>
@@ -321,14 +324,14 @@ const QuizGame = () => {
         <div className="w-full h-2 brutalist-border bg-white mb-6">
           <div 
             className="h-full bg-black transition-all duration-300"
-            style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+            style={{ width: ${((currentQuestionIndex + 1) / questions.length) * 100}% }}
           ></div>
         </div>
         
         <div className="mb-4">
           <div className="flex justify-between mb-1">
             <span className="font-bold">Tiempo:</span>
-            <span className={`font-mono flex items-center ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}`}>
+            <span className={font-mono flex items-center ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}}>
               <Clock className="h-4 w-4 mr-1" /> {timeLeft}s
             </span>
           </div>
@@ -347,13 +350,13 @@ const QuizGame = () => {
             <button
               key={index}
               onClick={() => handleOptionSelect(index)}
-              className={`w-full p-3 md:p-4 brutalist-border text-left transition-all ${
+              className={w-full p-3 md:p-4 brutalist-border text-left transition-all ${
                 showFeedback && index === currentQuestion.correctAnswer
                   ? "bg-green-200 border-green-500"
                   : showFeedback && index !== currentQuestion.correctAnswer
                   ? "bg-white"
                   : "bg-white hover:bg-gray-100"
-              }`}
+              }}
               disabled={showFeedback}
             >
               <div className="quiz-option">
@@ -369,24 +372,19 @@ const QuizGame = () => {
         </div>
         
         {showFeedback && (
-          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4`}>
+          <div className={p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4}>
             <p className="font-bold text-black">
               {isCorrect ? "¡Correcto!" : "Incorrecto"}
             </p>
             <p className="text-black responsive-text">
               {isCorrect 
                 ? "¡Bien hecho! Has seleccionado la respuesta correcta."
-                : `La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}`
+                : La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}
               }
             </p>
             <p className="mt-2 text-sm flex items-center text-black">
               <Timer className="h-4 w-4 mr-1" /> Tiempo: {answerTime.toFixed(2)}s
             </p>
-            {currentQuestionIndex === questions.length - 1 && (
-              <p className="mt-2 text-sm font-bold text-black">
-                Redirigiendo al resumen...
-              </p>
-            )}
           </div>
         )}
       </div>
