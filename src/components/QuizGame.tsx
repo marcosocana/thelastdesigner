@@ -213,12 +213,12 @@ const QuizGame = () => {
             <p className="text-center italic my-4">{encouragement}</p>
           </div>
         ) : (
-          <p className="mb-4">
-            {currentTeam.completedRounds.length === 0 
-              ? "¡Es hora de comenzar tu primer round!" 
-              : Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.
-            }
-          </p>
+<p className="mb-4">
+  {currentTeam.completedRounds.length === 0 
+    ? "¡Es hora de comenzar tu primer round!" 
+    : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+  }
+</p>
         )}
         
         {currentTeam.currentRound <= 10 ? (
