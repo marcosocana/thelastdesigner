@@ -39,14 +39,14 @@ const GameState = () => {
             </p>
           </div>
         </div>
-  <div className="flex gap-2">
+ 
 <Button 
   onClick={handleStartGame}
         className="brutalist-btn block text-center uppercase mt-8 hover:bg-white"
 >
   Iniciar Reto
 </Button>   
-              </div>
+          
 
   return null;
 };
