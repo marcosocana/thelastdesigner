@@ -45,9 +45,6 @@ const GameState = () => {
 >
   Iniciar Reto
 </Button>
-      </div>
-          
-
   return null;
 };
 
