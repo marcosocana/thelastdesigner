@@ -45,9 +45,7 @@ const GameState = () => {
         className="brutalist-btn block text-center uppercase mt-8 hover:bg-white"
 >
   Iniciar Reto
-</Button>
-    );
-  }     
+</Button>   
               </div>
 
   return null;
