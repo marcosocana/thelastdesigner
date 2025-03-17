@@ -138,15 +138,15 @@ const TeamCreation = () => {
             </>
           ) : (
             <>
-             <div className="space-y-4">
 <div className="space-y-4">
   <div>
     <label className="block mb-1 font-bold">Número de Miembros</label>
     <input
-      type="number"
+      type="tel"
+      inputMode="numeric"
       value={memberCount}
       onChange={(e) => handleMemberCountChange(e.target.value)}
-      className="brutalist-input"
+      className="brutalist-input appearance-none"
     />
   </div>
                 
