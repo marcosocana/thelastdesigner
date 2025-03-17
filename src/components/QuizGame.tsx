@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Timer, Pencil } from "lucide-react";
+import { Clock, Timer, shell } from "lucide-react";
 import QuizSummary from "./QuizSummary";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -207,7 +207,7 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+              <shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
@@ -282,7 +282,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          <Pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+          <shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
