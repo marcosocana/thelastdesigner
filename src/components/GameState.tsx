@@ -46,7 +46,6 @@ const GameState = () => {
 >
   Iniciar Reto
 </Button>
-      </div>
     );
   }     
               </div>
