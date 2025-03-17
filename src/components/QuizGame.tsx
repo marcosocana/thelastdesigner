@@ -216,7 +216,9 @@ const QuizGame = () => {
 <p className="mb-4">
   {currentTeam.completedRounds.length === 0 
     ? "¡Es hora de comenzar tu primer round!" 
-    : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+    : `Has completado ${currentTeam.completedRounds.length} ${
+        currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'
+      } hasta ahora.`
   }
 </p>
         )}
@@ -295,6 +297,8 @@ const QuizGame = () => {
             ? Round ${currentTeam.currentRound}
             : "Ver Resultados"
           }
+
+  
         </button>
       </div>
     );
