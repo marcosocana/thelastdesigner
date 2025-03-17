@@ -20,16 +20,16 @@ const roundThemes = [
 ];
 
 const encouragementMessages = [
-  "¡Vas por buen camino! El futuro del diseño está en tus manos.",
-  "Cada respuesta correcta es un paso más hacia la salvación del diseño.",
-  "¡No te rindas! La humanidad necesita tu talento para el diseño.",
-  "Estás demostrando por qué eres el último diseñador. ¡Sigue así!",
-  "Tu conocimiento es la última esperanza para el diseño. ¡Continúa!",
-  "La IA no puede vencer a un diseñador con pasión. ¡Demuéstralo!",
-  "Cada round completado es una victoria para la creatividad humana.",
-  "¡Impresionante! Estás recuperando el alma del diseño pregunta a pregunta.",
-  "La perfección está en los detalles, y tú los estás dominando todos.",
-  "¡El mundo necesita más respuestas como las tuyas! ¡Sigue adelante!"
+  "¡Sigue así! Estás a una respuesta correcta de que te llamen ‘Senior Visionary Designer’ en LinkedIn.",
+  "Cada respuesta correcta es un píxel más en el gran diseño de la humanidad. ¡No dejes espacios en blanco!",
+  "¡Máquina, fiera, figura! Si sigues así, los clientes van a dejar de pedirte ‘algo tipo Apple’.",
+  "Estás demostrando que la IA jamás podrá diseñar con flow. ¡Sigue adelante!",
+  "Estás a un par de respuestas correctas de que tu madre entienda qué es lo que haces en el trabajo.",
+  "¡Cuidado! Si sigues respondiendo así de bien, te van a pedir ‘un diseño rapidito’ en la oficina.",
+  "Vas más fuerte que una mascletà en fallas. ¡Sigue así!",
+  "¡No te detengas! La IA no podrá robarte el puesto si demuestras que el diseño es más que pintar pantallitas.",
+  "Ere un crá. ¿Un piquito?",
+  "¡Wow! Si sigues así, vas a hacer que los clientes dejen de pedir el logo más grande."
 ];
 
 const QuizGame = () => {
