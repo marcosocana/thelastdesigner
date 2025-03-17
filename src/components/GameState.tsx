@@ -38,12 +38,19 @@ const GameState = () => {
               <Trophy className="h-4 w-4 mr-2" /> Puntuación máxima: 1000 puntos por round
             </p>
           </div>
-    </div>
-<Button 
-  onClick={handleStartGame}
-        className="brutalist-btn block text-center uppercase mt-8 hover:bg-white"
->
-  Iniciar Reto
-</Button>
+        </div>
+        
+        <Button 
+          onClick={handleStartGame}
+          className="brutalist-btn block text-center uppercase mt-8 hover:bg-white"
+        >
+          Iniciar Reto
+        </Button>
+      </div>
+    );
+  }
+
   return null;
 };
+
+export default GameState;
