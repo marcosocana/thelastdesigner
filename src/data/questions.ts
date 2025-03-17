@@ -1027,6 +1027,18 @@ export const questions: Question[] = [
     ],
     correctAnswer: 3
   },
+{
+    id: 85,
+    round: 9,
+    text: "Si un sistema muestra el estado de una acción en curso (por ejemplo, una barra de progreso), ¿qué heurística de Nielsen está aplicando?",
+    options: [
+      "Prevención de errores", 
+      "Flexibilidad y eficiencia de uso", 
+      "Consistencia y estándares", 
+      "Visibilidad del estado del sistema"
+    ],
+    correctAnswer: 3
+},
   {
     id: 86,
     round: 9,
