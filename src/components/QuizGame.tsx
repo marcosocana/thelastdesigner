@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Timer, Pencil } from "lucide-react";
+import { Clock, Timer, shell } from "lucide-react";
 import QuizSummary from "./QuizSummary";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -207,20 +207,18 @@ const QuizGame = () => {
             }
             
             <div className="flex justify-center my-4">
-              <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+              <shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
             </div>
             
             <p className="text-center italic my-4">{encouragement}</p>
           </div>
         ) : (
-<p className="mb-4">
-  {currentTeam.completedRounds.length === 0 
-    ? "¡Es hora de comenzar tu primer round!" 
-    : `Has completado ${currentTeam.completedRounds.length} ${
-        currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'
-      } hasta ahora.`
-  }
-</p>
+          <p className="mb-4">
+            {currentTeam.completedRounds.length === 0 
+              ? "¡Es hora de comenzar tu primer round!" 
+              : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+            }
+          </p>
         )}
         
         {currentTeam.currentRound <= 10 ? (
@@ -232,18 +230,18 @@ const QuizGame = () => {
               </div>
             )}
             
-        <button
-  onClick={handleStartRound}
-  className="brutalist-btn w-full"
-  disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
->
-  {roundCompleted 
-    ? `Round ${currentTeam.currentRound}`
-    : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
-      ? `Round ${currentTeam.currentRound}`
-      : `Round ${currentTeam.currentRound}`
-  }
-</button>
+            <button
+              onClick={handleStartRound}
+              className="brutalist-btn w-full"
+              disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
+            >
+              {roundCompleted 
+                ? `Round ${currentTeam.currentRound}`
+                : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
+                  ? `Round ${currentTeam.currentRound}`
+                  : `Round ${currentTeam.currentRound}`
+              }
+            </button>
           </>
         ) : (
           <div className="p-4 brutalist-border bg-brutalist-100">
@@ -284,7 +282,7 @@ const QuizGame = () => {
         }
         
         <div className="flex justify-center my-6">
-          <pencil className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+          <shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
         </div>
         
         <p className="text-center italic my-4">{encouragement}</p>
@@ -294,11 +292,9 @@ const QuizGame = () => {
           className="brutalist-btn w-full"
         >
           {currentTeam.currentRound <= 10 
-            ? Round ${currentTeam.currentRound}
+            ? `Round ${currentTeam.currentRound}`
             : "Ver Resultados"
           }
-
-  
         </button>
       </div>
     );
@@ -328,14 +324,14 @@ const QuizGame = () => {
         <div className="w-full h-2 brutalist-border bg-white mb-6">
           <div 
             className="h-full bg-black transition-all duration-300"
-            style={{ width: ${((currentQuestionIndex + 1) / questions.length) * 100}% }}
+            style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
           ></div>
         </div>
         
         <div className="mb-4">
           <div className="flex justify-between mb-1">
             <span className="font-bold">Tiempo:</span>
-            <span className={font-mono flex items-center ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}}>
+            <span className={`font-mono flex items-center ${timeLeft <= 3 ? "text-red-600 animate-pulse" : ""}`}>
               <Clock className="h-4 w-4 mr-1" /> {timeLeft}s
             </span>
           </div>
@@ -354,13 +350,13 @@ const QuizGame = () => {
             <button
               key={index}
               onClick={() => handleOptionSelect(index)}
-              className={w-full p-3 md:p-4 brutalist-border text-left transition-all ${
+              className={`w-full p-3 md:p-4 brutalist-border text-left transition-all ${
                 showFeedback && index === currentQuestion.correctAnswer
                   ? "bg-green-200 border-green-500"
                   : showFeedback && index !== currentQuestion.correctAnswer
                   ? "bg-white"
                   : "bg-white hover:bg-gray-100"
-              }}
+              }`}
               disabled={showFeedback}
             >
               <div className="quiz-option">
@@ -376,14 +372,14 @@ const QuizGame = () => {
         </div>
         
         {showFeedback && (
-          <div className={p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4}>
+          <div className={`p-4 brutalist-border ${isCorrect ? "bg-green-100" : "bg-red-100"} mb-4`}>
             <p className="font-bold text-black">
               {isCorrect ? "¡Correcto!" : "Incorrecto"}
             </p>
             <p className="text-black responsive-text">
               {isCorrect 
                 ? "¡Bien hecho! Has seleccionado la respuesta correcta."
-                : La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}
+                : `La respuesta correcta era: ${currentQuestion.options[currentQuestion.correctAnswer]}`
               }
             </p>
             <p className="mt-2 text-sm flex items-center text-black">
