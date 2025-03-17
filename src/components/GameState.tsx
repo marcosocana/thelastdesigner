@@ -39,10 +39,10 @@ const GameState = () => {
             </p>
           </div>
         </div>
-        
         <Button 
           onClick={handleStartGame}
-          className="brutalist-btn block text-center uppercase mt-8"
+          className={`brutalist-btn flex-1 ${!isStepTwoValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={!isStepTwoValid}
         >
           Iniciar Reto
         </Button>
