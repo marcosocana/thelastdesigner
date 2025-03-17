@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Introduction = () => {
   return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
-        <h1 className="brutalist-title mb-8 text-center text-3xl">BIENVENIDO. TE estábamos esperando.</h1>
+        <h1 className="brutalist-title mb-8 text-center text-7xl">BIENVENIDX. TE ESTÁBAMOS ESPERANDO.</h1>
         
         <div className="mx-auto max-w-2xl">
          <div className="brutalist-wireframe mb-8 p-6">
@@ -25,7 +25,7 @@ const Introduction = () => {
 
   {/* Imagen SVG después del texto */}
   <img src="/APP.svg" alt="The Last Designer" className="mt-6 w-1600 mx-auto" />
-</div>
+        </div>
           
           <h2 className="text-2xl font-bold mb-4 uppercase">REGLAS</h2>
           
