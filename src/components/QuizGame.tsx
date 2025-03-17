@@ -236,7 +236,7 @@ const QuizGame = () => {
               disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
             >
               {roundCompleted 
-                ? Round ${currentTeam.currentRound}
+                ? Round :{currentTeam.currentRound}
                 : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
                   ? Round ${currentTeam.currentRound}
                   : Round ${currentTeam.currentRound}
