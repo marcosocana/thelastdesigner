@@ -24,7 +24,7 @@ const Introduction = () => {
   <p className="font-bold mt-6 text-base">¿Estás listo para el desafío?</p>
 
   {/* Imagen SVG después del texto */}
-  <img src="/APP.svg" alt="The Last Designer" className="mt-6 w-600 mx-auto" />
+  <img src="/APP.svg" alt="The Last Designer" className="mt-6 w-1600 mx-auto" />
 </div>
           
           <h2 className="text-2xl font-bold mb-4 uppercase">REGLAS</h2>
