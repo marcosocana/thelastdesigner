@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 
 const TeamCreation = () => {
   const { createTeam } = useQuiz();
@@ -56,32 +55,24 @@ const TeamCreation = () => {
     if (step === 1) {
       // Validar el primer paso
       if (teamName.trim() === "") {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Por favor, completa todos los campos obligatorios"
-        });
+        // Eliminar Toast y manejar la validación de forma visual si es necesario
+        alert("Por favor, completa todos los campos obligatorios");
         return;
       }
       setStep(2);
     } else {
       // Validar el segundo paso
       if (memberNames.some(name => name.trim() === "")) {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Por favor, ingresa el nombre de todos los miembros"
-        });
+        // Eliminar Toast y manejar la validación de forma visual si es necesario
+        alert("Por favor, ingresa el nombre de todos los miembros");
         return;
       }
       
       // Crear el equipo con una contraseña por defecto para la sala
       createTeam(teamName, memberNames, teamLogo);
       
-      toast({
-        title: "¡Equipo creado con éxito!",
-        description: "Te has unido a la sala."
-      });
+      // Eliminar Toast y reemplazar con una notificación visual si es necesario
+      alert("¡Equipo creado con éxito! Te has unido a la sala.");
     }
   };
   
