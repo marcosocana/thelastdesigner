@@ -138,18 +138,27 @@ const TeamCreation = () => {
             </>
           ) : (
             <>
-              <div className="space-y-4">
-                <div>
-                  <label className="block mb-1 font-bold">Número de Miembros</label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="10"
-                    value={memberCount}
-                    onChange={handleMemberCountChange}
-                    className="brutalist-input"
-                  />
-                </div>
+             <div className="space-y-4">
+  <div>
+    <label className="block mb-1 font-bold">Número de Miembros</label>
+    <input
+      type="number"
+      min="1"
+      max="10"
+      value={memberCount}
+      onChange={(e) => {
+        let value = parseInt(e.target.value, 10);
+
+        if (isNaN(value)) value = ""; // Permitir que se borre
+        else if (value < 1) value = 1;
+        else if (value > 10) value = 10;
+
+        handleMemberCountChange({ target: { value } });
+      }}
+      className="brutalist-input"
+    />
+  </div>
+</div>
                 
                 {memberNames.map((name, index) => (
                   <div key={index}>
