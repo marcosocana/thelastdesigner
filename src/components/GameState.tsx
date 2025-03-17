@@ -42,7 +42,7 @@ const GameState = () => {
         
         <Button 
           onClick={handleStartGame}
-          className="brutalist-btn block text-center uppercase mt-8 hover:bg-white"
+          className="brutalist-btn block text-center uppercase mt-8 font-bold w-full hover:bg-white"
         >
           Iniciar Reto
         </Button>
