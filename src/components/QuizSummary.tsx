@@ -87,20 +87,20 @@ const QuizSummary = () => {
               <p>
                 {isDesignSaved 
                   ? "La humanidad aún tiene esperanza gracias a ti." 
-                  : "La IA ha ganado. Las interfaces serán frías para siempre."}
+                  : "La IA ha ganado. La creatividad ha desaparecido para siempre."}
               </p>
             </div>
             
             <div className={`mt-4 p-4 text-center ${isHumanitySaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border text-black`}>
               <h3 className="text-xl font-bold mb-2">
                 {isHumanitySaved 
-                  ? "¡HAS SALVADO A LA HUMANIDAD!" 
+                  ? "¡ERES EL SALVADOR!" 
                   : "LA HUMANIDAD SE HA EXTINGUIDO..."}
               </h3>
               <p>
                 {isHumanitySaved 
-                  ? "Tu maestría en diseño ha restaurado la esperanza. El mundo renacerá con interfaces humanas." 
-                  : "No has conseguido suficientes puntos. La humanidad necesita más creatividad y buen diseño."}
+                  ? "Tu conocimiento sobre diseño ha restaurado la esperanza. El mundo renacerá con interfaces más humanas gracias a ti." 
+                  : "No has conseguido suficientes puntos. La intención era buena."}
               </p>
             </div>
           </div>
