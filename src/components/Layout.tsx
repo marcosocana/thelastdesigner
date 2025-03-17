@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="p-4 brutalist-border border-t-0 border-l-0 border-r-0">
         <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold tracking-tight hover:animate-glitch">
-            {isMobile ? "🔥🌎 TLD" : "🔥🌎 THE LAST DESIGNER"}
+            {isMobile ? "🔥🌎 TLD" : "🔥🌎 THeeE LAST DESIGNER"}
           </Link>
           
           <nav>
