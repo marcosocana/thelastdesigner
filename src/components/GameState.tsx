@@ -1,8 +1,6 @@
-
 import React from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 import { Trophy, Clock, Flag } from "lucide-react";
 
 const GameState = () => {
@@ -13,18 +11,8 @@ const GameState = () => {
   } = useQuiz();
 
   const handleStartGame = () => {
-    if (startGame()) {
-      toast({
-        title: "¡El juego ha comenzado!",
-        description: "Comienza tu reto ahora."
-      });
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "No se pudo iniciar el juego."
-      });
-    }
+    // No se muestra ningún mensaje de éxito ni de error
+    startGame();
   };
 
   if (!currentTeam) {
