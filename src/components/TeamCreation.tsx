@@ -145,10 +145,10 @@ const TeamCreation = () => {
     <input
       type="number"
       value={memberCount}
-      onChange={(e) => handleMemberCountChange(e)}
+      onChange={(e) => handleMemberCountChange(e.target.value)}
       className="brutalist-input"
     />
-</div>
+  </div>
                 
                 {memberNames.map((name, index) => (
                   <div key={index}>
