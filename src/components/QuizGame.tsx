@@ -114,7 +114,7 @@ const QuizGame = () => {
   
   const handleTimeUp = () => {
     if (currentQuestion) {
-      const elapsedTime = 20; // Max time
+      const elapsedTime = 10; // Max time
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
