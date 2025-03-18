@@ -136,7 +136,7 @@ const QuizGame = () => {
     
     // Auto-submit the answer when option is selected
     if (currentQuestion) {
-      const elapsedTime = Math.min((Date.now() - startTime) / 2000, 10);
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
