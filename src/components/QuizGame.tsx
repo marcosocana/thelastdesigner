@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
@@ -59,7 +58,6 @@ const QuizGame = () => {
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [allRoundsCompleted, setAllRoundsCompleted] = useState(false);
-  const [showingRoundSummary, setShowingRoundSummary] = useState(false);
   
   const questions = getCurrentRoundQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
@@ -96,7 +94,6 @@ const QuizGame = () => {
       setTimeLeft(MAX_QUESTION_TIME);
       setShowFeedback(false);
       setStartTime(Date.now());
-      setShowingRoundSummary(false);
     }
   }, [currentQuestionIndex, roundStarted, currentQuestion]);
   
@@ -130,9 +127,9 @@ const QuizGame = () => {
       
       // Always wait 5 seconds to show feedback before taking the next action
       setTimeout(() => {
-        // If it's the last question, show round summary
+        // If it's the last question, complete the round
         if (isLastQuestion) {
-          setShowingRoundSummary(true);
+          setRoundCompleted(true);
         } else {
           setNextQuestion();
         }
@@ -154,9 +151,9 @@ const QuizGame = () => {
       
       // Always wait 5 seconds to show feedback before taking the next action
       setTimeout(() => {
-        // If it's the last question, show round summary
+        // If it's the last question, complete the round
         if (isLastQuestion) {
-          setShowingRoundSummary(true);
+          setRoundCompleted(true);
         } else {
           setNextQuestion();
         }
@@ -193,61 +190,44 @@ const QuizGame = () => {
   }
   
   if (!roundStarted) {
-    // Show round summary directly if we're coming from the last question
-    if (showingRoundSummary && currentTeam) {
-      const encouragement = getRandomEncouragement();
-      
-      return (
-        <div className="my-4 md:my-8 brutalist-box animate-fade-in w-full">
-          <h2 className="text-xl md:text-2xl font-bold mb-4 uppercase">
-            Round {currentTeam.currentRound - 1} Completado: <span className={roundThemes[currentTeam.currentRound - 2]?.textColor}>{roundThemes[currentTeam.currentRound - 2]?.name}</span>
-          </h2>
-          
-          {currentTeam.roundScores
-            .filter(rs => rs.round === currentTeam.currentRound - 1)
-            .map(rs => (
-              <div key={rs.round} className="p-4 brutalist-border mb-4">
-                <h3 className="text-xl font-bold">Puntuación del Round {rs.round}</h3>
-                <p className="text-4xl font-bold my-2">{rs.score} pts</p>
-                <p className="text-sm">
-                  Tiempo total: {rs.totalTime.toFixed(2)} segundos
-                </p>
-              </div>
-            ))
-          }
-          
-          <div className="flex justify-center my-6">
-            <Shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
-          </div>
-          
-          <p className="text-center italic my-4">{encouragement}</p>
-          
-          <button
-            onClick={handleStartRound}
-            className="brutalist-btn w-full"
-          >
-            {currentTeam.currentRound <= 10 
-              ? `Round ${currentTeam.currentRound}`
-              : "Ver Resultados"
-            }
-          </button>
-        </div>
-      );
-    }
+    const encouragement = getRandomEncouragement();
     
-    // Regular initial round screen
     return (
       <div className="my-4 md:my-8 brutalist-box animate-fade-in w-full">
         <h2 className="text-xl md:text-2xl font-bold mb-4 uppercase">
           Round {currentTeam.currentRound}: <span className={roundTheme.textColor}>{roundTheme.name}</span>
         </h2>
         
-        <p className="mb-4">
-          {currentTeam.completedRounds.length === 0 
-            ? "¡Es hora de comenzar tu primer round!" 
-            : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
-          }
-        </p>
+        {roundCompleted ? (
+          <div className="my-4 md:my-6 p-4 brutalist-border">
+            <h3 className="text-lg md:text-xl mb-2">Resultados del Round {currentTeam.currentRound - 1}:</h3>
+            
+            {currentTeam.roundScores
+              .filter(rs => rs.round === currentTeam.currentRound - 1)
+              .map(rs => (
+                <div key={rs.round} className="mb-4">
+                  <p className="font-bold text-xl">Puntuación: {rs.score} pts</p>
+                  <p className="text-sm">
+                    Tiempo total: {rs.totalTime.toFixed(2)} segundos
+                  </p>
+                </div>
+              ))
+            }
+            
+            <div className="flex justify-center my-4">
+              <Shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+            </div>
+            
+            <p className="text-center italic my-4">{encouragement}</p>
+          </div>
+        ) : (
+          <p className="mb-4">
+            {currentTeam.completedRounds.length === 0 
+              ? "¡Es hora de comenzar tu primer round!" 
+              : `Has completado ${currentTeam.completedRounds.length} ${currentTeam.completedRounds.length === 1 ? 'round' : 'rounds'} hasta ahora.`
+            }
+          </p>
+        )}
         
         {currentTeam.currentRound <= 10 ? (
           <>
@@ -263,9 +243,11 @@ const QuizGame = () => {
               className="brutalist-btn w-full"
               disabled={currentTeam.currentRound > 1 && !currentTeam.completedRounds.includes(currentTeam.currentRound - 1)}
             >
-              {currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
+              {roundCompleted 
                 ? `Round ${currentTeam.currentRound}`
-                : `Round ${currentTeam.currentRound}`
+                : currentTeam.completedRounds.includes(currentTeam.currentRound - 1) 
+                  ? `Round ${currentTeam.currentRound}`
+                  : `Round ${currentTeam.currentRound}`
               }
             </button>
           </>
@@ -286,8 +268,44 @@ const QuizGame = () => {
   }
   
   if (roundCompleted) {
-    setShowingRoundSummary(true);
-    return null;
+    const encouragement = getRandomEncouragement();
+    
+    return (
+      <div className="my-4 md:my-8 brutalist-box animate-fade-in w-full">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 uppercase">
+          Round {currentTeam.currentRound - 1} Completado: <span className={roundThemes[currentTeam.currentRound - 2]?.textColor}>{roundThemes[currentTeam.currentRound - 2]?.name}</span>
+        </h2>
+        
+        {currentTeam.roundScores
+          .filter(rs => rs.round === currentTeam.currentRound - 1)
+          .map(rs => (
+            <div key={rs.round} className="p-4 brutalist-border mb-4">
+              <h3 className="text-xl font-bold">Puntuación del Round {rs.round}</h3>
+              <p className="text-4xl font-bold my-2">{rs.score} pts</p>
+              <p className="text-sm">
+                Tiempo total: {rs.totalTime.toFixed(2)} segundos
+              </p>
+            </div>
+          ))
+        }
+        
+        <div className="flex justify-center my-6">
+          <Shell className="h-16 w-16 md:h-24 md:w-24 text-gray-400" />
+        </div>
+        
+        <p className="text-center italic my-4">{encouragement}</p>
+        
+        <button
+          onClick={handleStartRound}
+          className="brutalist-btn w-full"
+        >
+          {currentTeam.currentRound <= 10 
+            ? `Round ${currentTeam.currentRound}`
+            : "Ver Resultados"
+          }
+        </button>
+      </div>
+    );
   }
   
   if (!currentQuestion) {
@@ -298,6 +316,8 @@ const QuizGame = () => {
       </div>
     );
   }
+  
+  
   
   return (
     <div className="my-4 md:my-8 w-full">

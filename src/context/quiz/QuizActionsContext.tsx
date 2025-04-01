@@ -156,23 +156,16 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
         prevTeams.map(team => team.id === currentTeam.id ? updatedTeam : team)
       );
       
-      // If it's the last question of the round, check but don't end round yet
-      // (we'll let the UI handle the transition after showing feedback)
+      // If it's the last question of the round, end round
       const roundQuestions = getQuestionsByRound(currentTeam.currentRound);
       const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
       
       if (isRoundCompleted) {
         // Use setTimeout to ensure this happens outside of the render cycle
         setTimeout(() => {
-          // We're only saving the result here, but NOT immediately setting roundStarted to false
-          // This allows the UI to show the feedback before transitioning
+          setRoundStarted(false);
+          // Save quiz result after each completed round
           saveQuizResult(updatedTeam);
-          
-          // After saving, set roundStarted to false
-          // This is delayed to allow feedback to show first
-          setTimeout(() => {
-            setRoundStarted(false);
-          }, 4500); // Set this slightly before the UI transition to ensure smooth flow
         }, 0);
       }
     }
