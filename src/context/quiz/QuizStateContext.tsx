@@ -11,8 +11,8 @@ interface QuizStateContextType {
   leaderboard: Team[];
   gameStarted: boolean;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
-  roundStarted: boolean;
-  setRoundStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  quizStarted: boolean;
+  setQuizStarted: React.Dispatch<React.SetStateAction<boolean>>;
   currentQuestionIndex: number;
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
   teamsProgress: TeamProgress[];
@@ -38,7 +38,7 @@ export const QuizStateProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [teams, setTeams] = useState<Team[]>([]);
   const [leaderboard, setLeaderboard] = useState<Team[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
-  const [roundStarted, setRoundStarted] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false); // changed from roundStarted to quizStarted
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [teamsProgress, setTeamsProgress] = useState<TeamProgress[]>([]);
   const [countdown, setCountdown] = useState(3);
@@ -79,8 +79,8 @@ export const QuizStateProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     leaderboard,
     gameStarted,
     setGameStarted,
-    roundStarted,
-    setRoundStarted,
+    quizStarted,
+    setQuizStarted,
     currentQuestionIndex,
     setCurrentQuestionIndex,
     teamsProgress,

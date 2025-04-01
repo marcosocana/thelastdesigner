@@ -1,4 +1,3 @@
-
 import { Team, Question } from "@/types";
 import { questions, getQuestionsByRound } from "@/data/questions";
 
@@ -57,14 +56,13 @@ export const updateTeamAfterAnswer = (
   // Calculate total score
   const totalScore = updatedRoundScores.reduce((total, rs) => total + rs.score, 0);
   
-  // Check if round is completed
-  const roundQuestions = getQuestionsByRound(round);
-  const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
-  
-  // Update completed rounds if round is completed
+  // Track completed rounds (just for keeping theme progress)
   let updatedCompletedRounds = [...team.completedRounds];
-  if (isRoundCompleted && !updatedCompletedRounds.includes(round)) {
-    updatedCompletedRounds.push(round);
+  const currentRound = Math.floor(currentQuestionIndex / 10) + 1;
+  const isLastInThemeGroup = (currentQuestionIndex + 1) % 10 === 0;
+  
+  if (isLastInThemeGroup && !updatedCompletedRounds.includes(currentRound)) {
+    updatedCompletedRounds.push(currentRound);
   }
   
   const updatedTeam = {
@@ -72,7 +70,7 @@ export const updateTeamAfterAnswer = (
     roundScores: updatedRoundScores,
     totalScore,
     completedRounds: updatedCompletedRounds,
-    currentRound: isRoundCompleted ? round + 1 : round
+    currentRound: Math.floor((currentQuestionIndex + 1) / 10) + 1
   };
   
   return { isCorrect, updatedTeam };

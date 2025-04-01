@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useRef } from "react";
 import { Question, Team, TeamProgress, RoundScore } from "@/types";
 import { v4 as uuidv4 } from "uuid";
-import { getQuestionsByRound } from "@/data/questions";
+import { getQuestionsByRound, questions } from "@/data/questions";
 import { saveQuizResult } from "@/services/quizResultsService";
 import { useQuizState } from "./QuizStateContext";
 import { updateTeamAfterAnswer } from "./quizUtils";
@@ -10,11 +10,12 @@ import { updateTeamAfterAnswer } from "./quizUtils";
 interface QuizActionsContextType {
   createTeam: (name: string, memberNames: string[], logo: string | null) => void;
   submitAnswer: (questionId: number, answerIndex: number, answerTime: number) => boolean;
-  getCurrentRoundQuestions: () => Question[];
+  getCurrentQuestions: () => Question[];
   getRoundProgress: (round: number) => { correct: number; total: number; percentage: number };
   startGame: () => boolean;
-  startRound: () => boolean;
+  startQuiz: () => boolean;
   setNextQuestion: () => void;
+  getCurrentTheme: () => { name: string; textColor: string };
 }
 
 const QuizActionsContext = createContext<QuizActionsContextType | undefined>(undefined);
@@ -34,7 +35,7 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     teams,
     setTeams,
     setGameStarted,
-    setRoundStarted,
+    setQuizStarted,
     currentQuestionIndex,
     setCurrentQuestionIndex,
     teamsProgress,
@@ -52,7 +53,7 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
       name,
       logo,
       members: memberNames.map(name => ({ id: uuidv4(), name })),
-      currentRound: 1,
+      currentRound: 1, // Keep for theme tracking
       completedRounds: [],
       roundScores: [],
       totalScore: 0
@@ -72,7 +73,7 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return true;
   };
 
-  const startRound = (): boolean => {
+  const startQuiz = (): boolean => {
     if (!currentTeam) {
       return false;
     }
@@ -86,7 +87,7 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
         if (prev <= 1) {
           clearInterval(countdownInterval);
           setShowCountdown(false);
-          setRoundStarted(true);
+          setQuizStarted(true);
           setCurrentQuestionIndex(0);
           return 0;
         }
@@ -156,15 +157,12 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
         prevTeams.map(team => team.id === currentTeam.id ? updatedTeam : team)
       );
       
-      // If it's the last question of the round, end round
-      const roundQuestions = getQuestionsByRound(currentTeam.currentRound);
-      const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
-      
-      if (isRoundCompleted) {
+      // If all 100 questions are answered, end quiz
+      if (currentQuestionIndex >= questions.length - 1) {
         // Use setTimeout to ensure this happens outside of the render cycle
         setTimeout(() => {
-          setRoundStarted(false);
-          // Save quiz result after each completed round
+          setQuizStarted(false);
+          // Save quiz result
           saveQuizResult(updatedTeam);
         }, 0);
       }
@@ -173,9 +171,27 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return isCorrect;
   };
 
-  const getCurrentRoundQuestions = (): Question[] => {
-    if (!currentTeam) return [];
-    return getQuestionsByRound(currentTeam.currentRound);
+  const getCurrentQuestions = (): Question[] => {
+    return questions; // Return all questions
+  };
+
+  const getCurrentTheme = () => {
+    // Calculate current theme based on questionIndex
+    const roundThemes = [
+      { name: "Fundamentos de UX", textColor: "text-blue-700" },
+      { name: "UI y Diseño Visual", textColor: "text-purple-700" },
+      { name: "Design Systems", textColor: "text-green-700" },
+      { name: "Research y Data-Driven Design", textColor: "text-yellow-600" },
+      { name: "UX Writing & Microcopy", textColor: "text-pink-700" },
+      { name: "Mobile UX y Responsive Design", textColor: "text-red-700" },
+      { name: "Prototipado y Herramientas", textColor: "text-indigo-700" },
+      { name: "Diseño Inclusivo y Accesibilidad", textColor: "text-teal-700" },
+      { name: "Heurísticas y Evaluación UX", textColor: "text-orange-700" },
+      { name: "Negocio y Estrategia de Producto", textColor: "text-cyan-700" }
+    ];
+    
+    const themeIndex = Math.floor(currentQuestionIndex / 10);
+    return themeIndex < roundThemes.length ? roundThemes[themeIndex] : roundThemes[0];
   };
 
   const getRoundProgress = (round: number) => {
@@ -194,11 +210,12 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const value = {
     createTeam,
     submitAnswer,
-    getCurrentRoundQuestions,
+    getCurrentQuestions,
     getRoundProgress,
     startGame,
-    startRound,
-    setNextQuestion
+    startQuiz,
+    setNextQuestion,
+    getCurrentTheme
   };
 
   return <QuizActionsContext.Provider value={value}>{children}</QuizActionsContext.Provider>;
