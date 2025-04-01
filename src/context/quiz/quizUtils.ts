@@ -2,6 +2,9 @@
 import { Team, Question } from "@/types";
 import { questions, getQuestionsByRound } from "@/data/questions";
 
+// Maximum time to answer (in seconds)
+const MAX_QUESTION_TIME = 20;
+
 export const calculateScore = (
   isCorrect: boolean, 
   answerTime: number
@@ -9,7 +12,7 @@ export const calculateScore = (
   // Maximum score is 100 points per question
   // Faster answers get more points, up to 100 points for correct answers
   const maxScorePerQuestion = 100;
-  const timeBonus = Math.max(0, 1 - (answerTime / 10)); // 0-1 range, faster is better
+  const timeBonus = Math.max(0, 1 - (answerTime / MAX_QUESTION_TIME)); // 0-1 range, faster is better
   return isCorrect ? Math.round(maxScorePerQuestion * timeBonus) : 0;
 };
 

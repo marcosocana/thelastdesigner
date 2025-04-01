@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
@@ -20,17 +21,20 @@ const roundThemes = [
 ];
 
 const encouragementMessages = [
-  "¡Sigue así! Estás a una respuesta correcta de que te llamen ‘Senior Visionary Designer’ en LinkedIn.",
+  "¡Sigue así! Estás a una respuesta correcta de que te llamen 'Senior Visionary Designer' en LinkedIn.",
   "Cada respuesta correcta es un píxel más en el gran diseño de la humanidad. ¡No dejes espacios en blanco!",
-  "¡Máquina, fiera, figura! Si sigues así, los clientes van a dejar de pedirte ‘algo tipo Apple’.",
+  "¡Máquina, fiera, figura! Si sigues así, los clientes van a dejar de pedirte 'algo tipo Apple'.",
   "Estás demostrando que la IA jamás podrá diseñar con flow. ¡Sigue adelante!",
   "Estás a un par de respuestas correctas de que tu madre entienda qué es lo que haces en el trabajo.",
-  "¡Cuidado! Si sigues respondiendo así de bien, te van a pedir ‘un diseño rapidito’ en la oficina.",
+  "¡Cuidado! Si sigues respondiendo así de bien, te van a pedir 'un diseño rapidito' en la oficina.",
   "Vas más fuerte que una mascletà en fallas. ¡Sigue así!",
   "¡No te detengas! La IA no podrá robarte el puesto si demuestras que el diseño es más que pintar pantallitas.",
   "Ere un crá. ¿Un piquito?",
   "¡Wow! Si sigues así, vas a hacer que los clientes dejen de pedir el logo más grande."
 ];
+
+// Updated max time constant
+const MAX_QUESTION_TIME = 20;
 
 const QuizGame = () => {
   const { 
@@ -51,7 +55,7 @@ const QuizGame = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [roundCompleted, setRoundCompleted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(MAX_QUESTION_TIME);
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [allRoundsCompleted, setAllRoundsCompleted] = useState(false);
@@ -59,6 +63,7 @@ const QuizGame = () => {
   const questions = getCurrentRoundQuestions();
   const currentQuestion: Question | undefined = questions[currentQuestionIndex];
   const progress = currentTeam ? getRoundProgress(currentTeam.currentRound) : { correct: 0, total: 0, percentage: 0 };
+  const isLastQuestion = currentQuestionIndex === questions.length - 1;
   
   const getCurrentRoundTheme = () => {
     if (!currentTeam) return { name: roundThemes[0].name, textColor: roundThemes[0].textColor };
@@ -87,7 +92,7 @@ const QuizGame = () => {
   
   useEffect(() => {
     if (roundStarted && currentQuestion) {
-      setTimeLeft(10);
+      setTimeLeft(MAX_QUESTION_TIME);
       setShowFeedback(false);
       setStartTime(Date.now());
     }
@@ -114,20 +119,23 @@ const QuizGame = () => {
   
   const handleTimeUp = () => {
     if (currentQuestion) {
-      const elapsedTime = 10; // Max time
+      const elapsedTime = MAX_QUESTION_TIME; // Max time
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
       setIsCorrect(false);
       setShowFeedback(true);
       
-      setTimeout(() => {
-        if (currentQuestionIndex < questions.length - 1) {
-          setNextQuestion();
-        } else {
+      // If it's the last question, wait a bit longer (5 seconds) before completing the round
+      if (isLastQuestion) {
+        setTimeout(() => {
           setRoundCompleted(true);
-        }
-      }, 3000);
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          setNextQuestion();
+        }, 3000);
+      }
     }
   };
   
@@ -136,20 +144,23 @@ const QuizGame = () => {
     
     // Auto-submit the answer when option is selected
     if (currentQuestion) {
-      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, MAX_QUESTION_TIME);
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
       setIsCorrect(result);
       setShowFeedback(true);
       
-      setTimeout(() => {
-        if (currentQuestionIndex < questions.length - 1) {
-          setNextQuestion();
-        } else {
+      // If it's the last question, wait 5 seconds before completing the round
+      if (isLastQuestion) {
+        setTimeout(() => {
           setRoundCompleted(true);
-        }
-      }, 3000);
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          setNextQuestion();
+        }, 3000);
+      }
     }
   };
   
@@ -336,7 +347,7 @@ const QuizGame = () => {
             </span>
           </div>
           <Progress 
-            value={(timeLeft / 10) * 100} 
+            value={(timeLeft / MAX_QUESTION_TIME) * 100} 
             className="h-3 brutalist-border" 
           />
         </div>
@@ -385,6 +396,11 @@ const QuizGame = () => {
             <p className="mt-2 text-sm flex items-center text-black">
               <Timer className="h-4 w-4 mr-1" /> Tiempo: {answerTime.toFixed(2)}s
             </p>
+            {isLastQuestion && (
+              <p className="mt-2 text-sm font-bold animate-pulse text-black">
+                Finalizando round en unos segundos...
+              </p>
+            )}
           </div>
         )}
       </div>
