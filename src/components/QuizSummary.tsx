@@ -106,13 +106,14 @@ const QuizSummary = () => {
           </div>
           
           <div className="brutalist-border p-4 bg-white mb-6">
-            <h4 className="font-bold mb-4">Desglose por Temas</h4>
+            <h4 className="font-bold mb-4">Desglose por Rounds</h4>
             
             <div className="responsive-table overflow-x-auto">
               <table className="w-full brutalist-border">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="brutalist-border p-2 text-center">Tema</th>
+                    <th className="brutalist-border p-2 text-center">R</th>
+                    <th className="brutalist-border p-2 text-center">Temática</th>
                     <th className="brutalist-border p-2 text-center">Pts</th>
                     <th className="brutalist-border p-2 text-center">Corr</th>
                     <th className="brutalist-border p-2 text-center">Tiempo</th>
@@ -124,6 +125,7 @@ const QuizSummary = () => {
                     const roundTheme = getRoundTheme(round);
                     return (
                       <tr key={round} className={round % 2 === 0 ? "bg-white" : "bg-brutalist-100"}>
+                        <td className="brutalist-border p-2 text-center font-bold">{round}</td>
                         <td className="brutalist-border p-2 text-left responsive-text">{roundTheme}</td>
                         <td className="brutalist-border p-2 text-center">
                           {roundScore ? roundScore.score : "-"}

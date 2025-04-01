@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Button } from "@/components/ui/button";
 
@@ -12,19 +12,20 @@ const TeamCreation = () => {
   const [step, setStep] = useState(1);
   
   const handleMemberCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value);
-    
-    // Only update if it's a valid number and within allowed range
-    if (!isNaN(value) && value > 0 && value <= 10) {
+    const value = e.target.value;
+    const count = value === "" ? "" : parseInt(value);
+
+    // Verifica si es un número válido y dentro del rango permitido
+    if (count === "" || (count > 0 && count <= 10)) {
       setMemberCount(value);
-      
-      // Update member names array length
-      if (value > memberNames.length) {
-        // Add empty names if count increased
-        setMemberNames([...memberNames, ...Array(value - memberNames.length).fill("")]);
+
+      // Actualiza la longitud de la lista de nombres de miembros
+      if (count > memberNames.length) {
+        // Agrega nombres vacíos si se incrementa el número de miembros
+        setMemberNames([...memberNames, ...Array(count - memberNames.length).fill("")]);
       } else {
-        // Remove extra names if count decreased
-        setMemberNames(memberNames.slice(0, value));
+        // Elimina nombres adicionales si se reduce el número de miembros
+        setMemberNames(memberNames.slice(0, count));
       }
     }
   };
@@ -116,7 +117,7 @@ const TeamCreation = () => {
               
               <button
                 type="submit"
-                className={brutalist-btn w-full ${!isStepOneValid ? 'opacity-50 cursor-not-allowed' : ''}}
+                className={`brutalist-btn w-full ${!isStepOneValid ? 'opacity-50 cursor-not-allowed' : ''}`}
                 disabled={!isStepOneValid}
               >
                 Siguiente
@@ -145,7 +146,7 @@ const TeamCreation = () => {
                       value={name}
                       onChange={(e) => handleMemberNameChange(index, e.target.value)}
                       className="brutalist-input"
-                      placeholder={Nombre del Miembro ${index + 1}}
+                      placeholder={`Nombre del Miembro ${index + 1}`}
                       required
                     />
                   </div>
@@ -162,7 +163,7 @@ const TeamCreation = () => {
                 </button>
                 <button
                   type="submit"
-                  className={brutalist-btn flex-1 ${!isStepTwoValid ? 'opacity-50 cursor-not-allowed' : ''}}
+                  className={`brutalist-btn flex-1 ${!isStepTwoValid ? 'opacity-50 cursor-not-allowed' : ''}`}
                   disabled={!isStepTwoValid}
                 >
                   Crear Equipo

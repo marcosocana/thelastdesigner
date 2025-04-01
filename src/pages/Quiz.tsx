@@ -15,7 +15,7 @@ const Quiz = () => {
   } = useQuiz();
   const isMobile = useIsMobile();
 
-  // Check if we're showing the final summary (completed all questions)
+  // Check if we're showing the final summary (current round > 10)
   const showingSummary = currentTeam && currentTeam.currentRound > 10;
   
   return (

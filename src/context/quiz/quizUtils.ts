@@ -1,8 +1,6 @@
+
 import { Team, Question } from "@/types";
 import { questions, getQuestionsByRound } from "@/data/questions";
-
-// Maximum time to answer (in seconds)
-const MAX_QUESTION_TIME = 20;
 
 export const calculateScore = (
   isCorrect: boolean, 
@@ -11,7 +9,7 @@ export const calculateScore = (
   // Maximum score is 100 points per question
   // Faster answers get more points, up to 100 points for correct answers
   const maxScorePerQuestion = 100;
-  const timeBonus = Math.max(0, 1 - (answerTime / MAX_QUESTION_TIME)); // 0-1 range, faster is better
+  const timeBonus = Math.max(0, 1 - (answerTime / 10)); // 0-1 range, faster is better
   return isCorrect ? Math.round(maxScorePerQuestion * timeBonus) : 0;
 };
 
@@ -56,13 +54,14 @@ export const updateTeamAfterAnswer = (
   // Calculate total score
   const totalScore = updatedRoundScores.reduce((total, rs) => total + rs.score, 0);
   
-  // Track completed rounds (just for keeping theme progress)
-  let updatedCompletedRounds = [...team.completedRounds];
-  const currentRound = Math.floor(currentQuestionIndex / 10) + 1;
-  const isLastInThemeGroup = (currentQuestionIndex + 1) % 10 === 0;
+  // Check if round is completed
+  const roundQuestions = getQuestionsByRound(round);
+  const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
   
-  if (isLastInThemeGroup && !updatedCompletedRounds.includes(currentRound)) {
-    updatedCompletedRounds.push(currentRound);
+  // Update completed rounds if round is completed
+  let updatedCompletedRounds = [...team.completedRounds];
+  if (isRoundCompleted && !updatedCompletedRounds.includes(round)) {
+    updatedCompletedRounds.push(round);
   }
   
   const updatedTeam = {
@@ -70,7 +69,7 @@ export const updateTeamAfterAnswer = (
     roundScores: updatedRoundScores,
     totalScore,
     completedRounds: updatedCompletedRounds,
-    currentRound: Math.floor((currentQuestionIndex + 1) / 10) + 1
+    currentRound: isRoundCompleted ? round + 1 : round
   };
   
   return { isCorrect, updatedTeam };
