@@ -7,10 +7,13 @@ const Introduction = () => {
         
         <div className="mx-auto max-w-2xl">
          <div className="brutalist-wireframe mb-8 p-6">
-  <p className="text-lg mb-6">Año 2077.</p>
+  {/* Imagen SVG después del texto */}
+  <img src="/APP.svg" alt="The Last Designer" className="mt-6 w-1600 mx-auto" />
+           
+           <p className="text-lg mb-6">Año 2077.</p>
 
   <p className="mb-4">
-    La IA lo ha arrasado todo. Las interfaces son frías, carentes de alma. Son réplicas unas de otras. La creatividad ha sido sustituida por patrones genéricos y decisiones automatizadas. La humanidad ha olvidado lo que es el buen diseño… excepto una persona.
+    La IA lo ha arrasado todo. Las interfaces ahora son frías, carentes de alma. Son réplicas unas de otras. La creatividad ha sido sustituida por patrones genéricos y decisiones automatizadas. La humanidad ha olvidado lo que es el buen diseño… excepto una persona.
   </p>
 
   <p className="mb-4 font-bold">Tú.</p>
@@ -19,12 +22,11 @@ const Introduction = () => {
     Eres el último diseñador. La única esperanza para restaurar la esencia del diseño en un mundo dominado por lo artificial. Pero demostrar tu valía no será fácil: 10 rondas, 100 preguntas, un solo destino.
   </p>
 
-  <p className="mb-4">Si fallas, el diseño morirá para siempre. Si triunfas, tendremos esperanza.</p>
+  <p className="mb-4">Si fallas, el diseño morirá para siempre. Si triunfas, aún tendremos esperanza.</p>
 
   <p className="font-bold mt-6 text-base">¿Estás listo para el desafío?</p>
 
-  {/* Imagen SVG después del texto */}
-  <img src="/APP.svg" alt="The Last Designer" className="mt-6 w-1600 mx-auto" />
+ 
         </div>
           
           <h2 className="text-2xl font-bold mb-4 uppercase">REGLAS</h2>
