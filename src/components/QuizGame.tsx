@@ -127,7 +127,7 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
-      }, 3000);
+      }, 5000);
     } else {
       const elapsedTime = 10; // Max time
       setAnswerTime(elapsedTime);
@@ -136,7 +136,7 @@ const QuizGame = () => {
         const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
         setIsCorrect(false);
         setRoundCompleted(true);
-      }, 3000);
+      }, 5000);
     }
   };
   
@@ -158,7 +158,7 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
-      }, 3000);
+      }, 5000);
     } else {
       const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
       setAnswerTime(elapsedTime);
@@ -167,7 +167,7 @@ const QuizGame = () => {
         const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
         setIsCorrect(result);
         setRoundCompleted(true);
-      }, 3000);
+      }, 5000);
     }
   };
   
