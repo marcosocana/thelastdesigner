@@ -4,7 +4,7 @@ const Introduction = () => {
   return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
         <h1 className="brutalist-title mb-8 text-center text-4xl">Bienvenidx,</h1>
-          <p className="mb-4 text-center text-4xl">te estábamos esperando.</p>
+          <p className="mb-4 text-center text-2xl">te estábamos esperando.</p>
         
         <div className="mx-auto max-w-2xl">
          <div className="brutalist-wireframe mb-8 p-6">
