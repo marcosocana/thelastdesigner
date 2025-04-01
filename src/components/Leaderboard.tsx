@@ -59,8 +59,8 @@ const Leaderboard = () => {
           </div>
         )}
         
-        {/* Single "Terminar juego" button with consistent styling - only shown when game started */}
-        {gameStarted && currentTeam && currentTeam.currentRound > 1 && 
+        {/* Show "Terminar juego" button as long as game has started */}
+        {gameStarted && currentTeam && 
           <Button 
             onClick={handleFinishGame}
             className="w-full mt-4 flex items-center justify-center gap-2 bg-gray-100 text-black brutalist-border hover:bg-gray-200"
