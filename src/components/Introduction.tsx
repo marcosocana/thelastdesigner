@@ -41,7 +41,7 @@ const Introduction = () => {
             </ul>
           </div>
           
-          <Link to="/quiz" className="text-2xl font-bold mb-6 uppercase">¡SALVAR AL MUNDO!</Link>
+          <Link to="/quiz" className="brutalist-btn block text-center uppercase mt-8">¡SALVAR AL MUNDO!</Link>
         </div>
       </div>
     </div>;
