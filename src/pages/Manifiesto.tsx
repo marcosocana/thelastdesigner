@@ -7,7 +7,15 @@ const Manifiesto = () => {
           <h1 className="brutalist-title mb-8 text-5xl">MANIFIESTO</h1>
           
           <div className="prose max-w-none">
-            <p className="mb-4">El diseño no es solo una tarea técnica. No es un conjunto de patrones predefinidos ni un conjunto de restricciones a seguir. El diseño es libertad.</p>
+            <p className="mb-4">El diseño es mucho más que técnica. Es la libertad de imaginar, de explorar sin límites y de transformar lo cotidiano en algo extraordinario.
+
+Sin embargo, hoy estamos rodeados de patrones y algoritmos que nos dicen cómo deben verse las cosas, cómo deben sentirse, cómo deben funcionar. Se impone una lógica que prioriza la eficiencia sobre la creatividad, la repetición sobre la originalidad. Pero el diseño no debería ser una simple ejecución de reglas.
+
+El verdadero diseño nace de la experimentación, del riesgo y de la decisión consciente de romper normas cuando es necesario. Cada avance en el diseño ha surgido gracias a quienes se atrevieron a desafiar lo establecido, a quienes vieron más allá de lo convencional.
+
+El diseño no solo resuelve problemas; también emociona, cuestiona y transforma. No puede reducirse a fórmulas ni depender únicamente de herramientas automatizadas. La tecnología es una aliada, pero nunca debe reemplazar la visión del diseñador.
+
+El futuro del diseño depende de nuestra capacidad para defender su libertad. Para explorar, para equivocarnos, para crear lo inesperado. Porque sin libertad, el diseño se vuelve predecible. Pero con ella, el diseño cambia el mundo.</p>
              <p className="mb-4">Es la libertad de imaginar sin barreras, de crear sin límites, de transformar lo ordinario en extraordinario. Es el espacio donde las ideas fluyen, donde lo abstracto se convierte en tangible, donde lo imposible se hace posible. El diseño es, por encima de todo, una expresión única de libertad creativa.</p>
              <p className="mb-4">Sin embargo, vivimos en un mundo donde la tecnología, la automatización y los algoritmos cada vez más nos dicen cómo deben lucir las cosas, cómo deben sentirse, cómo deben funcionar. Nos dicen qué es "correcto", qué es "moderno", qué es "eficaz". La creatividad se ve constantemente atrapada entre las restricciones de las máquinas, la repetición de las mismas soluciones y la uniformidad de los resultados.</p>
           <p className="mb-4">Este control sobre el diseño no es solo una limitación. Es una amenaza. El diseño, en su forma más pura, no debe estar encadenado por reglas impuestas ni por herramientas que nos reduzcan a simples ejecutores. El diseño debe ser libre.</p>
