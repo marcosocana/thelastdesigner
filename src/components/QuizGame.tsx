@@ -114,7 +114,7 @@ const QuizGame = () => {
   
   const handleTimeUp = () => {
     if (currentQuestion && currentQuestionIndex < questions.length - 1) {
-      const elapsedTime = 10; // Max time
+      const elapsedTime = 20; // Max time
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
@@ -129,7 +129,7 @@ const QuizGame = () => {
         }
       }, 5000);
     } else {
-      const elapsedTime = 10; // Max time
+      const elapsedTime = 20; // Max time
       setAnswerTime(elapsedTime);
       setShowFeedback(true);
       setTimeout(() => {
