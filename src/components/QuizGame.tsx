@@ -125,16 +125,15 @@ const QuizGame = () => {
       setIsCorrect(false);
       setShowFeedback(true);
       
-      // If it's the last question, wait a bit longer (5 seconds) before completing the round
-      if (isLastQuestion) {
-        setTimeout(() => {
+      // Always wait 5 seconds to show feedback before taking the next action
+      setTimeout(() => {
+        // If it's the last question, complete the round
+        if (isLastQuestion) {
           setRoundCompleted(true);
-        }, 5000);
-      } else {
-        setTimeout(() => {
+        } else {
           setNextQuestion();
-        }, 3000);
-      }
+        }
+      }, 5000); // 5 seconds delay
     }
   };
   
@@ -150,16 +149,15 @@ const QuizGame = () => {
       setIsCorrect(result);
       setShowFeedback(true);
       
-      // If it's the last question, wait 5 seconds before completing the round
-      if (isLastQuestion) {
-        setTimeout(() => {
+      // Always wait 5 seconds to show feedback before taking the next action
+      setTimeout(() => {
+        // If it's the last question, complete the round
+        if (isLastQuestion) {
           setRoundCompleted(true);
-        }, 5000);
-      } else {
-        setTimeout(() => {
+        } else {
           setNextQuestion();
-        }, 3000);
-      }
+        }
+      }, 5000); // 5 seconds delay
     }
   };
   
@@ -318,6 +316,8 @@ const QuizGame = () => {
       </div>
     );
   }
+  
+  
   
   return (
     <div className="my-4 md:my-8 w-full">

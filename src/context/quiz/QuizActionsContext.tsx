@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useRef } from "react";
 import { Question, Team, TeamProgress, RoundScore } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 import { getQuestionsByRound } from "@/data/questions";
@@ -43,6 +43,9 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setCountdown
   } = useQuizState();
 
+  // Use refs to track state updates we'll need to batch
+  const pendingTeamsProgressUpdate = useRef<TeamProgress[] | null>(null);
+  
   const createTeam = (name: string, memberNames: string[], logo: string | null) => {
     const newTeam: Team = {
       id: uuidv4(),
@@ -128,7 +131,8 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     if (updatedTeam) {
       setCurrentTeam(updatedTeam);
       
-      const updatedProgress = teamsProgress.map(progress => 
+      // Store updates in ref to avoid state updates during render
+      pendingTeamsProgressUpdate.current = teamsProgress.map(progress => 
         progress.teamId === currentTeam.id
           ? { 
               ...progress, 
@@ -139,7 +143,13 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
           : progress
       );
       
-      setTeamsProgress(updatedProgress);
+      // Use setTimeout to apply updates after current render cycle
+      setTimeout(() => {
+        if (pendingTeamsProgressUpdate.current) {
+          setTeamsProgress(pendingTeamsProgressUpdate.current);
+          pendingTeamsProgressUpdate.current = null;
+        }
+      }, 0);
       
       // Update the team in the teams array
       setTeams(prevTeams => 
@@ -151,10 +161,12 @@ export const QuizActionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
       const isRoundCompleted = currentQuestionIndex >= roundQuestions.length - 1;
       
       if (isRoundCompleted) {
-        setRoundStarted(false);
-        
-        // Save quiz result after each completed round
-        saveQuizResult(updatedTeam);
+        // Use setTimeout to ensure this happens outside of the render cycle
+        setTimeout(() => {
+          setRoundStarted(false);
+          // Save quiz result after each completed round
+          saveQuizResult(updatedTeam);
+        }, 0);
       }
     }
     
