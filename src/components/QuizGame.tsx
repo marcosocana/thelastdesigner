@@ -113,7 +113,7 @@ const QuizGame = () => {
   }, [currentTeam]);
   
   const handleTimeUp = () => {
-    if (currentQuestion) {
+    if (currentQuestion && currentQuestionIndex < questions.length - 1) {
       const elapsedTime = 10; // Max time
       setAnswerTime(elapsedTime);
       
@@ -128,6 +128,15 @@ const QuizGame = () => {
           setRoundCompleted(true);
         }
       }, 3000);
+    } else {
+      const elapsedTime = 10; // Max time
+      setAnswerTime(elapsedTime);
+      setShowFeedback(true);
+      setTimeout(() => {
+        const result = submitAnswer(currentQuestion.id, -1, elapsedTime);
+        setIsCorrect(false);
+        setRoundCompleted(true);
+      }, 3000);
     }
   };
   
@@ -135,7 +144,7 @@ const QuizGame = () => {
     if (showFeedback) return;
     
     // Auto-submit the answer when option is selected
-    if (currentQuestion) {
+    if (currentQuestion && currentQuestionIndex < questions.length - 1) {
       const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
       setAnswerTime(elapsedTime);
       
@@ -149,6 +158,15 @@ const QuizGame = () => {
         } else {
           setRoundCompleted(true);
         }
+      }, 3000);
+    } else {
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+      setAnswerTime(elapsedTime);
+      setShowFeedback(true);
+      setTimeout(() => {
+        const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
+        setIsCorrect(result);
+        setRoundCompleted(true);
       }, 3000);
     }
   };
