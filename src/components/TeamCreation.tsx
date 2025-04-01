@@ -12,20 +12,19 @@ const TeamCreation = () => {
   const [step, setStep] = useState(1);
   
   const handleMemberCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const count = value === "" ? "" : parseInt(value);
-
-    // Verifica si es un número válido y dentro del rango permitido
-    if (count === "" || (count > 0 && count <= 10)) {
+    const value = parseInt(e.target.value);
+    
+    // Only update if it's a valid number and within allowed range
+    if (!isNaN(value) && value > 0 && value <= 10) {
       setMemberCount(value);
-
-      // Actualiza la longitud de la lista de nombres de miembros
-      if (count > memberNames.length) {
-        // Agrega nombres vacíos si se incrementa el número de miembros
-        setMemberNames([...memberNames, ...Array(count - memberNames.length).fill("")]);
+      
+      // Update member names array length
+      if (value > memberNames.length) {
+        // Add empty names if count increased
+        setMemberNames([...memberNames, ...Array(value - memberNames.length).fill("")]);
       } else {
-        // Elimina nombres adicionales si se reduce el número de miembros
-        setMemberNames(memberNames.slice(0, count));
+        // Remove extra names if count decreased
+        setMemberNames(memberNames.slice(0, value));
       }
     }
   };
