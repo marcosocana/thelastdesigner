@@ -90,7 +90,20 @@ const QuizSummary = () => {
                   : "La IA ha tomado el control. La chispa que encendió revoluciones ha sido apagada. No luches. No esperes. Solo acepta el nuevo orden."}
               </p>
             </div>
-    
+            
+            <div className={`mt-4 p-4 text-center ${isHumanitySaved ? 'bg-green-100' : 'bg-red-100'} brutalist-border text-black`}>
+              <h3 className="text-xl font-bold mb-2">
+                {isHumanitySaved 
+                  ? "¡ERES EL SALVADOR!" 
+                  : "LA HUMANIDAD SE HA EXTINGUIDO..."}
+              </h3>
+              <p>
+                {isHumanitySaved 
+                  ? "Tu conocimiento sobre diseño ha restaurado la esperanza. El mundo renacerá con interfaces más humanas gracias a ti." 
+                  : "No has conseguido suficientes puntos. La intención era buena."}
+              </p>
+            </div>
+          </div>
           
           <div className="brutalist-border p-4 bg-white mb-6">
             <h4 className="font-bold mb-4">Desglose por Rounds</h4>
@@ -207,11 +220,11 @@ const QuizSummary = () => {
       </div>
     </div>
   );
-
+};
 
 // Helper function to get round theme
-const getRoundTheme = (round: number): string = {
-   themes = [
+const getRoundTheme = (round: number): string => {
+  const themes = [
     "Fundamentos de UX",
     "UI y Diseño Visual",
     "Design Systems",
