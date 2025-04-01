@@ -51,7 +51,7 @@ const QuizGame = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [roundCompleted, setRoundCompleted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
   const [answerTime, setAnswerTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [allRoundsCompleted, setAllRoundsCompleted] = useState(false);
@@ -87,7 +87,7 @@ const QuizGame = () => {
   
   useEffect(() => {
     if (roundStarted && currentQuestion) {
-      setTimeLeft(10);
+      setTimeLeft(20);
       setShowFeedback(false);
       setStartTime(Date.now());
     }
@@ -145,7 +145,7 @@ const QuizGame = () => {
     
     // Auto-submit the answer when option is selected
     if (currentQuestion && currentQuestionIndex < questions.length - 1) {
-      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 20);
       setAnswerTime(elapsedTime);
       
       const result = submitAnswer(currentQuestion.id, optionIndex, elapsedTime);
@@ -160,7 +160,7 @@ const QuizGame = () => {
         }
       }, 5000);
     } else {
-      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 10);
+      const elapsedTime = Math.min((Date.now() - startTime) / 1000, 20);
       setAnswerTime(elapsedTime);
       setShowFeedback(true);
       setTimeout(() => {
@@ -354,7 +354,7 @@ const QuizGame = () => {
             </span>
           </div>
           <Progress 
-            value={(timeLeft / 10) * 100} 
+            value={(timeLeft / 20) * 100} 
             className="h-3 brutalist-border" 
           />
         </div>
