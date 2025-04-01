@@ -207,11 +207,11 @@ const QuizSummary = () => {
       </div>
     </div>
   );
-};
+
 
 // Helper function to get round theme
-const getRoundTheme = (round: number): string => {
-  const themes = [
+const getRoundTheme = (round: number): string = {
+   themes = [
     "Fundamentos de UX",
     "UI y Diseño Visual",
     "Design Systems",
