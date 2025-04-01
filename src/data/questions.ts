@@ -8,12 +8,12 @@ export const questions: Question[] = [
     round: 1,
     text: "¿Qué significa UX?",
     options: [
-      "User Experience", 
+      "Ultra Extraction", 
       "User Examination", 
       "User Extension", 
-      "User Extraction"
+      "User Experience"
     ],
-    correctAnswer: 0
+    correctAnswer: 3
   },
   {
     id: 2,
@@ -45,9 +45,9 @@ export const questions: Question[] = [
     text: "¿Qué es un wireframe?",
     options: [
       "Un archivo de imagen de alta resolución", 
-      "Una animación en 3D con mucho detalle", 
-      "Un esquema visual de bajo nivel de una interfaz", 
-      "Un componente de JavaScript de alta fidelidad"
+      "Una animación en 3D moderna y con muchos colores", 
+      "Un boceto visual en blanco y negro de una interfaz", 
+      "Un componente de JavaScript con código de alta fidelidad"
     ],
     correctAnswer: 2
   },
@@ -56,12 +56,12 @@ export const questions: Question[] = [
     round: 1,
     text: "¿Qué es la 'arquitectura de información'?",
     options: [
-      "El diseño de edificios para oficinas", 
-      "La organización y estructura del contenido de una interfaz", 
+      "El diseño de edificios para oficinas de empresas", 
+      "El diseño del departamento de TI de una empresa", 
       "La infraestructura tecnológica de un sitio web", 
-      "El diseño del departamento de TI de una empresa"
+      "La organización y estructura del contenido de una interfaz"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 6,
@@ -82,10 +82,10 @@ export const questions: Question[] = [
     options: [
       "Un viaje organizado para usuarios de un producto digital", 
       "La documentación técnica para usuarios nuevos de un producto", 
-      "Una historia de ficción sobre el PO de un producto", 
-      "El recorrido y experiencia de un usuario al usar un producto"
+      "El recorrido y experiencia de un usuario al usar un producto", 
+      "Una historia de ficción sobre el Product Owner de un producto"
     ],
-    correctAnswer: 3
+    correctAnswer: 2
   },
   {
     id: 8,
@@ -105,9 +105,9 @@ export const questions: Question[] = [
     text: "¿Qué es una 'Persona' en UX?",
     options: [
       "El desarrollador principal de un producto", 
-      "El perfil arquetípico de un usuario ideal", 
+      "El perfil arquetípico de un usuario objetivo", 
       "Un avatar digital que representa al diseñador", 
-      "Un cliente importante de una empresa"
+      "Un cliente importante para una empresa de RRHH"
     ],
     correctAnswer: 1
   },
@@ -116,12 +116,12 @@ export const questions: Question[] = [
     round: 1,
     text: "¿Cuál de estos es un principio fundamental de la UX?",
     options: [
-      "Hacer que el usuario trabaje más para valorar el producto", 
-      "Diseñar para impresionar a otros diseñadores", 
       "Centrarse en las necesidades y objetivos del usuario", 
+      "Diseñar para impresionar a otros diseñadores", 
+      "Hacer que el usuario trabaje más para valorar el producto", 
       "Usar siempre las últimas tendencias en diseño"
     ],
-    correctAnswer: 2
+    correctAnswer: 0
   },
   
   // Round 2: UI y Diseño Visual
@@ -132,8 +132,8 @@ export const questions: Question[] = [
     options: [
       "Una herramienta física para mezclar pinturas", 
       "Un conjunto limitado de colores para un diseño", 
-      "Un software de diseño gráfico", 
-      "Un modelo matemático de colores"
+      "Un software especial para diseño gráfico", 
+      "Un modelo matemático de colores complementarios"
     ],
     correctAnswer: 1
   },
@@ -155,11 +155,11 @@ export const questions: Question[] = [
     text: "¿Qué es una fuente serif?",
     options: [
       "Una fuente sin adornos en los extremos de las letras", 
-      "Una fuente con adornos en los extremos de las letras", 
-      "Una fuente decorativa", 
-      "Una fuente monoespaciada"
+      "Una fuente monoespaciada especial para código", 
+      "Una fuente decorativa con muchos detalles", 
+      "Una fuente con adornos en los extremos de las letras"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 14,
@@ -181,7 +181,7 @@ export const questions: Question[] = [
       "La organización de elementos según su importancia", 
       "El orden cronológico de elementos en una página", 
       "El tamaño de los elementos en una interfaz", 
-      "La estructura técnica de un sitio web"
+      "La estructura técnica específica de un sitio web"
     ],
     correctAnswer: 0
   },
@@ -202,9 +202,9 @@ export const questions: Question[] = [
     round: 2,
     text: "¿Qué es una retícula (grid) en diseño UI?",
     options: [
-      "Un patrón decorativo para desarrolladores", 
+      "Un patrón decorativo para los desarrolladores más senior", 
       "Una estructura que ayuda a organizar los elementos en la página", 
-      "Un tipo de gráfico para Data Visualization", 
+      "Un tipo de gráfico para Data Visualization muy accesible", 
       "Un efecto visual de degradado 'to guapo'"
     ],
     correctAnswer: 1
@@ -212,14 +212,14 @@ export const questions: Question[] = [
   {
     id: 18,
     round: 2,
-    text: "¿Qué es el espacio en blanco en diseño?",
+    text: "¿Qué propiedad del color se refiere a su pureza o intensidad?",
     options: [
-      "El color de fondo blanco", 
-      "Un error de renderizado en la pantalla", 
-      "El espacio vacío intencional entre elementos", 
-      "Una técnica para resaltar texto importante"
+      "Brillo", 
+      "Contraste", 
+      "Matiz", 
+      "Saturación"
     ],
-    correctAnswer: 2
+    correctAnswer: 3
   },
   {
     id: 19,
@@ -252,10 +252,10 @@ export const questions: Question[] = [
     round: 3,
     text: "¿Qué es un Design System?",
     options: [
-      "Un software para diseñar interfaces", 
+      "Un software para diseñar interfaces de manera mucho más rápida", 
       "Un conjunto de patrones, componentes y principios para diseñar", 
-      "Un método de organización de archivos de diseño", 
-      "Un estilo visual específico creado por una empresa"
+      "Un método de organización de archivos de diseño en Figma", 
+      "Un estilo visual específico creado por una multinacional"
     ],
     correctAnswer: 1
   },
@@ -277,9 +277,9 @@ export const questions: Question[] = [
     text: "¿Qué son los 'tokens' en un Design System?",
     options: [
       "Valores reutilizables que representan elementos de diseño", 
-      "Monedas digitales para acceder al sistema", 
-      "Permisos de acceso para los desarrolladores", 
-      "Los iconos y logotipos de la marca"
+      "Monedas digitales para acceder a un sistema de diseño", 
+      "Permisos de acceso para los desarrolladores en Figma", 
+      "Los iconos y logotipos de la marca de un sistema de diseño"
     ],
     correctAnswer: 0
   },
@@ -288,12 +288,12 @@ export const questions: Question[] = [
     round: 3,
     text: "¿Qué es una 'biblioteca de componentes' en un Design System?",
     options: [
-      "Una colección física de libros sobre diseño", 
-      "Un repositorio de elementos de UI reutilizables", 
+      "Una colección física de libros sobre diseño de interacción", 
+      "El historial de versiones anteriores del sistema", 
       "Un conjunto de plantillas de documentos", 
-      "El historial de versiones anteriores del sistema"
+      "Un repositorio de elementos de UI reutilizables"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 25,
@@ -312,9 +312,9 @@ export const questions: Question[] = [
     round: 3,
     text: "¿Qué es un 'atomic design'?",
     options: [
-      "Un estilo minimalista de diseño", 
+      "Un estudio minimalista nórdico de diseño", 
       "Una metodología que construye interfaces", 
-      "Un software para crear animaciones", 
+      "Un software para crear animaciones en SVG", 
       "Un tipo de diseño inspirado en la física cuántica"
     ],
     correctAnswer: 1
@@ -324,12 +324,12 @@ export const questions: Question[] = [
     round: 3,
     text: "En Atomic Design, ¿cuáles son los niveles de componentes en orden correcto?",
     options: [
-      "Átomos, Moléculas, Organismos, Templates, Páginas", 
+      "Puntos, Líneas, Formas, Composiciones, Interfaces", 
       "Bits, Elementos, Componentes, Secciones, Páginas", 
       "Partículas, Elementos, Bloques, Secciones, Vistas", 
-      "Puntos, Líneas, Formas, Composiciones, Interfaces"
+      "Átomos, Moléculas, Organismos, Templates, Páginas"
     ],
-    correctAnswer: 0
+    correctAnswer: 3
   },
   {
     id: 28,
@@ -346,23 +346,23 @@ export const questions: Question[] = [
   {
     id: 29,
     round: 3,
-    text: "¿Qué es un 'living Design System'?",
+    text: "¿Qué problema soluciona un Design System dentro de una organización? ",
     options: [
-      "Un Design System con animaciones", 
-      "Un Design System que evoluciona y se actualiza constantemente", 
-      "Un Design System inspirado en la naturaleza", 
-      "Un Design System con elementos 3D"
+      "La falta de creatividad en los diseñadores UX/UI", 
+      "La incoherencia visual y la duplicación de esfuerzos", 
+      "La necesidad de usar herramientas de diseño avanzadas", 
+      "La reducción del número de diseñadores en un equipo"
     ],
     correctAnswer: 1
   },
   {
     id: 30,
     round: 3,
-    text: "¿Qué aspecto es fundamental para mantener un Design System efectivo?",
+    text: "¿Qué aspecto es fundamental para mantener un Design System de forma correcta?",
     options: [
       "Cambiar completamente el sistema cada 6 meses", 
       "Limitar el acceso solo al equipo de diseño y de negocio", 
-      "Gobernanza y procesos de actualización claros", 
+      "Gobernanza y procesos estandarizados y claro", 
       "Utilizar exclusivamente tecnologías propias"
     ],
     correctAnswer: 2
