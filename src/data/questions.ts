@@ -1056,10 +1056,10 @@ export const questions: Question[] = [
     round: 9,
     text: "¿Qué es un 'cognitive walkthrough' en evaluación UX?",
     options: [
-      "Un paseo físico con los usuarios por el espacio de trabajo", 
+      "Un paseo físico con los usuarios por el espacio y el entorno de trabajo real ", 
       "Una revisión paso a paso de cómo los usuarios realizarían tareas específicas", 
-      "Un análisis de los procesos cognitivos de los usuarios", 
-      "Una técnica para mapear el conocimiento de los usuarios"
+      "Un análisis de los procesos cognitivos de los diseñadores en un proceso de diseño", 
+      "Una técnica para mapear el conocimiento de los usuarios previos al producto"
     ],
     correctAnswer: 1
   },
@@ -1080,10 +1080,10 @@ export const questions: Question[] = [
     round: 9,
     text: "Según la heurística de Nielsen, ¿qué significa 'reconocer en lugar de recordar'?",
     options: [
-      "Los usuarios deben poder reconocer a los desarrolladores del sistema", 
+      "Los usuarios deben poder reconocer a los desarrolladores del sistema a nivel personal", 
       "El sistema debe mostrar elementos visibles para que el usuario no tenga que memorizar información", 
-      "Los usuarios deben reconocer sus errores", 
-      "El sistema debe recordar las preferencias del usuario"
+      "Los usuarios deben reconocer sus errores para poder corregirlos con total humildad", 
+      "El sistema debe recordar las preferencias del usuario para poder personalizar la experiencia"
     ],
     correctAnswer: 1
   },
@@ -1092,7 +1092,7 @@ export const questions: Question[] = [
     round: 9,
     text: "¿Qué es una 'prueba de los 5 segundos' en evaluación UX?",
     options: [
-      "Verificar si un sitio carga en menos de 5 segundos", 
+      "Verificar si un sitio carga completamente en menos de 5 segundos", 
       "Un test para verificar la velocidad de respuesta del sistema", 
       "Una prueba para verificar si una acción toma más de 5 segundos", 
       "Mostrar un diseño durante 5 segundos y preguntar qué recuerdan los usuarios"
@@ -1167,9 +1167,9 @@ export const questions: Question[] = [
     text: "¿Qué es una 'propuesta de valor' en estrategia de producto?",
     options: [
       "La declaración que resume por qué un cliente debería comprar o usar tu producto", 
-      "Un documento legal que establece el valor de un producto", 
-      "Un precio sugerido para un producto", 
-      "Una promesa de descuento para clientes fieles"
+      "Un documento legal que establece el valor de un producto a nivel internacional", 
+      "Un precio sugerido para un producto que esté en línea con su competencia", 
+      "Una promesa de descuento para clientes fieles cuando llevan más de X años usando un producto"
     ],
     correctAnswer: 0
   },
@@ -1188,11 +1188,11 @@ export const questions: Question[] = [
   {
     id: 98,
     round: 10,
-    text: "¿Qué es un 'product owner' en metodologías ágiles?",
+    text: "¿Qué es un 'Product Owner' en metodologías ágiles?",
     options: [
-      "El dueño legal de los derechos del producto y propietario del código fuente", 
-      "La persona responsable de maximizar el valor del producto y representar los intereses del cliente", 
-      "El inventor original del producto y el que lo ha pagado", 
+      "Es el dueño legal de los derechos del producto y propietario del código fuente", 
+      "Es el responsable de maximizar el valor del producto y representar los intereses del cliente", 
+      "El inventor original del producto, el que lo ha desarrollado y el que lo ha pagado", 
       "El gerente que supervisa la fabricación del producto y se queja si los trabajandores van lentos"
     ],
     correctAnswer: 1
@@ -1202,8 +1202,8 @@ export const questions: Question[] = [
     round: 10,
     text: "¿Qué es un 'feature creep' en desarrollo de producto?",
     options: [
-      "Una característica que se implementa lentamente", 
-      "Un equipo dedicado a desarrollar nuevas características", 
+      "Una característica que se implementa lentamente en el flujo de desarrollo de un producto", 
+      "Un equipo dedicado a desarrollar nuevas características para un producto digital", 
       "La tendencia a agregar continuamente características al producto más allá del alcance original", 
       "Un error que aparece gradualmente con el tiempo"
     ],
@@ -1214,7 +1214,7 @@ export const questions: Question[] = [
     round: 10,
     text: "¿Qué representa el acrónimo 'AARRR' en métricas de producto?",
     options: [
-      "Acquisition, Activation, Retention, Referral, Revenue (el embudo pirata de crecimiento)", 
+      "Acquisition, Activation, Retention, Referral, Revenue", 
       "Analysis, Assessment, Research, Review, Results", 
       "Awareness, Adaptation, Reaction, Response, Return", 
       "Attract, Adapt, Reward, Retain, Repeat"
