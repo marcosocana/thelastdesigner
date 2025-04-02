@@ -8,8 +8,10 @@ export const calculateScore = (
 ): number => {
   // Maximum score is 100 points per question
   // Faster answers get more points, up to 100 points for correct answers
+  // Time bonus decreases linearly from 1 (instant answer) to 0 (20 seconds)
   const maxScorePerQuestion = 100;
-  const timeBonus = Math.max(0, 1 - (answerTime / 10)); // 0-1 range, faster is better
+  const maxTime = 20; // 20 seconds maximum time
+  const timeBonus = Math.max(0, 1 - (answerTime / maxTime));
   return isCorrect ? Math.round(maxScorePerQuestion * timeBonus) : 0;
 };
 

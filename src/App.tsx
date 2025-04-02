@@ -27,7 +27,7 @@ const App = () => {
         metaOgImage.setAttribute('property', 'og:image');
         document.head.appendChild(metaOgImage);
       }
-      metaOgImage.setAttribute('content', '/lovable-uploads/c325bdcb-654e-4672-b2cc-6400a464888c.png');
+      metaOgImage.setAttribute('content', '/lovable-uploads/2f08cb44-4ade-4ac5-b20b-862d10a13ded.png');
       
       // Update or create the twitter:image meta tag
       let metaTwitterImage = document.querySelector('meta[name="twitter:image"]');
@@ -36,7 +36,7 @@ const App = () => {
         metaTwitterImage.setAttribute('name', 'twitter:image');
         document.head.appendChild(metaTwitterImage);
       }
-      metaTwitterImage.setAttribute('content', '/lovable-uploads/c325bdcb-654e-4672-b2cc-6400a464888c.png');
+      metaTwitterImage.setAttribute('content', '/lovable-uploads/2f08cb44-4ade-4ac5-b20b-862d10a13ded.png');
     };
     
     updateMetaTags();
