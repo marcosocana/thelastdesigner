@@ -14,9 +14,32 @@ import { useEffect } from "react";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Set the page title
+  // Set the page title and ensure metadata is loaded
   useEffect(() => {
     document.title = "The Last Designer";
+    
+    // Ensure the meta tags are properly set
+    const updateMetaTags = () => {
+      // Update or create the og:image meta tag
+      let metaOgImage = document.querySelector('meta[property="og:image"]');
+      if (!metaOgImage) {
+        metaOgImage = document.createElement('meta');
+        metaOgImage.setAttribute('property', 'og:image');
+        document.head.appendChild(metaOgImage);
+      }
+      metaOgImage.setAttribute('content', '/lovable-uploads/c325bdcb-654e-4672-b2cc-6400a464888c.png');
+      
+      // Update or create the twitter:image meta tag
+      let metaTwitterImage = document.querySelector('meta[name="twitter:image"]');
+      if (!metaTwitterImage) {
+        metaTwitterImage = document.createElement('meta');
+        metaTwitterImage.setAttribute('name', 'twitter:image');
+        document.head.appendChild(metaTwitterImage);
+      }
+      metaTwitterImage.setAttribute('content', '/lovable-uploads/c325bdcb-654e-4672-b2cc-6400a464888c.png');
+    };
+    
+    updateMetaTags();
   }, []);
 
   return (
