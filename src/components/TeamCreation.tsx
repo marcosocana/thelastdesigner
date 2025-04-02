@@ -6,26 +6,25 @@ const TeamCreation = () => {
   const { createTeam } = useQuiz();
   
   const [teamName, setTeamName] = useState("");
-  const [memberCount, setMemberCount] = useState(1);
+  const [memberCount, setMemberCount] = useState<number>(1);
   const [memberNames, setMemberNames] = useState<string[]>([""]);
   const [teamLogo, setTeamLogo] = useState<string | null>(null);
   const [step, setStep] = useState(1);
   
   const handleMemberCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const count = value === "" ? "" : parseInt(value);
-
-    // Verifica si es un número válido y dentro del rango permitido
-    if (count === "" || (count > 0 && count <= 10)) {
+    const value = parseInt(e.target.value);
+    
+    // Check if it's a valid number and within the allowed range (1-10)
+    if (!isNaN(value) && value > 0 && value <= 10) {
       setMemberCount(value);
 
-      // Actualiza la longitud de la lista de nombres de miembros
-      if (count > memberNames.length) {
-        // Agrega nombres vacíos si se incrementa el número de miembros
-        setMemberNames([...memberNames, ...Array(count - memberNames.length).fill("")]);
+      // Update the length of the member names list
+      if (value > memberNames.length) {
+        // Add empty names if the count is increased
+        setMemberNames([...memberNames, ...Array(value - memberNames.length).fill("")]);
       } else {
-        // Elimina nombres adicionales si se reduce el número de miembros
-        setMemberNames(memberNames.slice(0, count));
+        // Remove names if the count is decreased
+        setMemberNames(memberNames.slice(0, value));
       }
     }
   };
@@ -130,6 +129,8 @@ const TeamCreation = () => {
                   <label className="block mb-1 font-bold">Número de Miembros</label>
                   <input
                     type="number"
+                    min="1"
+                    max="10"
                     value={memberCount}
                     onChange={handleMemberCountChange}
                     className="brutalist-input"
