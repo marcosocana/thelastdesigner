@@ -388,7 +388,7 @@ export const questions: Question[] = [
     options: [
       "Una entrevista realizada en el entorno donde el usuario utiliza el producto", 
       "Una entrevista enfocada en el contexto del negocio del producto", 
-      "Una entrevista improvisada sin preparación alguna", 
+      "Una entrevista improvisada sin preparación alguna ni guión", 
       "Una entrevista con varios participantes simultáneamente y siempre en remoto"
     ],
     correctAnswer: 0
@@ -398,10 +398,10 @@ export const questions: Question[] = [
     round: 4,
     text: "¿Qué es un 'test de usabilidad'?",
     options: [
-      "Una prueba técnica del rendimiento del sistema", 
-      "Una evaluación de la seguridad de la aplicación", 
+      "Una prueba técnica del rendimiento del sistema a nivel infraestructura", 
+      "Una evaluación de la seguridad de la aplicación o de un producto físico", 
       "Una evaluación de cómo los usuarios interactúan con un producto", 
-      "Un cuestionario sobre las preferencias del usuario"
+      "Un cuestionario sobre las preferencias del usuario a la hora de usar un producto"
     ],
     correctAnswer: 2
   },
@@ -423,11 +423,11 @@ export const questions: Question[] = [
     text: "¿Qué es un 'mapa de calor' en el análisis de datos UX?",
     options: [
       "Un mapa del clima global, incluyendo las precipitaciones en Despeñaperros", 
-      "Una representación visual que muestra las áreas donde los usuarios hacen clic o prestan más atención", 
+      "Un análisis del rendimiento del equipo de diseño a lo largo del desarrollo del producto", 
       "Un diagrama de temperatura del servidor, resaltando los CPUs con más grados", 
-      "Un análisis del rendimiento del equipo de diseño"
+      "Una representación visual que muestra las áreas donde los usuarios hacen clic o prestan más atención"
     ],
-    correctAnswer: 1
+    correctAnswer: 3
   },
   {
     id: 36,
@@ -446,9 +446,9 @@ export const questions: Question[] = [
     round: 4,
     text: "¿Qué es el 'card sorting' en investigación UX?",
     options: [
-      "Una técnica para organizar tarjetas de presentación de una empresa", 
+      "Una técnica para organizar tarjetas de presentación de una empresa para que el cliente pueda cogerlas", 
       "Un método donde los usuarios organizan temas en categorías para entender su modelo mental", 
-      "Una forma de ordenar componentes visuales en formato cards", 
+      "Una forma de ordenar componentes visuales en formato cards siempre dentro de Figma", 
       "Un juego para entretener a los participantes durante las pruebas de usabilidad de un producto"
     ],
     correctAnswer: 1
@@ -458,10 +458,10 @@ export const questions: Question[] = [
     round: 4,
     text: "¿Qué métrica mide el esfuerzo que un usuario debe realizar para completar una tarea?",
     options: [
-      "Tasa de rebote", 
-      "Puntuación de satisfacción", 
+      "Tasa de rebote (TR)", 
+      "Puntuación de satisfacción (PS)", 
       "Índice de esfuerzo del cliente (CES)", 
-      "Tasa de conversión"
+      "Tasa de conversión (TC)"
     ],
     correctAnswer: 2
   },
@@ -470,7 +470,7 @@ export const questions: Question[] = [
     round: 4,
     text: "¿Qué es un 'A/B test' en diseño basado en datos?",
     options: [
-      "Una prueba alfabética de nombres de productos", 
+      "Una prueba alfabética de nombres de productos para elegir uno", 
       "Reunión de 2 o más personas donde cada uno representa a una letra", 
       "Un test para comparar dos o más grupos demográficos diferentes", 
       "Una comparación entre dos o más versiones para ver cuál funciona mejor"
@@ -496,8 +496,8 @@ export const questions: Question[] = [
     round: 5,
     text: "¿Qué es el UX Writing?",
     options: [
-      "La documentación técnica de un producto digital", 
-      "La creación de manuales para diseñadores UX", 
+      "La documentación técnica para los desarrolladores de un producto digital", 
+      "La creación de manuales para diseñadores UX en un producto físico", 
       "La escritura de artículos sobre experiencia de usuario para blogs", 
       "La redacción de textos para la interfaz de usuario que guían al usuario"
     ],
@@ -508,12 +508,12 @@ export const questions: Question[] = [
     round: 5,
     text: "¿Qué es el 'microcopy'?",
     options: [
-      "Textos muy pequeños difíciles de leer", 
       "Palabras o frases breves en la interfaz que guían al usuario", 
+      "Textos muy pequeños difíciles de leer para los usuarios", 
       "Derechos de autor de elementos pequeños", 
       "Una forma de copyright para fragmentos de texto"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 43,
@@ -521,7 +521,7 @@ export const questions: Question[] = [
     text: "¿Cuál es un principio fundamental del UX Writing?",
     options: [
       "Usar terminología técnica para parecer profesional", 
-      "Escribir textos largos y detallados", 
+      "Escribir textos largos y con mucho detalle", 
       "Ser claro, conciso y útil", 
       "Usar jerga específica de la industria"
     ],
@@ -532,12 +532,12 @@ export const questions: Question[] = [
     round: 5,
     text: "¿Qué es un 'empty state'?",
     options: [
-      "Un error en la aplicación", 
-      "Una página en blanco sin diseñar", 
       "Una pantalla que se muestra cuando no hay contenido disponible", 
-      "Un estado de depresión del diseñador"
+      "Una página totalmente en blanco y sin diseñar", 
+      "Un error en la aplicación explicado de forma amable", 
+      "Un estado de depresión del diseñador: 'Estoy muy empty state'"
     ],
-    correctAnswer: 2
+    correctAnswer: 0
   },
   {
     id: 45,
@@ -545,8 +545,8 @@ export const questions: Question[] = [
     text: "¿Qué es la 'voz de marca' en UX Writing?",
     options: [
       "Un asistente de voz como Siri o Alexa", 
-      "El volumen recomendado para usar la aplicación", 
-      "La voz del narrador en videos promocionales", 
+      "El volumen recomendado para usar una aplicación", 
+      "La voz del narrador en videos promocionales en TV", 
       "El tono y personalidad consistentes en todos los textos"
     ],
     correctAnswer: 3
@@ -569,9 +569,9 @@ export const questions: Question[] = [
     text: "¿Qué es un 'CTA' (Call to Action) en el contexto de UX Writing?",
     options: [
       "Un texto que anima al usuario a realizar una acción específica", 
-      "Un aviso de cierre temporal de la aplicación", 
-      "Un mensaje automático generado por el sistema", 
-      "Una notificación crítica sobre problemas técnicos"
+      "Un aviso de cierre temporal de la aplicación por sobrecarga en el sistema", 
+      "Un mensaje automático generado por el sistema, avisando a los usuarios de tareas de mantenimiento", 
+      "Una notificación push sobre problemas técnicos"
     ],
     correctAnswer: 0
   },
@@ -580,12 +580,12 @@ export const questions: Question[] = [
     round: 5,
     text: "¿Qué es la 'jerarquía de información' en UX Writing?",
     options: [
-      "La organización del texto según su importancia", 
-      "El tamaño de diferentes fuentes en la página", 
       "El número de palabras permitidas en cada sección", 
+      "El tamaño de diferentes fuentes en la página", 
+      "La organización del texto según su importancia", 
       "Todas son correctas"
     ],
-    correctAnswer: 0
+    correctAnswer: 2
   },
   {
     id: 49,
@@ -618,12 +618,12 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué es el 'diseño responsive'?",
     options: [
-      "Un diseño que responde a las interacciones del usuario", 
       "Un enfoque de diseño que permite que las páginas se adapten a diferentes tamaños de pantalla", 
-      "Un diseño que responde rápidamente a cambios en el sistema", 
-      "Un diseño que incluye animaciones interactivas"
+      "Un diseño que responde a las interacciones del usuario de forma inmediata", 
+      "Un diseño que responde rápidamente a cambios en el sistema, como por ejemplo cuando cambia de ubicación", 
+      "Un diseño que incluye animaciones interactivas en 3D"
     ],
-    correctAnswer: 1
+    correctAnswer: 0
   },
   {
     id: 52,
@@ -642,12 +642,12 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué significa 'mobile-first design'?",
     options: [
-      "Diseñar exclusivamente para dispositivos móviles modernos, sin tener en cuenta los antiguos", 
+      "Un enfoque que diseña exclusivamente para dispositivos móviles modernos, sin tener en cuenta los antiguos", 
+      "Una técnica donde los desarrolladores de movilidad son los primeros en probar un diseño y evaluar su calidad", 
       "Un enfoque donde se diseña primero para dispositivos móviles y luego se amplía para pantallas más grandes", 
-      "Una técnica donde los desarrolladores de movilidad son los primeros en probar un diseño", 
-      "Un diseño que solo funciona en teléfonos Android"
+      "Un diseño que solo funciona en teléfonos Android de versiones anteriores a las 6.0"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 54,
@@ -666,8 +666,8 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Cuál es la principal diferencia entre una aplicación nativa y una web app?",
     options: [
-      "Las aplicaciones nativas están escritas en idiomas locales. Nunca están traducidas", 
-      "Las web apps son siempre de pago mientras que las nativas son gratuitas", 
+      "Las aplicaciones nativas están escritas en idiomas locales. Nunca están traducidas. Las web apps sí se pueden traducir.", 
+      "Las web apps son siempre de pago mientras que las nativas son totalmente gratuitas", 
       "Las aplicaciones nativas están instaladas directamente en el dispositivo y están optimizadas para él", 
       "Las web apps funcionan sin conexión a internet mientras que las nativas requieren conexión"
     ],
@@ -680,8 +680,8 @@ export const questions: Question[] = [
     options: [
       "El área de la pantalla que un usuario puede alcanzar cómodamente con el pulgar mientras sostiene el dispositivo", 
       "El espacio necesario para colocar huellas dactilares en la pantalla durante una firma biométrica", 
-      "El tamaño mínimo recomendado para botones táctiles", 
-      "Una técnica para medir el tamaño de la pantalla en pulgadas"
+      "El tamaño mínimo recomendado para botones táctiles. Suele ser de 32px.", 
+      "Una técnica para medir el tamaño de la pantalla en pulgadas. 'Esta pantalla tiene 8 pulgares'."
     ],
     correctAnswer: 0
   },
@@ -702,10 +702,10 @@ export const questions: Question[] = [
     round: 6,
     text: "¿Qué es el 'scroll infinito' en diseño móvil?",
     options: [
-      "Un error que hace que la página directamente se vaya al final", 
+      "Un error que hace que la página directamente se vaya al final constantemente", 
       "Una técnica donde el contenido se carga continuamente al llegar al final de la página", 
-      "Un tipo de animación que simula un pergamino infinito mágico", 
-      "Una característica que permite desplazarse horizontalmente sin límites"
+      "Un tipo de animación que simula un pergamino infinito mágico que se amplia aunque el usuario no haga nada", 
+      "Una característica que permite desplazarse sólo horizontalmente sin límites dentro de una interfaz"
     ],
     correctAnswer: 1
   },
@@ -740,9 +740,9 @@ export const questions: Question[] = [
     round: 7,
     text: "¿Qué es un prototipo interactivo en UX/UI?",
     options: [
-      "Una versión final del producto ya lista en Producción", 
-      "Un boceto a mano alzada siempre en papel", 
-      "Una simulación o modelo de cómo funcionará el producto final", 
+      "Una versión final del producto ya lista y desarrollada en Producción", 
+      "Un boceto a mano alzada siempre en papel. Puede tener color.", 
+      "Una simulación, maqueta o modelo de cómo funcionará el producto final", 
       "Un documento que describe las funcionalidades con todo detalle"
     ],
     correctAnswer: 2
