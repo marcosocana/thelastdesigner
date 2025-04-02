@@ -755,7 +755,7 @@ export const questions: Question[] = [
       "Los de baja fidelidad son digitales y los de alta fidelidad son impresos", 
       "Los de baja fidelidad son básicos y conceptuales, mientras que los de alta fidelidad se parecen más al producto final", 
       "Los de baja fidelidad son más caros de producir que los de alta fidelidad", 
-      "No hay diferencia, son términos intercambiables"
+      "No hay diferencia, es lo mismo"
     ],
     correctAnswer: 1
   },
@@ -776,22 +776,22 @@ export const questions: Question[] = [
     round: 7,
     text: "¿Qué permite hacer la función 'Auto Layout' en Figma?",
     options: [
-      "Distribuir automáticamente los elementos en la pantalla aleatoriamente", 
+      "Distribuir automáticamente los elementos en la pantalla de forma aleatoria", 
+      "Convertir automáticamente un diseño web en un diseño móvil con solo 1 click", 
       "Crear layouts que se adaptan y reorganizan cuando se modifican los contenidos", 
-      "Convertir automáticamente un diseño web en un diseño móvil", 
-      "Actualizar automáticamente el diseño según la hora del día"
+      "Actualizar automáticamente el diseño según la hora del día para que se convierta en modo dark si aplica"
     ],
-    correctAnswer: 1
+    correctAnswer: 2
   },
   {
     id: 65,
     round: 7,
     text: "¿Qué son los 'componentes' en herramientas como Figma o Sketch?",
     options: [
-      "Elementos decorativos que aportan belleza al diseño", 
-      "Partes del hardware necesarias para ejecutar el software", 
+      "Elementos decorativos que aportan belleza al diseño, aunque no tengan funcionalidad", 
+      "Partes del hardware necesarias para ejecutar el software. Ej: Disco duro.", 
       "Elementos reutilizables que mantienen consistencia en todo el diseño", 
-      "Códigos específicos para programar la interfaz en VueJs"
+      "Códigos específicos para programar la interfaz en VueJs, React o Angular"
     ],
     correctAnswer: 2
   },
@@ -801,8 +801,8 @@ export const questions: Question[] = [
     text: "¿Qué es un 'handoff' en el proceso de diseño?",
     options: [
       "El momento en que se entrega el diseño finalizado a los desarrolladores", 
-      "Una técnica para pasar el control de un proyecto a otro equipo de negocio", 
-      "El acto de descartar un diseño obsoleto para modernizarlo", 
+      "Una técnica para pasar el control de un proyecto a un equipo de negocio", 
+      "El acto de descartar un diseño obsoleto para poder modernizarlo", 
       "Una reunión donde se rechazan ideas de diseño desde el equipo funcional"
     ],
     correctAnswer: 0
@@ -824,10 +824,10 @@ export const questions: Question[] = [
     round: 7,
     text: "¿Cuál es la principal desventaja de un prototipo de alta fidelidad en una fase temprana del proceso de diseño?",
     options: [
-      "No permite realizar pruebas con usuarios reales", 
-      "Es más difícil de iterar que un wireframe en papel", 
+      "No permite realizar pruebas con usuarios reales, ya que es demasiado complejo para ellos", 
+      "Es más difícil de iterar que un wireframe en papel, aunque suele tardar menos", 
       "Los stakeholders se centran demasiado en los detalles visuales", 
-      "No es posible conectar flujos de interacción"
+      "No es posible conectar los principales flujos de interacción"
     ],
     correctAnswer: 2
   },
@@ -862,10 +862,10 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el diseño inclusivo?",
     options: [
-      "Diseñar exclusivamente para personas con discapacidades físicas visibles", 
+      "Diseñar exclusivamente para personas con discapacidades físicas fácilmente visibles", 
       "Diseñar productos que pueden ser utilizados por personas con el más amplio rango de capacidades", 
-      "Incluir elementos de diferentes culturas en el diseño para que ninguna raza se sienta excluída", 
-      "Un tipo de diseño que incluye muchos elementos gráficos y de todos los colores"
+      "Técnica para incluir elementos de diferentes culturas en el diseño para que ninguna raza se sienta excluída", 
+      "Un tipo de diseño que incluye muchos elementos gráficos y de todos los colores, sin discriminación"
     ],
     correctAnswer: 1
   },
@@ -886,9 +886,9 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el contraste de color en términos de accesibilidad?",
     options: [
-      "La cantidad de colores utilizados en un diseño", 
-      "Un efecto visual para hacer el diseño más atractivo", 
-      "Una técnica para destacar elementos importantes", 
+      "La cantidad de colores utilizados en un diseño, siendo siempre mínimo 3 y máximo 6", 
+      "Un efecto visual para hacer el diseño más atractivo, utilizando sólo colores vibrantes", 
+      "Una técnica para destacar elementos importantes a través del uso exclusivo del Brillo", 
       "La diferencia entre colores claros y oscuros para asegurar la legibilidad"
     ],
     correctAnswer: 3
@@ -898,9 +898,9 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es un 'screen reader'?",
     options: [
-      "Una pantalla grande para leer mejor y más rápido", 
+      "Una pantalla grande para leer mejor y más rápido. Los colores siempre deben contrastar mucho", 
       "Una herramienta que lee el contenido en pantalla para personas con discapacidad visual", 
-      "Un software para extraer texto de imágenes como el OCR", 
+      "Un software para extraer texto de imágenes como el OCR para que el usuario pueda verlo más fácil", 
       "Una aplicación para mejorar la resolución de la pantalla y tener mejores colores"
     ],
     correctAnswer: 1
@@ -910,10 +910,10 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué representa el atributo 'alt' en una imagen para la accesibilidad?",
     options: [
-      "Una versión alternativa de la imagen en otro color", 
-      "La alineación de la imagen en la página", 
+      "Una versión alternativa de la imagen en otro color para las personas que no puedan verla", 
+      "La alineación de la imagen en la página para que siempre quede centrada y se vea mejor", 
       "Un texto descriptivo del contenido de la imagen para quienes no pueden verla", 
-      "El autor de la imagen"
+      "El autor de la imagen siempre aparece en la etiqueta 'alt', así lo podemos ver todos"
     ],
     correctAnswer: 2
   },
@@ -922,9 +922,9 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el 'keyboard navigation' en diseño accesible?",
     options: [
-      "Un teclado especial para personas con movilidad reducida", 
-      "Un teclado digital que aparece en pantalla", 
-      "Un atajo de teclado para acceder al menú de navegación", 
+      "Un teclado especial para personas con movilidad reducida, siendo más sencillo usarlo", 
+      "Un teclado digital que aparece en pantalla para el usuario principal", 
+      "Un atajo de teclado para acceder al menú de navegación (Command + P)", 
       "La capacidad de navegar por un sitio web usando solo el teclado"
     ],
     correctAnswer: 3
@@ -946,10 +946,10 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Por qué es importante proporcionar subtítulos en los videos?",
     options: [
-      "Para hacer los videos más estéticos", 
+      "Para hacer los videos más estéticos, ya que los enmarca mejor y coloca el peso debajo", 
       "Para que los usuarios puedan ver el video sin sonido o si tienen discapacidad auditiva", 
-      "Para aumentar el SEO del video", 
-      "Para proteger el contenido con derechos de autor"
+      "Para aumentar el SEO del video. Si tienen subtítulos, pueden aparecer en Google", 
+      "Para proteger el contenido con derechos de autor. Si tiene subtítulos no se puede copiar"
     ],
     correctAnswer: 1
   },
@@ -958,7 +958,7 @@ export const questions: Question[] = [
     round: 8,
     text: "¿Qué es el 'daltonismo' y cómo afecta al diseño?",
     options: [
-      "Una teoría de diseño basada en las ideas de John Dalton, que dice que los colores no valen para nada", 
+      "Una teoría de diseño basada en las ideas de John Dalton, que dice que los colores no valen para nada y todo debe ser en B/N", 
       "Una condición que afecta la percepción del color, requiriendo considerar combinaciones de colores accesibles", 
       "Un estilo minimalista de diseño donde los colores siempre deben ser complementarios", 
       "Una técnica para simplificar interfaces complejas a través del uso de colores vibrantes"
@@ -971,9 +971,9 @@ export const questions: Question[] = [
     text: "¿Qué es una 'trampa de foco' en términos de accesibilidad?",
     options: [
       "Un error donde el usuario no puede salir de un elemento usando el teclado", 
-      "Un elemento de diseño que atrae demasiada atención", 
-      "Una característica para mantener la concentración del usuario", 
-      "Una técnica para resaltar elementos importantes"
+      "Un elemento de diseño que atrae demasiada atención del usuario", 
+      "Una característica para mantener la concentración del usuario en todo momento", 
+      "Una técnica para resaltar elementos importantes dentro de una interfaz visual"
     ],
     correctAnswer: 0
   },
@@ -984,9 +984,9 @@ export const questions: Question[] = [
     round: 9,
     text: "¿Qué son las 'heurísticas de Nielsen' en UX?",
     options: [
-      "Algoritmos para analizar datos de usuarios", 
-      "Técnicas para realizar entrevistas con usuarios", 
-      "Medidas para calcular el ROI de un proyecto de UX", 
+      "Algoritmos para analizar datos de usuarios que usen el producto", 
+      "Técnicas para realizar entrevistas con usuarios de otras geografías", 
+      "Medidas para calcular el ROI de un proyecto de UX en términos económicos", 
       "Principios generales para evaluar la usabilidad de interfaces"
     ],
     correctAnswer: 3
@@ -1008,8 +1008,8 @@ export const questions: Question[] = [
     round: 9,
     text: "¿Qué es una 'evaluación heurística'?",
     options: [
-      "Un test con usuarios reales que hayan usado el producto solo 1 vez", 
-      "Un análisis automático mediante software con inteligencia artificial", 
+      "Un test con usuarios reales que hayan usado el producto solo 1 vez durante el último mes", 
+      "Un análisis automático mediante software con inteligencia artificial avanzada", 
       "Una revisión de usabilidad realizada por expertos basada en principios establecidos", 
       "Una encuesta enviada a los usuarios más activos de un producto"
     ],
