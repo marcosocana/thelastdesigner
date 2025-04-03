@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import { useQuiz } from "@/context/QuizContext";
 import { Question } from "@/types";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Timer, Shell } from "lucide-react";
+import { Clock, Timer } from "lucide-react";
+import { Shell } from "lucide-react";
 import QuizSummary from "./QuizSummary";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -50,6 +52,7 @@ const QuizGame = () => {
   const isMobile = useIsMobile();
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [roundCompleted, setRoundCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(20);
   const [answerTime, setAnswerTime] = useState(0);
@@ -123,6 +126,7 @@ const QuizGame = () => {
       
       setTimeout(() => {
         if (currentQuestionIndex < questions.length - 1) {
+          setSelectedOption(null); // Reset selected option
           setNextQuestion();
         } else {
           setRoundCompleted(true);
@@ -143,6 +147,8 @@ const QuizGame = () => {
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
     
+    setSelectedOption(optionIndex);
+    
     // Auto-submit the answer when option is selected
     if (currentQuestion && currentQuestionIndex < questions.length - 1) {
       const elapsedTime = Math.min((Date.now() - startTime) / 1000, 20);
@@ -154,6 +160,7 @@ const QuizGame = () => {
       
       setTimeout(() => {
         if (currentQuestionIndex < questions.length - 1) {
+          setSelectedOption(null); // Reset selected option
           setNextQuestion();
         } else {
           setRoundCompleted(true);
@@ -364,29 +371,38 @@ const QuizGame = () => {
         </div>
         
         <div className="space-y-3 mb-4">
-          {currentQuestion.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => handleOptionSelect(index)}
-              className={`w-full p-3 md:p-4 brutalist-border text-left transition-all ${
-                showFeedback && index === currentQuestion.correctAnswer
-                  ? "bg-green-200 border-green-500"
-                  : showFeedback && index !== currentQuestion.correctAnswer
-                  ? "bg-white"
-                  : "bg-white hover:bg-gray-100"
-              }`}
-              disabled={showFeedback}
-            >
-              <div className="quiz-option">
-                <span className="quiz-option-label brutalist-border mr-2 text-black">
-                  {String.fromCharCode(65 + index)}
-                </span>
-                <span className="quiz-option-text text-black">
-                  {option}
-                </span>
-              </div>
-            </button>
-          ))}
+          {currentQuestion.options.map((option, index) => {
+            // Determine the button style based on the state
+            let buttonStyle = "w-full p-3 md:p-4 brutalist-border text-left transition-all bg-white";
+            
+            if (showFeedback) {
+              if (index === currentQuestion.correctAnswer) {
+                buttonStyle = "w-full p-3 md:p-4 brutalist-border text-left transition-all bg-green-200 border-green-500";
+              } else if (index === selectedOption) {
+                buttonStyle = "w-full p-3 md:p-4 brutalist-border text-left transition-all bg-white border-red-500 border-2";
+              }
+            } else if (index === selectedOption) {
+              buttonStyle = "w-full p-3 md:p-4 brutalist-border text-left transition-all bg-white border-black border-2";
+            }
+            
+            return (
+              <button
+                key={index}
+                onClick={() => handleOptionSelect(index)}
+                className={buttonStyle}
+                disabled={showFeedback}
+              >
+                <div className="quiz-option">
+                  <span className="quiz-option-label brutalist-border mr-2 text-black">
+                    {String.fromCharCode(65 + index)}
+                  </span>
+                  <span className="quiz-option-text text-black">
+                    {option}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </div>
         
         {showFeedback && (
