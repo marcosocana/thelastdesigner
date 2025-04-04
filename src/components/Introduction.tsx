@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Introduction = () => {
   return <div className="max-w-4xl mx-auto my-12 animate-slide-up">
       <div className="brutalist-box">
@@ -45,22 +46,7 @@ const Introduction = () => {
           <Link to="/quiz" className="brutalist-btn block text-center uppercase mt-8 mb-8">¡SALVAR AL MUNDO!</Link>
         </div>
       </div>
-      
-      {/* Nueva caja promocional con fondo amarillo */}
-      <div className="brutalist-box mt-8" style={{ backgroundColor: "#F8DE29" }}>
-        <div className="mx-auto max-w-2xl py-4">
-          <p className="font-bold text-xl mb-4">
-            ¡Consigue el Workbook para diseñador Vol. 1 en Amazon y sigue divirtiéndote mientras aprendes diseño!
-          </p>
-          <a 
-            href="https://www.amazon.es/Workbook-para-Dise%C3%B1adores-producto-gr%C3%A1ficos/dp/B0DLTT5WNM" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="brutalist-btn inline-block text-center uppercase mt-2">
-            Más información
-          </a>
-        </div>
-      </div>
     </div>;
 };
+
 export default Introduction;
