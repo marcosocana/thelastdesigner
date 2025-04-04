@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "@/components/Layout";
 
@@ -17,7 +18,7 @@ const Manifiesto = () => {
             <p className="mb-4">Hoy, nos levantamos en defensa de la libertad del diseño, y luchamos para que nunca nos impongan restricciones que ahoguen nuestra creatividad. Porque solo cuando el diseño es libre, el mundo puede ser transformado de verdad.</p>
             <p className="mb-4">--------</p>
                      
-            <p className="mb-4">Esta experiencia ha sido desarrollada por Marcos Ocaña, diseñador, autor del Workbook para Diseñadores y firme defensor de que el aprendizaje debe ser tan divertido como desafiante.</p>
+            <p className="mb-4">Esta experiencia ha sido desarrollada por Marcos Ocaña, diseñador, autor del <a href="https://www.amazon.es/Workbook-para-Dise%C3%B1adores-producto-gr%C3%A1ficos/dp/B0DLTT5WNM" target="_blank" rel="noopener noreferrer" className="underline hover:text-brutalist-700">Workbook para Diseñadores</a> y firme defensor de que el aprendizaje debe ser tan divertido como desafiante.</p>
             
             <p className="mb-4">
               <a href="https://www.linkedin.com/in/marcosocana/" target="_blank" rel="noopener noreferrer" className="brutalist-border px-3 py-1 inline-block hover:bg-black hover:text-white transition-colors">
