@@ -35,7 +35,7 @@ const WorkbookModal = ({ onClose, isOpen }: WorkbookModalProps) => {
             />
             
             <h2 className={`font-bold ${isMobile ? 'text-base' : 'text-xl'} mb-4 text-center`}>
-              ¡Consigue el Workbook para diseñador Vol. 1 en Amazon y sigue divirtiéndote mientras aprendes diseño!
+              ¡Consigue el Workbook para diseñadores Vol. 1 en Amazon y sigue divirtiéndote mientras aprendes diseño!
             </h2>
             
             <a 
