@@ -8,8 +8,15 @@ const Index = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // Show modal when the page loads
-    setShowModal(true);
+    // Check if this is the first visit
+    const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+    
+    if (!hasVisitedBefore) {
+      // Show modal on first visit
+      setShowModal(true);
+      // Mark as visited
+      localStorage.setItem('hasVisitedBefore', 'true');
+    }
   }, []);
 
   return (

@@ -2,6 +2,7 @@
 import React from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WorkbookModalProps {
   onClose: () => void;
@@ -9,11 +10,13 @@ interface WorkbookModalProps {
 }
 
 const WorkbookModal = ({ onClose, isOpen }: WorkbookModalProps) => {
+  const isMobile = useIsMobile();
+  
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) onClose();
     }}>
-      <DialogContent className="max-w-lg border-2 border-black p-0 overflow-hidden" style={{ backgroundColor: "#F8DE29" }}>
+      <DialogContent className={`border-2 border-black p-0 overflow-hidden ${isMobile ? 'max-w-xs' : 'max-w-lg'}`} style={{ backgroundColor: "#F8DE29" }}>
         <div className="p-6">
           <button 
             onClick={onClose}
@@ -31,7 +34,7 @@ const WorkbookModal = ({ onClose, isOpen }: WorkbookModalProps) => {
               className="w-full max-w-md mb-6 brutalist-border"
             />
             
-            <h2 className="font-bold text-xl mb-4 text-center">
+            <h2 className={`font-bold ${isMobile ? 'text-base' : 'text-xl'} mb-4 text-center`}>
               ¡Consigue el Workbook para diseñador Vol. 1 en Amazon y sigue divirtiéndote mientras aprendes diseño!
             </h2>
             
