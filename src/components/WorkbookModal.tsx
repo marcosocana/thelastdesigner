@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 
@@ -17,7 +17,7 @@ const WorkbookModal = ({ onClose, isOpen }: WorkbookModalProps) => {
         <div className="p-6">
           <button 
             onClick={onClose}
-            className="absolute right-4 top-4 hover:bg-black hover:text-white rounded-full w-8 h-8 inline-flex items-center justify-center"
+            className="absolute right-4 top-4 bg-black text-white rounded-full w-8 h-8 inline-flex items-center justify-center"
           >
             <X size={18} />
             <span className="sr-only">Cerrar</span>
