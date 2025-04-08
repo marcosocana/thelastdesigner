@@ -33,13 +33,18 @@ const WorkbookModal = ({
             
             <h2 className={`font-bold ${isMobile ? 'text-base' : 'text-xl'} mb-4 text-center`}>¡Consigue el Workbook para diseñadores Vol. 1! Más de 100 páginas de retos y actividades para convertirte en un mejor diseñador. </h2>
             
-            <div className="flex flex-wrap gap-4 justify-center">
-              <a href="https://www.amazon.es/Workbook-para-Dise%C3%B1adores-producto-gr%C3%A1ficos/dp/B0DLTT5WNM" target="_blank" rel="noopener noreferrer" className="brutalist-btn inline-block text-center uppercase mt-2">
+            <div className="flex flex-wrap gap-2 justify-center">
+              <a 
+                href="https://www.amazon.es/Workbook-para-Dise%C3%B1adores-producto-gr%C3%A1ficos/dp/B0DLTT5WNM" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="brutalist-btn inline-block text-center uppercase mt-2 text-sm px-4 py-1.5"
+              >
                 Más información
               </a>
               <button 
                 onClick={onClose} 
-                className="inline-block text-center uppercase mt-2 px-6 py-2 bg-transparent font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
+                className="inline-block text-center uppercase mt-2 text-sm px-4 py-1.5 bg-transparent font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
               >
                 Cerrar
               </button>
